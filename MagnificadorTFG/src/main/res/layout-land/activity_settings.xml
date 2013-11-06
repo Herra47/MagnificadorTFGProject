@@ -1,0 +1,105 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/settingsLayout"
+        tools:context=".SettingsActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textSize="45sp"
+            android:id="@+id/textView" />
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:id="@+id/radioGroup">
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonBW"
+                android:textSize="40sp"
+                android:background="@color/White"
+                android:id="@+id/radioButtonBW"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonBY"
+                android:textSize="40sp"
+                android:textColor="@color/Yellow"
+                android:background="@color/Blue"
+                android:id="@+id/radioButtonBY"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonRY"
+                android:textSize="40sp"
+                android:textColor="@color/Yellow"
+                android:background="@color/Red"
+                android:id="@+id/radioButtonRY"
+                android:gravity="center_vertical|center_horizontal" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignLeft="@+id/radioGroup"
+            android:layout_marginTop="5dp"
+            android:id="@+id/radioGroup2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/menu_settings"
+                android:textSize="45sp"
+                android:id="@+id/textView2"
+                android:layout_gravity="left|center_vertical" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/one_option"
+                android:textSize="40sp"
+                android:id="@+id/radioButtonOne"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/four_options"
+                android:textSize="40sp"
+                android:id="@+id/radioButtonFour"
+                android:gravity="center_vertical|center_horizontal" />
+        </RadioGroup>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/saveButton"
+            android:textSize="50sp"
+            android:id="@+id/saveButton"
+            android:layout_below="@+id/radioGroup2"
+            android:layout_alignLeft="@+id/radioGroup2" />
+
+    </RelativeLayout>
+</ScrollView>

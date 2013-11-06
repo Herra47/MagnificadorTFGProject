@@ -1,0 +1,44 @@
+<TableLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/mainLayout">
+
+    <TableRow
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <Button
+            android:text="@string/button_camera"
+            android:id="@+id/cameraButton"
+            style="@style/button4x1land"
+            android:background="@drawable/borde"
+            />
+        <Button
+            android:text="@string/button_contrast"
+            android:id="@+id/contrastButton"
+            style="@style/button4x1land"
+            android:background="@drawable/borde"
+            />
+
+    </TableRow>
+    <TableRow
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:text="@string/button_settings"
+            android:id="@+id/settingsButton"
+            style="@style/button4x1land"
+            android:background="@drawable/borde" />
+        <Button
+            android:text="@string/button_menu"
+            android:id="@+id/menuButton"
+            style="@style/button4x1land"
+            android:background="@drawable/borde" />
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu1ButtonActivity"
+    android:id="@+id/menu1Button">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonLeft1"
+        android:src="@drawable/navigation_previous_item"
+        android:background="@color/White"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        tools:ignore="ContentDescription" />
+
+    <View
+        android:id="@+id/View01"
+        android:layout_width="2dip"
+        android:layout_height="fill_parent"
+        android:background="@android:color/black"
+        android:layout_alignRight="@+id/imageButtonLeft" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="@string/button_camera"
+        android:id="@+id/optionButton1"
+        style="@style/button1x1"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageButtonLeft"
+        android:layout_toLeftOf="@+id/imageButtonRight" />
+
+    <View
+        android:id="@+id/View02"
+        android:layout_width="2dip"
+        android:layout_height="fill_parent"
+        android:background="@android:color/black"
+        android:layout_toLeftOf="@+id/imageButtonRight" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonRight1"
+        android:src="@drawable/navigation_next_item"
+        android:background="@color/White"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
