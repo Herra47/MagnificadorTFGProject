@@ -6,11 +6,13 @@ import org.opencv.android.OpenCVLoader;
 
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Rect;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
@@ -59,7 +62,13 @@ public class MagnificadorActivity extends Activity {
 	private float px=100;
 	private float py=100;
 	private float my=1.f;
-	private double thresh;
+
+    DisplayMetrics displaymetrics = new DisplayMetrics();
+    int zoomY = displaymetrics.heightPixels/2;
+    int zoomX = displaymetrics.widthPixels/2;
+
+    private float mScaleFactor = 1.f;
+    private double thresh;
 	private double maxval=100;
 	private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this) {
 		@Override
@@ -103,38 +112,17 @@ public class MagnificadorActivity extends Activity {
 	private MenuItem stabilizatiON;
 	private MenuItem stabilizatiOFF;
 	private MenuItem finish;
+//    private ViewGroup.LayoutParams lp = mView.getLayoutParams();
 
     /* Gestures */
 
     private TapTwoFingersDetector mTapTwoFingersDetector;
     private LongTapMoveDetector mLongTapMoveDetector;
     private MoveDetector mMoveDetector;
-
-    private ScaleGestureDetector mScaleGestureDetector;
-    private float mScaleFactor = 1.f;
-
-    private class ScaleListener
-            extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-            mScaleFactor *= detector.getScaleFactor();
-
-            // Don't let the object get too small or too large.
-            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-
-            //invalidate();
-            return true;
-        }
-    }
+    private ScaleGestureDetector mScaleDetector;
 
     private static boolean PAUSED;
     private static boolean ZOOMED;
-
-
-
-	
-
-
 
 	public MagnificadorActivity() {
 		Log.i(TAG, "Instantiated new " + this.getClass());
@@ -142,16 +130,12 @@ public class MagnificadorActivity extends Activity {
         ZOOMED = false;
     }
 
-
-
-
     @Override
 	protected void onPause() {
 		Log.i(TAG, "onPause");
 		super.onPause();
 		mView.releaseCamera();
 	}
-
 
 	/** Called when the activity is first created. */
 	@Override
@@ -172,10 +156,7 @@ public class MagnificadorActivity extends Activity {
         mTapTwoFingersDetector = new TapTwoFingersDetector(getApplicationContext());
         mLongTapMoveDetector = new LongTapMoveDetector(getApplicationContext());
         mMoveDetector = new MoveDetector(getApplicationContext());
-        mScaleGestureDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleListener());
-
-
-
+        mScaleDetector = new ScaleGestureDetector(getApplicationContext(),new simpleOnScaleGestureListener());
 
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
@@ -195,16 +176,55 @@ public class MagnificadorActivity extends Activity {
 
         /* Activamos los detectores o listeners */
 
-        mTapTwoFingersDetector.onTouchEvent(event,mView);
+        //mTapTwoFingersDetector.onTouchEvent(event,mView);
 
         if(mLongTapMoveDetector.onTouchEvent(event,mView)){
             mView.autoFocus();
         }
+        mScaleDetector.onTouchEvent(event);
+
         if(PAUSED&&ZOOMED){
-            mMoveDetector.onTouchEvent(event,mView);
+            mMoveDetector.onTouchEvent(event,mView, mScaleFactor);
         }
-        mScaleGestureDetector.onTouchEvent(event);
         return true;
+    }
+
+    public class simpleOnScaleGestureListener extends
+            ScaleGestureDetector.SimpleOnScaleGestureListener {
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            // TODO Auto-generated method stub
+            //scaleGesture.setText(String.valueOf(detector.getScaleFactor()));
+            mScaleFactor *= detector.getScaleFactor();
+
+            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 5.0f));
+
+            px = detector.getFocusX();
+            py = detector.getFocusY();
+
+            mView.scale(mScaleFactor,mScaleFactor,px,py);
+
+            if (mScaleFactor > 1.0f){
+                ZOOMED = true;
+            }
+
+            return true;
+        }
+
+        /*@Override
+        public boolean onScaleBegin(ScaleGestureDetector detector) {
+            // TODO Auto-generated method stub
+            scaleGesture.setVisibility(View.VISIBLE);
+            return true;
+        }*/
+
+        /*@Override
+        public void onScaleEnd(ScaleGestureDetector detector) {
+            // TODO Auto-generated method stub
+            scaleGesture.setVisibility(View.INVISIBLE);
+        }*/
+
     }
 
 
@@ -254,6 +274,7 @@ public class MagnificadorActivity extends Activity {
 
 		if(item==pause){
 			mView.pause();
+            PAUSED = true;
 		}
 
 		if(item==zoomIN){
@@ -297,6 +318,7 @@ public class MagnificadorActivity extends Activity {
 		}
 		if(item==unpause){
 			mView.unpause();
+            PAUSED = false;
 		}
 
 		if(item==bw){
