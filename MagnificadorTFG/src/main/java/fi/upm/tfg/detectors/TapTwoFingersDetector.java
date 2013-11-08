@@ -35,6 +35,7 @@ public class TapTwoFingersDetector implements GestureInterfaceTest {
                 mView.pause();
                 MagnificadorActivity.setPaused(true);
             }
+            return true;
         }
         return true;
     }

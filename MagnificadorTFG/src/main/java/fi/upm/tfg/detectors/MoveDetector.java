@@ -40,6 +40,8 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
         final int action = MotionEventCompat.getActionMasked(event);
 
+
+
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
 
@@ -56,6 +58,8 @@ public class MoveDetector implements GestureInterfaceTest2 {
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
+
+                if (event.getPointerCount() == 1){
             // Find the index of the active pointer and fetch its position
                 final int pointerIndex =
                         MotionEventCompat.findPointerIndex(event, mActivePointerId);
@@ -82,6 +86,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
                 mView.translate(mPosX, mPosY);
 
                 break;
+                }
             }
 
             case MotionEvent.ACTION_UP: {
@@ -111,6 +116,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
             }
 
         }
+
         return true;
 	}
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -132,7 +138,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
 
 
-        if (mPosX > rightLimit){
+        /*if (mPosX > rightLimit){
             mPosX = rightLimit;
         }
         if (mPosY > topLimit){
@@ -143,7 +149,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
         }
         if (mPosY < bottomLimit){
             mPosY = bottomLimit;
-        }
+        }*/
     }
 
 

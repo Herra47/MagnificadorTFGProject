@@ -176,7 +176,7 @@ public class MagnificadorActivity extends Activity {
 
         /* Activamos los detectores o listeners */
 
-        //mTapTwoFingersDetector.onTouchEvent(event,mView);
+        mTapTwoFingersDetector.onTouchEvent(event,mView);
 
         if(mLongTapMoveDetector.onTouchEvent(event,mView)){
             mView.autoFocus();
