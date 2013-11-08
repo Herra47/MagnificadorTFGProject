@@ -59,7 +59,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
             }
             case MotionEvent.ACTION_MOVE: {
 
-                if (event.getPointerCount() == 1){
+                try{
             // Find the index of the active pointer and fetch its position
                 final int pointerIndex =
                         MotionEventCompat.findPointerIndex(event, mActivePointerId);
@@ -86,6 +86,9 @@ public class MoveDetector implements GestureInterfaceTest2 {
                 mView.translate(mPosX, mPosY);
 
                 break;
+                }
+                catch (IllegalArgumentException e){
+                    break;
                 }
             }
 
