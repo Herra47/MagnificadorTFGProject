@@ -175,17 +175,37 @@ public class MagnificadorActivity extends Activity {
     public boolean onTouchEvent(MotionEvent event) {
 
         /* Activamos los detectores o listeners */
+        //while (!mScaleDetector.isInProgress()){
 
         mTapTwoFingersDetector.onTouchEvent(event,mView);
+
+        mScaleDetector.onTouchEvent(event);
 
         if(mLongTapMoveDetector.onTouchEvent(event,mView)){
             mView.autoFocus();
         }
-        mScaleDetector.onTouchEvent(event);
+
 
         if(PAUSED&&ZOOMED){
             mMoveDetector.onTouchEvent(event,mView, mScaleFactor);
         }
+
+        /*final int action = event.getAction();
+        final int fingersCount = event.getPointerCount();
+
+        if ((action == MotionEvent.ACTION_POINTER_UP) && (fingersCount == 2) && !mScaleDetector.isInProgress()) {
+            if(PAUSED){
+                mView.unpause();
+                MagnificadorActivity.setPaused(false);
+            }
+            else{
+                mView.pause();
+                MagnificadorActivity.setPaused(true);
+            }
+            return true;
+        }*/
+
+
         return true;
     }
 
