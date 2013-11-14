@@ -8,7 +8,6 @@ import fi.upm.tfg.magnificador.MagnificadorProcess;
 
 public class TapTwoFingersDetector implements GestureInterfaceTest {
 
-    private boolean paused;
     long startTimeF1, startTimeF2;
     private boolean f1 = false;
 
@@ -24,9 +23,8 @@ public class TapTwoFingersDetector implements GestureInterfaceTest {
 
         final int action = event.getAction();
         final int fingersCount = event.getPointerCount();
+        boolean paused = MagnificadorActivity.getPaused();
 
-
-        paused = MagnificadorActivity.getPaused();
         switch (action){
             case MotionEvent.ACTION_DOWN:
                 startTimeF1 = System.currentTimeMillis();

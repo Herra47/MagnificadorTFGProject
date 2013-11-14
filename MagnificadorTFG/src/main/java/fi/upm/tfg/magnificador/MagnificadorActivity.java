@@ -12,9 +12,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -25,7 +28,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import fi.upm.tfg.detectors.DiagonalMoveDetector;
 import fi.upm.tfg.detectors.LongTapMoveDetector;
 import fi.upm.tfg.detectors.MoveDetector;
 import fi.upm.tfg.detectors.TapTwoFingersDetector;
@@ -63,10 +69,6 @@ public class MagnificadorActivity extends Activity {
 	private float px=100;
 	private float py=100;
 	private float my=1.f;
-
-    DisplayMetrics displaymetrics = new DisplayMetrics();
-    int zoomY = displaymetrics.heightPixels/2;
-    int zoomX = displaymetrics.widthPixels/2;
 
     private float mScaleFactor = 1.f;
     private static float SCALE;
@@ -122,14 +124,15 @@ public class MagnificadorActivity extends Activity {
     private LongTapMoveDetector mLongTapMoveDetector;
     private MoveDetector mMoveDetector;
     private ScaleGestureDetector mScaleDetector;
+    private DiagonalMoveDetector mDiagonalMoveDetector;
 
     private static boolean PAUSED;
     private static boolean ZOOMED;
     private static boolean FLASHED;
+    private static boolean STAB;
 
 	public MagnificadorActivity() {
 		Log.i(TAG, "Instantiated new" + this.getClass());
-        Log.i(TAG, "Instantiated new " + Float.toString(mScaleFactor));
         PAUSED = false;
         ZOOMED = false;
     }
@@ -161,6 +164,7 @@ public class MagnificadorActivity extends Activity {
         mLongTapMoveDetector = new LongTapMoveDetector(getApplicationContext());
         mMoveDetector = new MoveDetector(getApplicationContext());
         mScaleDetector = new ScaleGestureDetector(getApplicationContext(),new simpleOnScaleGestureListener());
+        mDiagonalMoveDetector = new DiagonalMoveDetector(getApplicationContext());
 
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
@@ -182,18 +186,16 @@ public class MagnificadorActivity extends Activity {
         //while (!mScaleDetector.isInProgress()){
 
         mTapTwoFingersDetector.onTouchEvent(event,mView);
-
         mScaleDetector.onTouchEvent(event);
-
-        if(mLongTapMoveDetector.onTouchEvent(event,mView)){
-            mView.autoFocus();
-        }
-
-        //Log.i(TAG, "Scale before drag " + Float.toString(getScale()));
 
         if(PAUSED && getScale()>1.0f){
             mMoveDetector.onTouchEvent(event,mView, getScale());
         }
+        if(!PAUSED){
+            mLongTapMoveDetector.onTouchEvent(event,mView);
+            mDiagonalMoveDetector.onTouchEvent(event,mView);
+        }
+
         return true;
     }
 
@@ -202,19 +204,14 @@ public class MagnificadorActivity extends Activity {
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            //scaleGesture.setText(String.valueOf(detector.getScaleFactor()));
+
             mScaleFactor *= detector.getScaleFactor();
 
             Log.i(TAG, "Scale: " + mScaleFactor);
 
-            //System.out.println("Scale: " + mScaleFactor);
-
             SCALE = mScaleFactor;
 
             mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 5.0f));
-
-            //px = detector.getFocusX();
-            //py = detector.getFocusY();
 
             px = 480;
             px = 270;
@@ -226,20 +223,17 @@ public class MagnificadorActivity extends Activity {
 
         /*@Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            // TODO Auto-generated method stub
+
             scaleGesture.setVisibility(View.VISIBLE);
             return true;
         }*/
 
         /*@Override
         public void onScaleEnd(ScaleGestureDetector detector) {
-            // TODO Auto-generated method stub
+
             scaleGesture.setVisibility(View.INVISIBLE);
         }*/
-
     }
-
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -273,7 +267,6 @@ public class MagnificadorActivity extends Activity {
 		finish=menu.add("finish");
 		return true;
 	}
-
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -341,19 +334,16 @@ public class MagnificadorActivity extends Activity {
 		}
 		if(item==flashOff){
 			mView.flashOff();
-
 		}
 
 		if((item==flashOn)){
 			mView.flashOn();
-
 		}
-
 
 		if(item==macro){
 			mView.macroFocus();
-
 		}
+
 		if(item==autofocus){
 			mView.autoFocus();
 		}
@@ -362,12 +352,10 @@ public class MagnificadorActivity extends Activity {
 		}
 		if(item==videofocus){
 			mView.videoFocus();
-
 		}
 
 		if(item==lowfps){
 			mView.lowFps();
-
 		}
 		if(item==normalfps){
 			mView.defaultFps();
@@ -375,12 +363,10 @@ public class MagnificadorActivity extends Activity {
 
 		if(item==bgr){
 			mView.bgr();
-
 		}
 		if(item==focusarea){
 			Rect rect=new Rect(120,110,140,115);
 			mView.focusArea(rect, 1000);
-
 		}
 		if(item==contrastAdd){
 			cont=cont+0.2f;
@@ -394,9 +380,7 @@ public class MagnificadorActivity extends Activity {
 			mView.invert();
 		}
 		if(item==stabilizatiON){
-			if(mView.videoStabilizationOn()){
-				
-					}
+		    mView.videoStabilizationOn();
 		}
 		if(item==stabilizatiOFF){
 			mView.videoStabilizationOff();
@@ -408,67 +392,68 @@ public class MagnificadorActivity extends Activity {
 		return true;
 	}
 
-    /*@Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        int keyCode = event.getKeyCode();
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_VOLUME_UP:
-                if (PAUSED){
-                    mView.unpause();
-                    PAUSED = false;
-                }
-                else{
-                    mView.pause();
-                    PAUSED = true;
-                }
-            case KeyEvent.KEYCODE_VOLUME_DOWN:
-                if(FLASHED){
-                    mView.flashOff();
-                    FLASHED = false;
-                }
-                else{
-                    mView.flashOn();
-                    FLASHED = true;
-                }
-                return true;
-            default:
-                return super.dispatchKeyEvent(event);
-        }
-    }*/
-
+    /* Volume key options */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+
+
         if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
-            //Do whatever you want to do on Volume Up
+
             if(PAUSED){
                 mView.unpause();
                 PAUSED = false;
+                setToast("UNPAUSED");
             }
             else{
                 mView.pause();
                 PAUSED = true;
+                setToast("PAUSED");
             }
-
             return true;
-        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+        }
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+
             if(FLASHED){
                 mView.flashOff();
                 FLASHED = false;
+                setToast("FLASH OFF");
             }
             else{
                 mView.flashOn();
                 FLASHED = true;
+                setToast("FLASH ON");
             }
             return true;
         }
         else if (keyCode == KeyEvent.KEYCODE_BACK){
+            mView.releaseCamera();
             finish();
-
         }
         return false;
     }
 
+    private void setToast (String msg){
+        final Toast toast1 = new Toast(getApplicationContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.lytLayout));
+        TextView txtMsg = (TextView)layout.findViewById(R.id.txtMensaje);
+        txtMsg.setText(msg);
+        toast1.setDuration(Toast.LENGTH_SHORT);
+        toast1.setView(layout);
+        toast1.show();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toast1.cancel();
+            }
+        }, 750);
+    }
+
+    /* Getters and Setters*/
 
     public static float getScale() {
         return SCALE;
@@ -479,7 +464,7 @@ public class MagnificadorActivity extends Activity {
     }
 
     public static void setPaused(boolean paused){
-        PAUSED = paused;
+        MagnificadorActivity.PAUSED = paused;
     }
 
     public static boolean isZOOMED() {
@@ -488,5 +473,21 @@ public class MagnificadorActivity extends Activity {
 
     public static void setZOOMED(boolean ZOOMED) {
         MagnificadorActivity.ZOOMED = ZOOMED;
+    }
+
+    public static boolean getFlashed(){
+        return FLASHED;
+    }
+
+    public static void setFlashed(boolean flashed){
+        MagnificadorActivity.FLASHED = flashed;
+    }
+
+    public static boolean isSTAB() {
+        return STAB;
+    }
+
+    public static void setSTAB(boolean STAB) {
+        MagnificadorActivity.STAB = STAB;
     }
 }
