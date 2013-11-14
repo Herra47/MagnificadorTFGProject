@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -68,6 +69,7 @@ public class MagnificadorActivity extends Activity {
     int zoomX = displaymetrics.widthPixels/2;
 
     private float mScaleFactor = 1.f;
+    private static float SCALE;
     private double thresh;
 	private double maxval=100;
 	private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this) {
@@ -123,9 +125,11 @@ public class MagnificadorActivity extends Activity {
 
     private static boolean PAUSED;
     private static boolean ZOOMED;
+    private static boolean FLASHED;
 
 	public MagnificadorActivity() {
-		Log.i(TAG, "Instantiated new " + this.getClass());
+		Log.i(TAG, "Instantiated new" + this.getClass());
+        Log.i(TAG, "Instantiated new " + Float.toString(mScaleFactor));
         PAUSED = false;
         ZOOMED = false;
     }
@@ -185,27 +189,11 @@ public class MagnificadorActivity extends Activity {
             mView.autoFocus();
         }
 
+        //Log.i(TAG, "Scale before drag " + Float.toString(getScale()));
 
-        if(PAUSED&&ZOOMED){
-            mMoveDetector.onTouchEvent(event,mView, mScaleFactor);
+        if(PAUSED && getScale()>1.0f){
+            mMoveDetector.onTouchEvent(event,mView, getScale());
         }
-
-        /*final int action = event.getAction();
-        final int fingersCount = event.getPointerCount();
-
-        if ((action == MotionEvent.ACTION_POINTER_UP) && (fingersCount == 2) && !mScaleDetector.isInProgress()) {
-            if(PAUSED){
-                mView.unpause();
-                MagnificadorActivity.setPaused(false);
-            }
-            else{
-                mView.pause();
-                MagnificadorActivity.setPaused(true);
-            }
-            return true;
-        }*/
-
-
         return true;
     }
 
@@ -214,20 +202,24 @@ public class MagnificadorActivity extends Activity {
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            // TODO Auto-generated method stub
             //scaleGesture.setText(String.valueOf(detector.getScaleFactor()));
             mScaleFactor *= detector.getScaleFactor();
 
+            Log.i(TAG, "Scale: " + mScaleFactor);
+
+            //System.out.println("Scale: " + mScaleFactor);
+
+            SCALE = mScaleFactor;
+
             mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 5.0f));
 
-            px = detector.getFocusX();
-            py = detector.getFocusY();
+            //px = detector.getFocusX();
+            //py = detector.getFocusY();
+
+            px = 480;
+            px = 270;
 
             mView.scale(mScaleFactor,mScaleFactor,px,py);
-
-            if (mScaleFactor > 1.0f){
-                ZOOMED = true;
-            }
 
             return true;
         }
@@ -415,6 +407,72 @@ public class MagnificadorActivity extends Activity {
 		}
 		return true;
 	}
+
+    /*@Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        int keyCode = event.getKeyCode();
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                if (PAUSED){
+                    mView.unpause();
+                    PAUSED = false;
+                }
+                else{
+                    mView.pause();
+                    PAUSED = true;
+                }
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                if(FLASHED){
+                    mView.flashOff();
+                    FLASHED = false;
+                }
+                else{
+                    mView.flashOn();
+                    FLASHED = true;
+                }
+                return true;
+            default:
+                return super.dispatchKeyEvent(event);
+        }
+    }*/
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+            //Do whatever you want to do on Volume Up
+            if(PAUSED){
+                mView.unpause();
+                PAUSED = false;
+            }
+            else{
+                mView.pause();
+                PAUSED = true;
+            }
+
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+            if(FLASHED){
+                mView.flashOff();
+                FLASHED = false;
+            }
+            else{
+                mView.flashOn();
+                FLASHED = true;
+            }
+            return true;
+        }
+        else if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+
+        }
+        return false;
+    }
+
+
+    public static float getScale() {
+        return SCALE;
+    }
 
     public static boolean getPaused(){
         return PAUSED;
