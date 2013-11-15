@@ -12,9 +12,10 @@
     <TextView android:id="@+id/txtMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_vertical"
         android:textColor="#FFFFFF"
         android:textSize="55sp"
+        android:text="Prueba"
         android:paddingLeft="10dip"
         android:paddingRight="10dip"/>
 
