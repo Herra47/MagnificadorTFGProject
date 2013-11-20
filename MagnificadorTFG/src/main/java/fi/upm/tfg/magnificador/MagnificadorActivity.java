@@ -5,36 +5,33 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import fi.upm.tfg.detectors.DiagonalMoveDetector;
 import fi.upm.tfg.detectors.LongTapMoveDetector;
 import fi.upm.tfg.detectors.MoveDetector;
+import fi.upm.tfg.detectors.NewTapTwoFingersDetector;
 import fi.upm.tfg.detectors.TapTwoFingersDetector;
+import fi.upm.tfg.detectors.ThreeFingersHorizontalMoveDetector;
+import fi.upm.tfg.detectors.TwoFingersHorizontalMoveDetector;
 
 public class MagnificadorActivity extends Activity {
 
@@ -127,6 +124,9 @@ public class MagnificadorActivity extends Activity {
     private MoveDetector mMoveDetector;
     private ScaleGestureDetector mScaleDetector;
     private DiagonalMoveDetector mDiagonalMoveDetector;
+    private TwoFingersHorizontalMoveDetector mTwoFingersHorizontalMoveDetector;
+    private ThreeFingersHorizontalMoveDetector mThreeFingersHorizontalMoveDetector;
+    private NewTapTwoFingersDetector mNewTapTwoFingersDetector;
 
     private static boolean SCALING;
 
@@ -169,6 +169,9 @@ public class MagnificadorActivity extends Activity {
         mMoveDetector = new MoveDetector(getApplicationContext());
         mScaleDetector = new ScaleGestureDetector(getApplicationContext(),new simpleOnScaleGestureListener());
         mDiagonalMoveDetector = new DiagonalMoveDetector(getApplicationContext());
+        mTwoFingersHorizontalMoveDetector = new TwoFingersHorizontalMoveDetector(getApplicationContext());
+        mThreeFingersHorizontalMoveDetector = new ThreeFingersHorizontalMoveDetector(getApplicationContext());
+        mNewTapTwoFingersDetector = new NewTapTwoFingersDetector(getApplicationContext());
 
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
@@ -193,11 +196,11 @@ public class MagnificadorActivity extends Activity {
 
         mScaleDetector.onTouchEvent(event);
 
-        if(mScaleDetector.isInProgress()){
+        /*if(mScaleDetector.isInProgress()){
             return true;
-        }
+        }*/
 
-        mTapTwoFingersDetector.onTouchEvent(event,mView);
+        //mTapTwoFingersDetector.onTouchEvent(event,mView);
         if(PAUSED && getScale()>1.0f){
             mMoveDetector.onTouchEvent(event,mView, getScale());
         }
@@ -206,6 +209,12 @@ public class MagnificadorActivity extends Activity {
             mLongTapMoveDetector.onTouchEvent(event,mView);
             mDiagonalMoveDetector.onTouchEvent(event,mView);
         }
+
+        mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
+        //mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
+
+        mNewTapTwoFingersDetector.onTouchEvent(event,mView);
+
         return true;
     }
 
@@ -219,12 +228,18 @@ public class MagnificadorActivity extends Activity {
 
             SCALE = mScaleFactor;
 
-            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 5.0f));
+            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 10.0f));
 
-            px = 480;
-            px = 270;
+
+            px = mView.getHeight()/2;
+            py = mView.getWidth()/2;
+
+            /*px = detector.getFocusX();
+            py = detector.getFocusY();*/
 
             mView.scale(mScaleFactor,mScaleFactor,px,py);
+
+
 
             mView.invalidate();
             return true;
@@ -239,6 +254,7 @@ public class MagnificadorActivity extends Activity {
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
             SCALING = false;
+            setToast("Zoom: " + String.format("%.1f", mScaleFactor));
         }
     }
 
@@ -410,26 +426,27 @@ public class MagnificadorActivity extends Activity {
             if(PAUSED){
                 mView.unpause();
                 PAUSED = false;
-                setToast("UNPAUSED");
+                setToast("Sin pausar");
             }
             else{
                 mView.pause();
                 PAUSED = true;
-                setToast("PAUSED");
+                setToast("Pausado");
             }
             return true;
         }
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
-
-            if(FLASHED){
-                mView.flashOff();
-                FLASHED = false;
-                setToast("FLASH OFF");
-            }
-            else{
-                mView.flashOn();
-                FLASHED = true;
-                setToast("FLASH ON");
+            if(!PAUSED){
+                if(FLASHED){
+                    mView.flashOff();
+                    FLASHED = false;
+                    setToast("Flash Off");
+                }
+                else{
+                    mView.flashOn();
+                    FLASHED = true;
+                    setToast("Flash On");
+                }
             }
             return true;
         }
@@ -501,4 +518,5 @@ public class MagnificadorActivity extends Activity {
     public static boolean isSCALING() {
         return SCALING;
     }
+
 }

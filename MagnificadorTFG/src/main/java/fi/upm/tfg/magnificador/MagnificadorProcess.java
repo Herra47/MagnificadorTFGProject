@@ -39,8 +39,7 @@ public class MagnificadorProcess extends MagnificadorBase{
     	//RGB
 		case 0:
 			Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_YUV420sp2RGB, 0);
-		
-			 			break;
+            break;
 		//GRAY
     	case 1:
     		Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
@@ -53,7 +52,6 @@ public class MagnificadorProcess extends MagnificadorBase{
 		//BGR	   
     	case 3:
     		Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_YUV420sp2BGR, 0);
-	
     		break;
 			}
 

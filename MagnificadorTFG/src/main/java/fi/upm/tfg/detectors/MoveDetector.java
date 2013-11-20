@@ -31,6 +31,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
     // The ‘active pointer’ is the one currently moving our object.
     private int mActivePointerId = INVALID_POINTER_ID;
 
+
     // Constructor de la clase
     public MoveDetector(Context applicationContext) {
     }
@@ -40,86 +41,98 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
         final int action = MotionEventCompat.getActionMasked(event);
 
-        switch (action) {
-            case MotionEvent.ACTION_DOWN: {
+        if (event.getPointerCount() == 1){
+            switch (action) {
+                case MotionEvent.ACTION_DOWN: {
 
-                final int pointerIndex = MotionEventCompat.getActionIndex(event);
-                final float x =  MotionEventCompat.getX(event,pointerIndex);
-                final float y =  MotionEventCompat.getY(event,pointerIndex);
-
-                // Remember where we started (for dragging)
-                mLastTouchX = x;
-                mLastTouchY = y;
-                // Save the ID of this pointer (for dragging)
-                mActivePointerId = MotionEventCompat.getPointerId(event, 0);
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: {
-
-                try{
-                    // Find the index of the active pointer and fetch its position
-                    final int pointerIndex = MotionEventCompat.findPointerIndex(event, mActivePointerId);
-
+                    final int pointerIndex = MotionEventCompat.getActionIndex(event);
                     final float x =  MotionEventCompat.getX(event,pointerIndex);
                     final float y =  MotionEventCompat.getY(event,pointerIndex);
 
-                    // Calculate the distance moved
-                    final float dx = x - mLastTouchX;
-                    final float dy = y - mLastTouchY;
-
-                    mPosX += dx;
-                    mPosY += dy;
-
-                    mView.invalidate();
-
-                    // Remember this touch position for the next move event
+                    // Remember where we started (for dragging)
                     mLastTouchX = x;
                     mLastTouchY = y;
+                    // Save the ID of this pointer (for dragging)
+                    mActivePointerId = MotionEventCompat.getPointerId(event, 0);
+                    break;
+                }
+                case MotionEvent.ACTION_MOVE: {
 
-                    /* Limit bounds*/
-                    if (mPosX > ((mScaleFactor*255.0f)-255.0f)){
-                        mPosX = (mScaleFactor*255.0f)-255.0f;
-                    }
-                    if (mPosY > ((mScaleFactor*100.0f)-100.0f)){
-                        mPosY = (mScaleFactor*100.0f)-100.0f;
-                    }
-                    if (mPosX < -((mScaleFactor*685.0f)-685.0f)){
-                        mPosX = -((mScaleFactor*685.0f)-685.0f);
-                    }
-                    if (mPosY < -((mScaleFactor*432.0f)-432.0f)){
-                        mPosY = -((mScaleFactor*432.0f)-432.0f);
-                    }
+                    try{
+
+                        // Find the index of the active pointer and fetch its position
+                        final int pointerIndex = MotionEventCompat.findPointerIndex(event, mActivePointerId);
+
+                        final float x =  MotionEventCompat.getX(event,pointerIndex);
+                        final float y =  MotionEventCompat.getY(event,pointerIndex);
+
+                        // Calculate the distance moved
+                        final float dx = x - mLastTouchX;
+                        final float dy = y - mLastTouchY;
+
+                        mPosX += dx;
+                        mPosY += dy;
+
+                        Log.i(TAG, "mPosX = " + Float.toString(mPosX));
+                        Log.i(TAG, "mPosY = " + Float.toString(mPosY));
+
+                        mView.invalidate();
+
+                        // Remember this touch position for the next move event
+                        mLastTouchX = x;
+                        mLastTouchY = y;
+
+
+                    /*Limit bounds*/
+                        float mWidth = mView.getWidth();
+                        float mHeight = mView.getHeight();
+
+                        if(mPosX < (-mWidth/2)*(mScaleFactor-1)){
+                            mPosX = (-mWidth/2)*(mScaleFactor-1);
+                        }
+                        else if(mPosX > (mScaleFactor-1)*mWidth/2){
+                            mPosX = (mScaleFactor-1)*mWidth/2;
+                        }
+                        if(mPosY < (-mHeight/2)*(mScaleFactor-1)){
+                            mPosY = (-mHeight/2)*(mScaleFactor-1);
+                        }
+                        else if(mPosY > (mScaleFactor-1)*mHeight/2){
+                            mPosY = (mScaleFactor-1)*mHeight/2;
+                        }
+
                     /* translate the image*/
-                    mView.translate(mPosX, mPosY);
 
+                        mView.translate(mPosX, mPosY);
+
+                        break;
+                    }
+                    catch (IllegalArgumentException e){
+                        break;
+                    }
+                }
+                case MotionEvent.ACTION_UP: {
+                    mActivePointerId = INVALID_POINTER_ID;
                     break;
                 }
-                catch (IllegalArgumentException e){
+                case MotionEvent.ACTION_CANCEL: {
+                    mActivePointerId = INVALID_POINTER_ID;
                     break;
                 }
-            }
-            case MotionEvent.ACTION_UP: {
-                mActivePointerId = INVALID_POINTER_ID;
-                break;
-            }
-            case MotionEvent.ACTION_CANCEL: {
-                mActivePointerId = INVALID_POINTER_ID;
-                break;
-            }
-            case MotionEvent.ACTION_POINTER_UP: {
+                case MotionEvent.ACTION_POINTER_UP: {
 
-                final int pointerIndex = MotionEventCompat.getActionIndex(event);
-                final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
+                    final int pointerIndex = MotionEventCompat.getActionIndex(event);
+                    final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
 
-                if (pointerId == mActivePointerId) {
+                    if (pointerId == mActivePointerId) {
                     /* This was our active pointer going up. Choose a new
                      active pointer and adjust accordingly.*/
-                    final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-                    mLastTouchX = MotionEventCompat.getX(event, newPointerIndex);
-                    mLastTouchY = MotionEventCompat.getY(event, newPointerIndex);
-                    mActivePointerId = MotionEventCompat.getPointerId(event, newPointerIndex);
+                        final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+                        mLastTouchX = MotionEventCompat.getX(event, newPointerIndex);
+                        mLastTouchY = MotionEventCompat.getY(event, newPointerIndex);
+                        mActivePointerId = MotionEventCompat.getPointerId(event, newPointerIndex);
+                    }
+                    break;
                 }
-                break;
             }
         }
         return true;

@@ -2,6 +2,7 @@ package fi.upm.tfg.detectors;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,7 +15,9 @@ import fi.upm.tfg.magnificador.R;
 
 public class TapTwoFingersDetector implements GestureInterfaceTest {
 
-    long startTimeF1, startTimeF2;
+    private static final String TAG = "MagnificadorActivity: ";
+
+    long startTime;
 
     // Constructor de la clase
     public TapTwoFingersDetector(Context applicationContext) {
@@ -25,32 +28,35 @@ public class TapTwoFingersDetector implements GestureInterfaceTest {
 
         /* Detecta la pulsación con dos dedos */
 
-        final int action = event.getAction();
+        final int action = event.getActionMasked();
         final int fingersCount = event.getPointerCount();
         boolean paused = MagnificadorActivity.getPaused();
+        boolean movido = false;
 
-        switch (action){
-            case MotionEvent.ACTION_DOWN:
-                startTimeF1 = System.currentTimeMillis();
-                startTimeF2 = System.currentTimeMillis();
-            case MotionEvent.ACTION_MOVE:
-                break;
-            case MotionEvent.ACTION_POINTER_UP:
-                long durationF2 = System.currentTimeMillis() - startTimeF1;
-                if (fingersCount == 2 && durationF2 < 350){
-                    if(paused){
-                        mView.unpause();
-                        MagnificadorActivity.setPaused(false);
-                        setToast("UNPAUSED",mView);
+            switch (action){
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    startTime = System.currentTimeMillis();
+
+                case MotionEvent.ACTION_MOVE:
+                    Log.i(TAG, "Moviendose condicion");
+                    movido = true;
+
+                case MotionEvent.ACTION_POINTER_UP:
+                    long duration = System.currentTimeMillis() - startTime;
+                    if (!movido && event.getPointerCount() == 2 && duration < 350){
+                        if(paused){
+                            mView.unpause();
+                            MagnificadorActivity.setPaused(false);
+                            setToast("Sin pausar",mView);
+                        }
+                        else{
+                            mView.pause();
+                            MagnificadorActivity.setPaused(true);
+                            setToast("Pausado",mView);
+                        }
                     }
-                    else{
-                        mView.pause();
-                        MagnificadorActivity.setPaused(true);
-                        setToast("PAUSED",mView);
-                    }
-                }
-        }
-        return false;
+            }
+        return true;
     }
 
     public void setToast(String msg, MagnificadorProcess mView){

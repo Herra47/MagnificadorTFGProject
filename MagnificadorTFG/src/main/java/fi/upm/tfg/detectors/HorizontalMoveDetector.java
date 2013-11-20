@@ -16,14 +16,9 @@ public class HorizontalMoveDetector implements GestureInterface {
 	// Variables que nos indicarán la diferencia entre las coordenadas actuales
 	// y las inmediatamente anteriores
 	double dx, dy;
-	// Variable que representa la vista de texto dónde se emitirán los mensajes
-	// por pantalla
-	private TextView txt;
-
 
 	// Constructor de la clase
-	public HorizontalMoveDetector(Context applicationContext, TextView txto) {
-		txt = txto;
+	public HorizontalMoveDetector(Context applicationContext) {
 	}
 
 	@Override
@@ -69,12 +64,6 @@ public class HorizontalMoveDetector implements GestureInterface {
 		mY = Y;
 
 		return true;
-	}
-
-	// Método que imprime el contenido de la variable "texto" por pantalla
-	//@Override
-	public void TextMessage(String texto) {
-		txt.setText(texto);
 	}
 
     public int getAderecha() {

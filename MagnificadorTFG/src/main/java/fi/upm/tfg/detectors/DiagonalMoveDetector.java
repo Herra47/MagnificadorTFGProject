@@ -85,24 +85,24 @@ public class DiagonalMoveDetector implements GestureInterfaceTest {
                         if(MagnificadorActivity.getFlashed() && !MagnificadorActivity.isSCALING()){
                             mView.flashOff();
                             MagnificadorActivity.setFlashed(false);
-                            setToast("FLASH OFF",mView);
+                            setToast("Flash Off",mView);
                         }
                         else{
                             mView.flashOn();
                             MagnificadorActivity.setFlashed(true);
-                            setToast("FLASH ON",mView);
+                            setToast("Flash On",mView);
                         }
                     }
                     if (X < Y) {
                         if(MagnificadorActivity.isSTAB() && !MagnificadorActivity.isSCALING()){
                             mView.videoStabilizationOff();
                             MagnificadorActivity.setSTAB(false);
-                            setToast("STAB OFF",mView);
+                            setToast("Estabilizador Off",mView);
                         }
                         else{
                             mView.videoStabilizationOn();
                             MagnificadorActivity.setSTAB(true);
-                            setToast("STAB ON",mView);
+                            setToast("Estabilizador On",mView);
                         }
                     }
                 }
