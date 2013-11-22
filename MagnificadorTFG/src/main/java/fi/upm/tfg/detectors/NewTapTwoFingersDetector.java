@@ -54,7 +54,7 @@ public class NewTapTwoFingersDetector implements GestureInterfaceTest {
                 mLastTouchY1 = y1;
                 // Save the ID of this pointer (for dragging)
                 mActivePointerId = MotionEventCompat.getPointerId(event, 0);
-                Log.i(TAG, "Dedo " + pointerIndex + "Coordenadas: " + mLastTouchX1 + "," + mLastTouchY1);
+                //Log.i(TAG, "Dedo " + pointerIndex + "Coordenadas: " + mLastTouchX1 + "," + mLastTouchY1);
                 break;
             }
             case MotionEvent.ACTION_POINTER_DOWN:{
@@ -68,7 +68,7 @@ public class NewTapTwoFingersDetector implements GestureInterfaceTest {
                 mLastTouchY2 = y2;
                 // Save the ID of this pointer (for dragging)
                 mActivePointerId2 = MotionEventCompat.getPointerId(event, pointerIndex2);
-                Log.i(TAG, "Dedo " + pointerIndex2 + " Coordenadas: " + mLastTouchX1 + "," + mLastTouchY1);
+                //Log.i(TAG, "Dedo " + pointerIndex2 + " Coordenadas: " + mLastTouchX1 + "," + mLastTouchY1);
                 break;
             }
             case MotionEvent.ACTION_MOVE:{
@@ -88,7 +88,7 @@ public class NewTapTwoFingersDetector implements GestureInterfaceTest {
                 dy1 = Math.abs(y1 - mLastTouchY1);
                 dx2 = Math.abs(x2 - mLastTouchX2);
                 dy2 = Math.abs(y2 - mLastTouchY2);
-                Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
+                //Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
                 break;
                 }
                 catch (IllegalArgumentException e){

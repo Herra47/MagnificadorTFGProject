@@ -5,12 +5,15 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
 
+import android.graphics.PointF;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -211,7 +214,7 @@ public class MagnificadorActivity extends Activity {
         }
 
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
-        //mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
+        mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
         mNewTapTwoFingersDetector.onTouchEvent(event,mView);
 
@@ -230,18 +233,43 @@ public class MagnificadorActivity extends Activity {
 
             mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 10.0f));
 
+            px = mView.getWidth()/2;
+            py = mView.getHeight()/2;
 
-            px = mView.getHeight()/2;
-            py = mView.getWidth()/2;
+            float width = mView.getWidth();
+            float height = mView.getHeight();
 
-            /*px = detector.getFocusX();
-            py = detector.getFocusY();*/
+            //px = mView.getPivotX();
+            //py = mView.getPivotY();
 
+            //px = detector.getFocusX();
+            //py = detector.getFocusY();
+
+
+
+            /* Zoom-out limits */
+            //float px = mView.getPivotX();
+            //float py = mView.getPivotY();
+
+            if(px < -width){
+                px = -width/2;
+            }
+            else if(px >width){
+                px = width/2;
+            }
+            if(py < -height){
+                py = -height/2;
+            }
+            else if(py > height){
+                py = height/2;
+            }
+            //mView.setPivotX(px);
+            //mView.setPivotY(py);
+
+            //*(mScaleFactor-1)
             mView.scale(mScaleFactor,mScaleFactor,px,py);
-
-
-
             mView.invalidate();
+
             return true;
         }
 

@@ -76,16 +76,12 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         Log.i(TAG, "mPosX = " + Float.toString(mPosX));
                         Log.i(TAG, "mPosY = " + Float.toString(mPosY));
 
-                        mView.invalidate();
-
-                        // Remember this touch position for the next move event
-                        mLastTouchX = x;
-                        mLastTouchY = y;
-
-
                     /*Limit bounds*/
                         float mWidth = mView.getWidth();
                         float mHeight = mView.getHeight();
+
+                        //Por si cambio los pivotes, para mantener el limite tengo que cambiar
+                        //mWidth/2 por el pivote x y mHeight/2 por el pivote y
 
                         if(mPosX < (-mWidth/2)*(mScaleFactor-1)){
                             mPosX = (-mWidth/2)*(mScaleFactor-1);
@@ -100,9 +96,47 @@ public class MoveDetector implements GestureInterfaceTest2 {
                             mPosY = (mScaleFactor-1)*mHeight/2;
                         }
 
+                        /*if(mPosX < (-mView.getPivotX())*(mScaleFactor-1)){
+                            mPosX = (-mView.getPivotX())*(mScaleFactor-1);
+                        }
+                        else if(mPosX > (mScaleFactor-1)*mView.getPivotX()){
+                            mPosX = (mScaleFactor-1)*mView.getPivotX();
+                        }
+                        if(mPosY < (-mView.getPivotY())*(mScaleFactor-1)){
+                            mPosY = (-mView.getPivotY())*(mScaleFactor-1);
+                        }
+                        else if(mPosY > (mScaleFactor-1)*mView.getPivotY()){
+                            mPosY = (mScaleFactor-1)*mView.getPivotY();
+                        }*/
+
+                        /*float px = mView.getPivotX();
+                        float py = mView.getPivotY();
+
+                        if(mPosX < (-px)*(mScaleFactor-1)){
+                            mPosX = (-px)*(mScaleFactor-1);
+                        }
+                        else if(mPosX > (mScaleFactor-1)*px){
+                            mPosX = (mScaleFactor-1)*px;
+                        }
+                        if(mPosY < (-py)*(mScaleFactor-1)){
+                            mPosY = (-py)*(mScaleFactor-1);
+                        }
+                        else if(mPosY > (mScaleFactor-1)*py){
+                            mPosY = (mScaleFactor-1)*py;
+                        }*/
+
+                        //mView.setPivotX(mPosX);
+                        //mView.setPivotY(mPosY);
+
                     /* translate the image*/
 
                         mView.translate(mPosX, mPosY);
+
+                        mView.invalidate();
+
+                        // Remember this touch position for the next move event
+                        mLastTouchX = x;
+                        mLastTouchY = y;
 
                         break;
                     }

@@ -33,7 +33,7 @@ public class ThreeFingersHorizontalMoveDetector implements GestureInterfaceTest{
 
         //Number of touches
         int pointerCount = event.getPointerCount();
-        if(pointerCount == 3){
+        if(event.getPointerCount() == 3){
             int action = event.getActionMasked();
             int actionIndex = event.getActionIndex();
             String actionString;
@@ -82,11 +82,11 @@ public class ThreeFingersHorizontalMoveDetector implements GestureInterfaceTest{
                     // pueden depender del dispositivo móvil)
                     if (dy1<20 && dy2<20 && dy3<20 && dx1>10 && dx2>10 && dx2>10) {
                         if (aderecha == 0){
-                            setToast("Mov izq 3 dedos",mView);
+                            setToast("3 dedos izq",mView);
                             //TextMessage("Movimiento Horizontal Derecha a Izda MENU COLORES");
                         }
                         else if (aderecha == 1){
-                            setToast("Mov der 3  dedos",mView);
+                            setToast("3  dedos der",mView);
                             //TextMessage("Movimiento Horizontal Izda a Derecha MENU MODOS DE VISUALIZACION");
                         }
                     }//dy1 < 10 && dy2 < 10 && dx1 < 10 && dx2 < 10
@@ -118,10 +118,6 @@ public class ThreeFingersHorizontalMoveDetector implements GestureInterfaceTest{
             mY3 = y3;
 
             pointerCount = 0;
-        }
-        else {
-            //GLOBAL_TOUCH_POSITION_X = 0;
-            //GLOBAL_TOUCH_CURRENT_POSITION_X = 0;
         }
         return false;
     }
