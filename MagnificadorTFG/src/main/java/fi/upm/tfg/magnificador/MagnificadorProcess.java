@@ -21,53 +21,57 @@ import android.graphics.Rect;
 
 public class MagnificadorProcess extends MagnificadorBase{
 
-	private static final String TAG = "Sample0View";
+    private static final String TAG = "Sample0View";
 
-	
-	public MagnificadorProcess(Context context) {
+
+    public MagnificadorProcess(Context context) {
         super(context);
     }
 
     @Override
     protected Bitmap processFrame(byte[] data, int option,double threshold, double maxval) {
-    
-    	Mat mYuv = new Mat(getFrameHeight()+getFrameHeight()/2, getFrameWidth(), CvType.CV_8UC1);
-		mYuv.put(0,0,data);
-    	switch(option){
-    	
-    	
-    	//RGB
-		case 0:
-			Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_YUV420sp2RGB, 0);
-            break;
-		//GRAY
-    	case 1:
-    		Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
-			break;
-		//BLACK AND WHITE
-    	case 2:
-    		Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
-    		Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C);
-    		break;
-		//BGR	   
-    	case 3:
-    		Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_YUV420sp2BGR, 0);
-    		break;
-			}
 
-			
+        Mat mYuv = new Mat(getFrameHeight()+getFrameHeight()/2, getFrameWidth(), CvType.CV_8UC1);
+        mYuv.put(0,0,data);
+        switch(option){
+            //RGB
+            case 0:
+                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_YUV420sp2RGB, 0);
+                break;
+            //GRAY
+            case 1:
+                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                break;
+            //BLACK AND WHITE
+            case 2:
+                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C);
+                break;
+            //BGR
+            case 3:
+                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_YUV420sp2BGR, 0);
+                break;
+            //BLUE AND YELLOW
+            case 4:
+                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C);
+
+                break;
+        }
+
+
         Bitmap bmp = Bitmap.createBitmap(mYuv.cols(), mYuv.rows(), Bitmap.Config.ARGB_8888);
 
         try {
-        	Utils.matToBitmap(mYuv, bmp);
-        return bmp;
+            Utils.matToBitmap(mYuv, bmp);
+            return bmp;
         } catch(Exception e) {
             bmp.recycle();
             return null;
         }
-  
-        }
-      
-    
+
+    }
+
+
 
 }

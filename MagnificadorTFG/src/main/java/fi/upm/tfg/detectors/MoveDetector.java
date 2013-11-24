@@ -132,6 +132,9 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
                         mView.translate(mPosX, mPosY);
 
+                        MagnificadorActivity.setmPOSX(mPosX);
+                        MagnificadorActivity.setmPOSY(mPosY);
+
                         mView.invalidate();
 
                         // Remember this touch position for the next move event

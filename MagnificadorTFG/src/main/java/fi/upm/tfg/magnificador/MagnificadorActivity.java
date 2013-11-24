@@ -35,6 +35,8 @@ import fi.upm.tfg.detectors.NewTapTwoFingersDetector;
 import fi.upm.tfg.detectors.TapTwoFingersDetector;
 import fi.upm.tfg.detectors.ThreeFingersHorizontalMoveDetector;
 import fi.upm.tfg.detectors.TwoFingersHorizontalMoveDetector;
+import fi.upm.tfg.detectors.TwoFingersVerticalMoveDetector;
+import fi.upm.tfg.enums.CameraColors;
 
 public class MagnificadorActivity extends Activity {
 
@@ -50,6 +52,7 @@ public class MagnificadorActivity extends Activity {
     private MenuItem lowfps;
     private MenuItem focusarea;
     private MenuItem bw;
+    private MenuItem by;
     private MenuItem autofocus;
     private MenuItem videofocus;
     private MenuItem normalfps;
@@ -69,8 +72,12 @@ public class MagnificadorActivity extends Activity {
     private float px=100;
     private float py=100;
     private float my=1.f;
+    private static float mPOSX = 0;
+    private static float mPOSY = 0;
 
 
+
+    private static CameraColors CURRENT_COLOR = CameraColors.RGB;
 
     private float mScaleFactor = 1.f;
     private static float SCALE;
@@ -130,6 +137,7 @@ public class MagnificadorActivity extends Activity {
     private TwoFingersHorizontalMoveDetector mTwoFingersHorizontalMoveDetector;
     private ThreeFingersHorizontalMoveDetector mThreeFingersHorizontalMoveDetector;
     private NewTapTwoFingersDetector mNewTapTwoFingersDetector;
+    private TwoFingersVerticalMoveDetector mTwoFingersVerticalMoveDetector;
 
     private static boolean SCALING;
 
@@ -175,9 +183,13 @@ public class MagnificadorActivity extends Activity {
         mTwoFingersHorizontalMoveDetector = new TwoFingersHorizontalMoveDetector(getApplicationContext());
         mThreeFingersHorizontalMoveDetector = new ThreeFingersHorizontalMoveDetector(getApplicationContext());
         mNewTapTwoFingersDetector = new NewTapTwoFingersDetector(getApplicationContext());
+        mTwoFingersVerticalMoveDetector = new TwoFingersVerticalMoveDetector(getApplicationContext());
 
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
+
+        //setToast("Color actual: " + CURRENT_COLOR);
+
         SurfaceView mySurface = (SurfaceView) findViewById(R.id.surface);
         mySurface.setOnTouchListener(new View.OnTouchListener() {
 
@@ -216,6 +228,10 @@ public class MagnificadorActivity extends Activity {
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
         mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
+        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE){
+            mTwoFingersVerticalMoveDetector.onTouchEvent(event,mView);
+        }
+
         mNewTapTwoFingersDetector.onTouchEvent(event,mView);
 
         return true;
@@ -245,13 +261,11 @@ public class MagnificadorActivity extends Activity {
             //px = detector.getFocusX();
             //py = detector.getFocusY();
 
-
-
             /* Zoom-out limits */
             //float px = mView.getPivotX();
             //float py = mView.getPivotY();
 
-            if(px < -width){
+            /*if(px < -width){
                 px = -width/2;
             }
             else if(px >width){
@@ -262,7 +276,9 @@ public class MagnificadorActivity extends Activity {
             }
             else if(py > height){
                 py = height/2;
-            }
+            }*/
+
+
             //mView.setPivotX(px);
             //mView.setPivotY(py);
 
@@ -282,7 +298,10 @@ public class MagnificadorActivity extends Activity {
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
             SCALING = false;
-            setToast("Zoom: " + String.format("%.1f", mScaleFactor));
+            if (mScaleFactor > 2.0){
+                setToast("Zoom: " + String.format("%.1f", mScaleFactor));
+            }
+
         }
     }
 
@@ -293,6 +312,7 @@ public class MagnificadorActivity extends Activity {
         gray = menu.add("gray");
         bgr=menu.add("bgr");
         bw=menu.add("bw");
+        by=menu.add("by");
         pause = menu.add("pause");
         unpause=menu.add("unpause");
         zoomIN = menu.add("zoomIN");
@@ -381,7 +401,13 @@ public class MagnificadorActivity extends Activity {
             thresh=thresh+20;
             maxval=maxval+50;
             mView.blackAndWhite(thresh,maxval);
+        }
 
+        if(item==by){
+            thresh=thresh+20;
+            //maxval=maxval+50;
+            maxval = 255;
+            mView.blueAndYellow(thresh,maxval);
         }
         if(item==flashOff){
             mView.flashOff();
@@ -545,6 +571,30 @@ public class MagnificadorActivity extends Activity {
 
     public static boolean isSCALING() {
         return SCALING;
+    }
+
+    public static CameraColors getCURRENT_COLOR() {
+        return CURRENT_COLOR;
+    }
+
+    public static void setCURRENT_COLOR(CameraColors CURRENT_COLOR) {
+        MagnificadorActivity.CURRENT_COLOR = CURRENT_COLOR;
+    }
+
+    public static float getmPOSX() {
+        return mPOSX;
+    }
+
+    public static void setmPOSX(float mPOSX) {
+        MagnificadorActivity.mPOSX = mPOSX;
+    }
+
+    public static float getmPOSY() {
+        return mPOSY;
+    }
+
+    public static void setmPOSY(float mPOSY) {
+        MagnificadorActivity.mPOSY = mPOSY;
     }
 
 }

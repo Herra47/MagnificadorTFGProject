@@ -30,7 +30,7 @@ public class DiagonalMoveDetector implements GestureInterfaceTest {
 
     /* Variables que representan las coordenadas donde se han realizado las
        pulsaciones y la distancia recorrida entre el "DOWN" y el "UP" */
-    float CoordenadaX1, CoordenadaXFINAL, Distancia;
+    float coordenadaX1, coordenadaXFINAL, distancia;
 
     // Constructor de la clase
     public DiagonalMoveDetector(Context applicationContext) {
@@ -54,7 +54,7 @@ public class DiagonalMoveDetector implements GestureInterfaceTest {
                 // Obtenemos el tiempo en que se presionó la pantalla(DOWN)
                 startTime = System.currentTimeMillis();
                 // Obtenemos la coordenada X inicial de pulsación
-                CoordenadaX1 = event.getX();
+                coordenadaX1 = event.getX();
                 break;
             case MotionEvent.ACTION_MOVE:
 
@@ -66,19 +66,24 @@ public class DiagonalMoveDetector implements GestureInterfaceTest {
 
             case MotionEvent.ACTION_UP:
                 // Obtenemos la coordenada X final
-                CoordenadaXFINAL = event.getX();
+                coordenadaXFINAL = event.getX();
                 // Calculamos la duración entre el "UP" y el "DOWN"
                 long duration = System.currentTimeMillis() - startTime;
                 // Calculamos la distancia recorrida en el movimiento
-                Distancia = Math.abs(CoordenadaXFINAL - CoordenadaX1);
+                distancia = Math.abs(coordenadaXFINAL - coordenadaX1);
 
 			/* En caso de que sea movimiento diagonal, la duración sea mayor que 100
 			   (En caso de ser menor sería un TAP) y menos de 750, y la distancia recorrida
 			   se mayor de 500 y solo sea presionado por un dedo: */
 
+                double width = mView.getWidth();
+                double height = mView.getHeight();
+
+                double hipo = Math.sqrt(width*width + height*height);
+
                 if ((Math.abs(dx - dy) < 2) && (duration > 100)
                         && (duration < 750)
-                        && (Distancia > 500)
+                        && (distancia > hipo/1.5)
                         && (pointerID==0)
                         && event.getPointerCount() == 1) {
                     if (Y < X) {
