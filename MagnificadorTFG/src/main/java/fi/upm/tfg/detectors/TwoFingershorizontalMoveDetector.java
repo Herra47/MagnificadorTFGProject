@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fi.upm.tfg.enums.CameraColors;
 import fi.upm.tfg.magnificador.MagnificadorActivity;
 import fi.upm.tfg.magnificador.MagnificadorProcess;
 import fi.upm.tfg.magnificador.R;
@@ -75,32 +76,14 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                     // pueden depender del dispositivo móvil)
                     if (dy1 < 20 && dy2 < 20 && dx1 > 10 && dx2 > 10) {
                         if (aderecha == 0){
-                            setToast("2 dedos izq",mView);
+                            colorLeft(mView);
                             return true;
                         }
                         else if (aderecha == 1){
-                            setToast("2 dedos der",mView);
+                            colorRight(mView);
                             return true;
                         }
-                    }//dy1 < 10 && dy2 < 10 && dx1 < 10 && dx2 < 10
-                    /*else if (dy1 < 10 && dy2 < 10 && dx1 < 10 && dx2 < 10){
-                        if(duration < 1000){
-                            if(MagnificadorActivity.getPaused()){
-                                mView.unpause();
-                                MagnificadorActivity.setPaused(false);
-                                setToast("Sin pausar",mView);
-                            }
-                            else{
-                                mView.pause();
-                                MagnificadorActivity.setPaused(true);
-                                setToast("Pausado",mView);
-                            }
-                        }
-                    }*/
-
-
-                default:
-                    actionString = "";
+                    }
             }
             // Actualizamos los valores mX y mY
             mX1 = x1;
@@ -110,11 +93,68 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
 
             pointerCount = 0;
         }
-        else {
-            //GLOBAL_TOUCH_POSITION_X = 0;
-            //GLOBAL_TOUCH_CURRENT_POSITION_X = 0;
-        }
         return false;
+    }
+
+    private void colorRight(MagnificadorProcess mView) {
+        switch (MagnificadorActivity.getCURRENT_COLOR()){
+            case RGB:
+                mView.bgr();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BGR);
+                setToast("BGR",mView);
+                break;
+            case BGR:
+                mView.invert();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.INVERT);
+                setToast("Invertido",mView);
+                break;
+            case INVERT:
+                mView.gray();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.GRAY);
+                setToast("Gris",mView);
+                break;
+            case GRAY:
+                mView.blackAndWhite(0,255/2);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
+                setToast("Blanco y negro",mView);
+                break;
+            case BLACKANDWHITE:
+                mView.rgb();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.RGB);
+                setToast("RGB",mView);
+                break;
+        }
+    }
+
+    private void colorLeft(MagnificadorProcess mView) {
+        switch (MagnificadorActivity.getCURRENT_COLOR()){
+            case RGB:
+                mView.blackAndWhite(0,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
+                setToast("Blanco y negro",mView);
+                break;
+            case BGR:
+                mView.rgb();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.RGB);
+                setToast("RGB",mView);
+                break;
+            case INVERT:
+                mView.bgr();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BGR);
+                setToast("BGR",mView);
+                break;
+            case GRAY:
+                mView.invert();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.INVERT);
+                setToast("Invertido",mView);
+                break;
+            case BLACKANDWHITE:
+                mView.gray();
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.GRAY);
+                setToast("Gris",mView);
+                break;
+
+        }
     }
 
     /*Método que muestra un Toast por pantalla de 750ms de duración*/
