@@ -80,6 +80,7 @@ public class MagnificadorActivity extends Activity {
     private static CameraColors CURRENT_COLOR = CameraColors.RGB;
 
     private float mScaleFactor = 1.f;
+    private float mOldScaleFactor = 1.f;
     private static float SCALE;
     private double thresh;
     private double maxval=100;
@@ -252,35 +253,8 @@ public class MagnificadorActivity extends Activity {
             px = mView.getWidth()/2;
             py = mView.getHeight()/2;
 
-            float width = mView.getWidth();
-            float height = mView.getHeight();
-
-            //px = mView.getPivotX();
-            //py = mView.getPivotY();
-
-            //px = detector.getFocusX();
-            //py = detector.getFocusY();
-
-            /* Zoom-out limits */
-            //float px = mView.getPivotX();
-            //float py = mView.getPivotY();
-
-            /*if(px < -width){
-                px = -width/2;
-            }
-            else if(px >width){
-                px = width/2;
-            }
-            if(py < -height){
-                py = -height/2;
-            }
-            else if(py > height){
-                py = height/2;
-            }*/
-
-
-            //mView.setPivotX(px);
-            //mView.setPivotY(py);
+            //float width = mView.getWidth();
+            //float height = mView.getHeight();
 
             //*(mScaleFactor-1)
             mView.scale(mScaleFactor,mScaleFactor,px,py);

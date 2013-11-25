@@ -128,12 +128,30 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         //mView.setPivotX(mPosX);
                         //mView.setPivotY(mPosY);
 
+                        //float pivotX = MagnificadorActivity.getmPOSX();
+                        //float pivotY = MagnificadorActivity.getmPOSY();
+
+                        /*if(mPosX < (-pivotX)*(mScaleFactor-1)){
+                            mPosX = (-pivotX)*(mScaleFactor-1);
+                        }
+                        else if(mPosX > (mScaleFactor-1)*pivotX){
+                            mPosX = (mScaleFactor-1)*pivotX;
+                        }
+                        if(mPosY < (-pivotY)*(mScaleFactor-1)){
+                            mPosY = (-pivotY)*(mScaleFactor-1);
+                        }
+                        else if(mPosY > (mScaleFactor-1)*pivotY){
+                            mPosY = (mScaleFactor-1)*pivotY;
+                        }*/
+
                     /* translate the image*/
 
                         mView.translate(mPosX, mPosY);
 
-                        MagnificadorActivity.setmPOSX(mPosX);
-                        MagnificadorActivity.setmPOSY(mPosY);
+                        //MagnificadorActivity.setmPOSX(mPosX);
+                        //MagnificadorActivity.setmPOSY(mPosY);
+
+
 
                         mView.invalidate();
 
