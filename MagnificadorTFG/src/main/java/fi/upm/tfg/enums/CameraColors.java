@@ -8,5 +8,6 @@ public enum CameraColors {
     BGR,
     BLACKANDWHITE,
     INVERT,
-    GRAY
+    GRAY,
+    WHITEANDBLACK
 }

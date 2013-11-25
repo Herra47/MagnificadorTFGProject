@@ -44,8 +44,8 @@ public class MagnificadorProcess extends MagnificadorBase{
                 break;
             //BLACK AND WHITE
             case 2:
-                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
-                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C);
+                //Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 break;
             //BGR
             case 3:
@@ -53,8 +53,9 @@ public class MagnificadorProcess extends MagnificadorBase{
                 break;
             //BLUE AND YELLOW
             case 4:
-                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
-                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C);
+                //Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
+
 
                 break;
         }

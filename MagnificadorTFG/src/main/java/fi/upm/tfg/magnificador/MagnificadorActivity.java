@@ -151,6 +151,7 @@ public class MagnificadorActivity extends Activity {
         Log.i(TAG, "Instantiated new" + this.getClass());
         PAUSED = false;
         ZOOMED = false;
+        CURRENT_COLOR = CameraColors.RGB;
     }
 
     @Override
@@ -258,6 +259,15 @@ public class MagnificadorActivity extends Activity {
 
             //*(mScaleFactor-1)
             mView.scale(mScaleFactor,mScaleFactor,px,py);
+
+            if(mOldScaleFactor > mScaleFactor){
+                mPOSX = mPOSX * (mScaleFactor-1);
+                mPOSY = mPOSY * (mScaleFactor-1);
+                mView.translate(mPOSX,mPOSY);
+            }
+
+            mOldScaleFactor = mScaleFactor;
+
             mView.invalidate();
 
             return true;

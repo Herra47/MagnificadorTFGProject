@@ -77,22 +77,23 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     final float y2 =  MotionEventCompat.getY(event,pointerIndex2);
 
                     // Calculate the distance moved
-                    dx1 = Math.abs(x1 - mLastTouchX1);
-                    dy1 = Math.abs(y1 - mLastTouchY1);
-                    dx2 = Math.abs(x2 - mLastTouchX2);
-                    dy2 = Math.abs(y2 - mLastTouchY2);
+                    dx1 = x1 - mLastTouchX1;
+                    dy1 = y1 - mLastTouchY1;
+                    dx2 = x2 - mLastTouchX2;
+                    dy2 = y2 - mLastTouchY2;
                     Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
                     if (dx1 < 10 && dx2 <10){
-                        if(mLastTouchY1 > y1 && mLastTouchY2 > y2){
-                            thresh += (int)Math.round(dy1);
+                        //if(mLastTouchY1 > y1 && mLastTouchY2 > y2){
+                            thresh += (int)Math.round(dy1/100);
+                            thresh = Math.max(0, Math.min(thresh, 255));
+                        setToast("thresh " + thresh,mView);
+                            mView.blackAndWhite(thresh,255);
+                        //}
+                        /*else if(mLastTouchY1 < y1 && mLastTouchY2 < y2){
+                            thresh -= (int)Math.round(dy1/2);
                             thresh = Math.max(0, Math.min(thresh, 255));
                             mView.blackAndWhite(thresh,255);
-                        }
-                        else if(mLastTouchY1 < y1 && mLastTouchY2 < y2){
-                            thresh -= (int)dy1/2;
-                            thresh = Math.max(0, Math.min(thresh, 255));
-                            mView.blackAndWhite(thresh,255);
-                        }
+                        }*/
                     }
                     break;
                 }
@@ -100,35 +101,15 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     break;
                 }
             }
-            /*case MotionEvent.ACTION_UP:{
+            case MotionEvent.ACTION_UP: {
                 mActivePointerId = INVALID_POINTER_ID;
                 break;
             }
-            case MotionEvent.ACTION_POINTER_UP:
-                long duration = System.currentTimeMillis() - startTime;
-                if (event.getPointerCount() == 2 && duration < 500){
-                    if(dx1 < 10 && dy1 < 10 && dx2 < 10 && dy2 < 10){
-                        if(MagnificadorActivity.getPaused()){
-                            mView.unpause();
-                            MagnificadorActivity.setPaused(false);
-                            setToast("Sin pausar",mView);
-                        }
-                        else{
-                            mView.pause();
-                            MagnificadorActivity.setPaused(true);
-                            setToast("Pausado",mView);
-                        }
-                    }
-                }
-                break;*/
+            case MotionEvent.ACTION_CANCEL: {
+                mActivePointerId = INVALID_POINTER_ID;
+                break;
+            }
         }
-
-
-
-
-
-
-
         return true;
     }
 

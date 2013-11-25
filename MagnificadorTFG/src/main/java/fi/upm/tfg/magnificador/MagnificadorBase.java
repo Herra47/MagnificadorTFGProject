@@ -213,11 +213,12 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
 					Paint paint=new Paint();
 					ColorMatrix cm=new ColorMatrix();
 
+                    // Echar un ojo a esto
 					cm.set(new float[]{contrast,0,0,0,a,
-							0,contrast,0,0,a,
-							0,0,contrast,0,a,
-							0,0,0,		1,0,
-							t, t, t,0,1});
+                                        0,contrast,0,0,a,
+                                        0,0,contrast,0,a,
+                                        0,0,0,		1,0,
+                                        t, t, t,0,1});
 					paint.setColorFilter(new ColorMatrixColorFilter(cm));
 					canvas.drawBitmap(bitmap, (canvas.getWidth() - getFrameWidth()) / 2, (canvas.getHeight() - getFrameHeight()) / 2, paint);
 					mHolder.unlockCanvasAndPost(canvas);

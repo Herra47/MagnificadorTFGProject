@@ -70,6 +70,9 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         final float dx = x - mLastTouchX;
                         final float dy = y - mLastTouchY;
 
+                        mPosX = MagnificadorActivity.getmPOSX();
+                        mPosY = MagnificadorActivity.getmPOSY();
+
                         mPosX += dx;
                         mPosY += dy;
 
@@ -148,8 +151,8 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
                         mView.translate(mPosX, mPosY);
 
-                        //MagnificadorActivity.setmPOSX(mPosX);
-                        //MagnificadorActivity.setmPOSY(mPosY);
+                        MagnificadorActivity.setmPOSX(mPosX);
+                        MagnificadorActivity.setmPOSY(mPosY);
 
 
 
