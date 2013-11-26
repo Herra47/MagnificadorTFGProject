@@ -114,11 +114,16 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 setToast("Gris",mView);
                 break;
             case GRAY:
-                mView.blackAndWhite(0,255/2);
+                mView.blackAndWhite(255/2,255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
                 setToast("Blanco y negro",mView);
                 break;
             case BLACKANDWHITE:
+                mView.blackAndWhiteInvert(255/2,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
+                setToast("Negro y blanco",mView);
+                break;
+            case WHITEANDBLACK:
                 mView.rgb();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.RGB);
                 setToast("RGB",mView);
@@ -129,9 +134,9 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
     private void colorLeft(MagnificadorProcess mView) {
         switch (MagnificadorActivity.getCURRENT_COLOR()){
             case RGB:
-                mView.blackAndWhite(0,255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
-                setToast("Blanco y negro",mView);
+                mView.blackAndWhiteInvert(255/2,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
+                setToast("Negro y blanco",mView);
                 break;
             case BGR:
                 mView.rgb();
@@ -153,7 +158,11 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.GRAY);
                 setToast("Gris",mView);
                 break;
-
+            case WHITEANDBLACK:
+                mView.blackAndWhite(255/2,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
+                setToast("Blanco y negro",mView);
+                break;
         }
     }
 
