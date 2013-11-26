@@ -124,6 +124,11 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 setToast("Negro y blanco",mView);
                 break;
             case WHITEANDBLACK:
+                mView.blueAndYellow(127,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.YELLOWANDBLUE);
+                setToast("Amarillo y azul",mView);
+                break;
+            case YELLOWANDBLUE:
                 mView.rgb();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.RGB);
                 setToast("RGB",mView);
@@ -134,9 +139,9 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
     private void colorLeft(MagnificadorProcess mView) {
         switch (MagnificadorActivity.getCURRENT_COLOR()){
             case RGB:
-                mView.blackAndWhiteInvert(255/2,255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
-                setToast("Negro y blanco",mView);
+                mView.blueAndYellow(255/2,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.YELLOWANDBLUE);
+                setToast("Amarillo y azul",mView);
                 break;
             case BGR:
                 mView.rgb();
@@ -162,6 +167,11 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 mView.blackAndWhite(255/2,255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
                 setToast("Blanco y negro",mView);
+                break;
+            case YELLOWANDBLUE:
+                mView.blackAndWhiteInvert(255/2,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
+                setToast("Negro y blanco",mView);
                 break;
         }
     }
