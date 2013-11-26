@@ -32,6 +32,7 @@ import fi.upm.tfg.detectors.DiagonalMoveDetector;
 import fi.upm.tfg.detectors.LongTapMoveDetector;
 import fi.upm.tfg.detectors.MoveDetector;
 import fi.upm.tfg.detectors.NewTapTwoFingersDetector;
+import fi.upm.tfg.detectors.SingleTapDetector;
 import fi.upm.tfg.detectors.TapTwoFingersDetector;
 import fi.upm.tfg.detectors.ThreeFingersHorizontalMoveDetector;
 import fi.upm.tfg.detectors.TwoFingersHorizontalMoveDetector;
@@ -130,8 +131,6 @@ public class MagnificadorActivity extends Activity {
 
     /* Gestures */
 
-    private TapTwoFingersDetector mTapTwoFingersDetector;
-    private LongTapMoveDetector mLongTapMoveDetector;
     private MoveDetector mMoveDetector;
     private ScaleGestureDetector mScaleDetector;
     private DiagonalMoveDetector mDiagonalMoveDetector;
@@ -139,6 +138,7 @@ public class MagnificadorActivity extends Activity {
     private ThreeFingersHorizontalMoveDetector mThreeFingersHorizontalMoveDetector;
     private NewTapTwoFingersDetector mNewTapTwoFingersDetector;
     private TwoFingersVerticalMoveDetector mTwoFingersVerticalMoveDetector;
+    private SingleTapDetector mSingleTapDetector;
 
     private static boolean SCALING;
 
@@ -177,8 +177,6 @@ public class MagnificadorActivity extends Activity {
             Log.e(TAG, "Cannot connect to OpenCV Manager");
         }
 
-        mTapTwoFingersDetector = new TapTwoFingersDetector(getApplicationContext());
-        mLongTapMoveDetector = new LongTapMoveDetector(getApplicationContext());
         mMoveDetector = new MoveDetector(getApplicationContext());
         mScaleDetector = new ScaleGestureDetector(getApplicationContext(),new simpleOnScaleGestureListener());
         mDiagonalMoveDetector = new DiagonalMoveDetector(getApplicationContext());
@@ -186,12 +184,10 @@ public class MagnificadorActivity extends Activity {
         mThreeFingersHorizontalMoveDetector = new ThreeFingersHorizontalMoveDetector(getApplicationContext());
         mNewTapTwoFingersDetector = new NewTapTwoFingersDetector(getApplicationContext());
         mTwoFingersVerticalMoveDetector = new TwoFingersVerticalMoveDetector(getApplicationContext());
+        mSingleTapDetector = new SingleTapDetector(getApplicationContext());
 
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
-
-        //setToast("Color actual: " + CURRENT_COLOR);
-
         SurfaceView mySurface = (SurfaceView) findViewById(R.id.surface);
         mySurface.setOnTouchListener(new View.OnTouchListener() {
 
@@ -207,12 +203,7 @@ public class MagnificadorActivity extends Activity {
     public boolean onTouchEvent(MotionEvent event) {
 
         /* Activamos los detectores o listeners */
-        //while (!mScaleDetector.isInProgress()){
-
-
-
         mScaleDetector.onTouchEvent(event);
-
         /*if(mScaleDetector.isInProgress()){
             return true;
         }*/
@@ -220,15 +211,16 @@ public class MagnificadorActivity extends Activity {
             mMoveDetector.onTouchEvent(event,mView, getScale());
         }
         if(!PAUSED && !mScaleDetector.isInProgress()){
-
-            mLongTapMoveDetector.onTouchEvent(event,mView);
+            mSingleTapDetector.onTouchEvent(event,mView);
             mDiagonalMoveDetector.onTouchEvent(event,mView);
         }
+
+
 
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
         mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
-        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE){
+        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE || CURRENT_COLOR == CameraColors.WHITEANDBLACK){
             mTwoFingersVerticalMoveDetector.onTouchEvent(event,mView);
         }
 

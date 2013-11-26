@@ -635,7 +635,15 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
 		option=2;
 	}
 
-    /**Preview in black and white.
+    public void blackAndWhiteInvert(double threshold, double maxval){
+        blackAndWhite(threshold,maxval);
+        this.contrast=-1;
+        this.t=0;
+        this.a=255.0f;
+        customize=true;
+    }
+
+    /**Preview in blue and yellow.
      * @param threshold Threshold value
      **/
     public void blueAndYellow(double threshold, double maxval){

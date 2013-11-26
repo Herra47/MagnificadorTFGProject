@@ -58,6 +58,11 @@ public class MagnificadorProcess extends MagnificadorBase{
 
 
                 break;
+            //BLACK AND WHITE
+            /*case 5:
+                //Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
+                break;*/
         }
 
 

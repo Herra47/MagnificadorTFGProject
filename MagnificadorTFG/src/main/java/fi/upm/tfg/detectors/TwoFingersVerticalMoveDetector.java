@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fi.upm.tfg.enums.CameraColors;
 import fi.upm.tfg.magnificador.MagnificadorActivity;
 import fi.upm.tfg.magnificador.MagnificadorProcess;
 import fi.upm.tfg.magnificador.R;
@@ -25,7 +26,7 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
     private int mActivePointerId = INVALID_POINTER_ID;
     private int mActivePointerId2 = INVALID_POINTER_ID;
     double dx1, dy1, dx2, dy2;
-    int thresh;
+    int thresh = 255/2;
 
     // Constructor de la clase
     public TwoFingersVerticalMoveDetector(Context applicationContext) {
@@ -34,7 +35,7 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
     @Override
     public boolean onTouchEvent(MotionEvent event, MagnificadorProcess mView) {
 
-    int action = MotionEventCompat.getActionMasked(event);
+        int action = MotionEventCompat.getActionMasked(event);
 
         switch(action){
             case MotionEvent.ACTION_DOWN:{
@@ -83,17 +84,15 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     dy2 = y2 - mLastTouchY2;
                     Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
                     if (dx1 < 10 && dx2 <10){
-                        //if(mLastTouchY1 > y1 && mLastTouchY2 > y2){
-                            thresh += (int)Math.round(dy1/100);
-                            thresh = Math.max(0, Math.min(thresh, 255));
+                        thresh += (int)Math.round(dy1/150);
+                        thresh = Math.max(0, Math.min(thresh, 255));
                         setToast("thresh " + thresh,mView);
+                        if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
                             mView.blackAndWhite(thresh,255);
-                        //}
-                        /*else if(mLastTouchY1 < y1 && mLastTouchY2 < y2){
-                            thresh -= (int)Math.round(dy1/2);
-                            thresh = Math.max(0, Math.min(thresh, 255));
-                            mView.blackAndWhite(thresh,255);
-                        }*/
+                        }
+                        else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
+                            mView.blackAndWhiteInvert(thresh,255);
+                        }
                     }
                     break;
                 }
