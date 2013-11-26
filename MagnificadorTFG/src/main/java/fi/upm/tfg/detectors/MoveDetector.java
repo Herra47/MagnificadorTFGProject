@@ -76,8 +76,8 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         mPosX += dx;
                         mPosY += dy;
 
-                        Log.i(TAG, "mPosX = " + Float.toString(mPosX));
-                        Log.i(TAG, "mPosY = " + Float.toString(mPosY));
+                        //Log.i(TAG, "mPosX = " + Float.toString(mPosX));
+                       // Log.i(TAG, "mPosY = " + Float.toString(mPosY));
 
                         /*Limit bounds*/
                         float mWidth = mView.getWidth();

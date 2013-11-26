@@ -220,7 +220,7 @@ public class MagnificadorActivity extends Activity {
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
         mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
-        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE || CURRENT_COLOR == CameraColors.WHITEANDBLACK){
+        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE || CURRENT_COLOR == CameraColors.WHITEANDBLACK || CURRENT_COLOR == CameraColors.YELLOWANDBLUE){
             mTwoFingersVerticalMoveDetector.onTouchEvent(event,mView);
         }
 
@@ -388,7 +388,7 @@ public class MagnificadorActivity extends Activity {
         }
 
         if(item==by){
-            thresh=thresh+20;
+            thresh=128;
             //maxval=maxval+50;
             maxval = 255;
             mView.blueAndYellow(thresh,maxval);
