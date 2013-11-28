@@ -84,17 +84,27 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     dy2 = y2 - mLastTouchY2;
                     //Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
                     if (dx1 < 10 && dx2 <10){
-                        thresh += (int)Math.round(dy1/150);
-                        thresh = Math.max(0, Math.min(thresh, 255));
-                        setToast("thresh " + thresh,mView);
-                        if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
-                            mView.blackAndWhite(thresh,255);
-                        }
-                        else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
-                            mView.blackAndWhiteInvert(thresh,255);
-                        }
-                        else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
-                            mView.blueAndYellow(thresh,255);
+                        if(dy1 > 5 && dy2 > 5 || dy1 < -5 && dy2 < -5){
+
+                            thresh += (int)Math.round(dy1/100);
+                            thresh = Math.max(0, Math.min(thresh, 255));
+
+                            if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
+                                mView.blackAndWhite(thresh,255);
+                                setToast("thresh " + thresh,mView);
+                            }
+                            else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
+                                mView.blackAndWhiteInvert(thresh,255);
+                                setToast("thresh " + thresh,mView);
+                            }
+                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
+                                mView.blueAndYellow(thresh,255);
+                                setToast("thresh " + thresh,mView);
+                            }
+                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.REDANDYELLOW){
+                                mView.redAndYellow(thresh, 255);
+                                setToast("thresh " + thresh,mView);
+                            }
                         }
                     }
                     break;

@@ -54,35 +54,22 @@ public class MagnificadorProcess extends MagnificadorBase{
                 break;
             //BLUE AND YELLOW
             case 4:
-                //Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 //set pixels masked by blackWhite to yellow
                 Mat bgr = new Mat(mYuv.rows(),mYuv.cols(), CvType.CV_8UC3, new Scalar(255,255,0));
                 //set the mask to blue
                 bgr.setTo(new Scalar(0,0,127), mYuv);
                 mYuv = bgr.clone();
-
-
-                //bgr.setTo(Scalar(255,0,0), blackWhite);
-                //Imgproc.cvtColor(mYuv,mYuv,Imgproc.COLOR_GRAY2RGB,0);
-                /*for(int i = 0; i < mYuv.cols(); i++){
-                    for(int j = 0; j < mYuv.rows(); j++){
-                        double[] aux = mYuv.get(j,i);
-                        if (aux[0] == 0.0){
-                            aux[0] = 16776960;
-                        }
-                        mYuv.put(i,j,aux);
-                    }
-                }*/
-
                 break;
-            //BLACK AND WHITE
-            /*case 5:
-                //Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+            //RED AND YELLOW
+            case 5:
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
-                break;*/
+                //set pixels masked by blackWhite to yellow
+                Mat ry = new Mat(mYuv.rows(),mYuv.cols(), CvType.CV_8UC3, new Scalar(255,255,0));
+                //set the mask to red
+                ry.setTo(new Scalar(255,0,0), mYuv);
+                mYuv = ry.clone();
         }
-
 
         Bitmap bmp = Bitmap.createBitmap(mYuv.cols(), mYuv.rows(), Bitmap.Config.ARGB_8888);
 

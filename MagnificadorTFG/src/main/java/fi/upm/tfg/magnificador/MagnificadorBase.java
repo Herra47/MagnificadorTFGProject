@@ -655,6 +655,18 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
         option=4;
     }
 
+    /**Preview in blue and yellow.
+     * @param threshold Threshold value
+     **/
+    public void redAndYellow(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"redAndYellow()");
+        customize=true;
+        option=5;
+    }
+
 	/**Preview in BGR.
 	 **/
 	public void bgr(){

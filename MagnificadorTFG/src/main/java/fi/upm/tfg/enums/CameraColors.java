@@ -10,5 +10,6 @@ public enum CameraColors {
     INVERT,
     GRAY,
     WHITEANDBLACK,
-    YELLOWANDBLUE
+    YELLOWANDBLUE,
+    REDANDYELLOW
 }

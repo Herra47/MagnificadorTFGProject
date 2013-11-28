@@ -70,8 +70,8 @@ public class MagnificadorActivity extends Activity {
     private float dx=1;
     private float dy=1;
     private float mx=1.f;
-    private float px=100;
-    private float py=100;
+    private static float px;
+    private static float py;
     private float my=1.f;
     private static float mPOSX = 0;
     private static float mPOSY = 0;
@@ -186,6 +186,9 @@ public class MagnificadorActivity extends Activity {
         mTwoFingersVerticalMoveDetector = new TwoFingersVerticalMoveDetector(getApplicationContext());
         mSingleTapDetector = new SingleTapDetector(getApplicationContext());
 
+
+
+
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
         SurfaceView mySurface = (SurfaceView) findViewById(R.id.surface);
@@ -215,15 +218,15 @@ public class MagnificadorActivity extends Activity {
             mDiagonalMoveDetector.onTouchEvent(event,mView);
         }
 
-
-
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
         mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
-        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE || CURRENT_COLOR == CameraColors.WHITEANDBLACK || CURRENT_COLOR == CameraColors.YELLOWANDBLUE){
+        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE
+        || CURRENT_COLOR == CameraColors.WHITEANDBLACK
+        || CURRENT_COLOR == CameraColors.YELLOWANDBLUE
+        || CURRENT_COLOR == CameraColors.REDANDYELLOW){
             mTwoFingersVerticalMoveDetector.onTouchEvent(event,mView);
         }
-
         mNewTapTwoFingersDetector.onTouchEvent(event,mView);
 
         return true;
@@ -248,8 +251,26 @@ public class MagnificadorActivity extends Activity {
             //float height = mView.getHeight();
 
             //*(mScaleFactor-1)
-            mView.scale(mScaleFactor,mScaleFactor,px,py);
 
+            //mView.translate(mPOSX,mPOSY);
+
+
+
+            /*if(mOldScaleFactor < mScaleFactor){
+                if(mPOSX > 0){
+                    px = px - mPOSX;
+                }
+                else if(mPOSX < 0){
+                    px = px + mPOSX;
+                }
+                if(mPOSY > 0){
+                    py = py - mPOSY;
+                }
+                else if(mPOSY < 0){
+                    py = py + mPOSY;
+                }
+                //mView.translate(mPOSX,mPOSY);
+            }*/
             if(mOldScaleFactor > mScaleFactor){
                 if(mPOSX < (-px)*(mScaleFactor-1)){
                     mPOSX = (-px)*(mScaleFactor-1);
@@ -263,8 +284,14 @@ public class MagnificadorActivity extends Activity {
                 else if(mPOSY > (mScaleFactor-1)*py){
                     mPOSY = (mScaleFactor-1)*py;
                 }
+                //mView.scale(mScaleFactor,mScaleFactor,px,py);
                 mView.translate(mPOSX,mPOSY);
             }
+
+            mView.scale(mScaleFactor,mScaleFactor,px,py);
+
+            Log.i(TAG, "SCALE - mPosX = " + Float.toString(mPOSX));
+            Log.i(TAG, "SCALE - mPosY = " + Float.toString(mPOSY));
 
             mOldScaleFactor = mScaleFactor;
 
@@ -285,7 +312,6 @@ public class MagnificadorActivity extends Activity {
             if (mScaleFactor > 2.0){
                 setToast("Zoom: " + String.format("%.1f", mScaleFactor));
             }
-
         }
     }
 
@@ -581,4 +607,19 @@ public class MagnificadorActivity extends Activity {
         MagnificadorActivity.mPOSY = mPOSY;
     }
 
+    public static float getPx() {
+        return px;
+    }
+
+    public static void setPx(float px) {
+        MagnificadorActivity.px = px;
+    }
+
+    public static float getPy() {
+        return py;
+    }
+
+    public static void setPy(float py) {
+        MagnificadorActivity.py = py;
+    }
 }

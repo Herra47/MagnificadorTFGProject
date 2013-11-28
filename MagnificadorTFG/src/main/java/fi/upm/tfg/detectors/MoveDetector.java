@@ -30,6 +30,8 @@ public class MoveDetector implements GestureInterfaceTest2 {
     int INVALID_POINTER_ID = -1;
     // The ‘active pointer’ is the one currently moving our object.
     private int mActivePointerId = INVALID_POINTER_ID;
+    private float px;
+    private float py;
 
 
     // Constructor de la clase
@@ -76,27 +78,30 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         mPosX += dx;
                         mPosY += dy;
 
-                        //Log.i(TAG, "mPosX = " + Float.toString(mPosX));
-                       // Log.i(TAG, "mPosY = " + Float.toString(mPosY));
+                        Log.i(TAG, "MOVE - mPosX = " + Float.toString(mPosX));
+                        Log.i(TAG, "MOVE - mPosY = " + Float.toString(mPosY));
+
+                        px = MagnificadorActivity.getPx();
+                        py = MagnificadorActivity.getPy();
 
                         /*Limit bounds*/
-                        float mWidth = mView.getWidth();
-                        float mHeight = mView.getHeight();
+                        //float mWidth = mView.getWidth();
+                        //float mHeight = mView.getHeight();
 
                         //Por si cambio los pivotes, para mantener el limite tengo que cambiar
                         //mWidth/2 por el pivote x y mHeight/2 por el pivote y
 
-                        if(mPosX < (-mWidth/2)*(mScaleFactor-1)){
-                            mPosX = (-mWidth/2)*(mScaleFactor-1);
+                        if(mPosX < (-px)*(mScaleFactor-1)){
+                            mPosX = (-px)*(mScaleFactor-1);
                         }
-                        else if(mPosX > (mScaleFactor-1)*mWidth/2){
-                            mPosX = (mScaleFactor-1)*mWidth/2;
+                        else if(mPosX > (mScaleFactor-1)*px){
+                            mPosX = (mScaleFactor-1)*px;
                         }
-                        if(mPosY < (-mHeight/2)*(mScaleFactor-1)){
-                            mPosY = (-mHeight/2)*(mScaleFactor-1);
+                        if(mPosY < (-py)*(mScaleFactor-1)){
+                            mPosY = (-py)*(mScaleFactor-1);
                         }
-                        else if(mPosY > (mScaleFactor-1)*mHeight/2){
-                            mPosY = (mScaleFactor-1)*mHeight/2;
+                        else if(mPosY > (mScaleFactor-1)*py){
+                            mPosY = (mScaleFactor-1)*py;
                         }
 
                         /* translate the image*/
@@ -105,8 +110,6 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
                         MagnificadorActivity.setmPOSX(mPosX);
                         MagnificadorActivity.setmPOSY(mPosY);
-
-
 
                         mView.invalidate();
 
