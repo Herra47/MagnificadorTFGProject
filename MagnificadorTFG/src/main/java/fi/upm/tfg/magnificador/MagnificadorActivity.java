@@ -15,6 +15,7 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -70,11 +71,14 @@ public class MagnificadorActivity extends Activity {
     private float dx=1;
     private float dy=1;
     private float mx=1.f;
-    private static float px;
-    private static float py;
+    //Display display = getWindowManager().getDefaultDisplay();
+    private static float px = 480;
+    private static float py = 270;
     private float my=1.f;
     private static float mPOSX = 0;
     private static float mPOSY = 0;
+    private float lastFocusX;
+    private float lastFocusY;
 
 
 
@@ -236,6 +240,45 @@ public class MagnificadorActivity extends Activity {
             ScaleGestureDetector.SimpleOnScaleGestureListener {
 
         @Override
+        public boolean onScaleBegin(ScaleGestureDetector detector) {
+            if(mOldScaleFactor == 1.0){
+                px = mView.getWidth()/2;
+                py = mView.getHeight()/2;
+            }
+            else{
+                if(mPOSX > 0){
+                    px = px - mPOSX*(mScaleFactor-1);
+                }
+                else if (mPOSX < 0){
+                    px = px + Math.abs(mPOSX)*(mScaleFactor-1);
+                }
+                if(mPOSY > 0){
+                    py = py - mPOSY*(mScaleFactor-1);
+                }
+                else if (mPOSY < 0){
+                    py = py + Math.abs(mPOSY)*(mScaleFactor-1);
+                }
+
+                if(px < 0){
+                    px = 0;
+                }
+                else if(px > mView.getWidth()){
+                    px = mView.getWidth();
+                }
+                if(py < 0){
+                    py = 0;
+                }
+                else if(py > mView.getHeight()){
+                    py = mView.getHeight();
+                }
+                //px += mPOSX;
+                //py += mPOSY;
+            }
+            SCALING = true;
+            return true;
+        }
+
+        @Override
         public boolean onScale(ScaleGestureDetector detector) {
 
             mScaleFactor *= detector.getScaleFactor();
@@ -244,34 +287,16 @@ public class MagnificadorActivity extends Activity {
 
             mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 10.0f));
 
-            px = mView.getWidth()/2;
-            py = mView.getHeight()/2;
-
-            //float width = mView.getWidth();
-            //float height = mView.getHeight();
-
-            //*(mScaleFactor-1)
-
-            //mView.translate(mPOSX,mPOSY);
-
-
-
-            /*if(mOldScaleFactor < mScaleFactor){
-                if(mPOSX > 0){
-                    px = px - mPOSX;
-                }
-                else if(mPOSX < 0){
-                    px = px + mPOSX;
-                }
-                if(mPOSY > 0){
-                    py = py - mPOSY;
-                }
-                else if(mPOSY < 0){
-                    py = py + mPOSY;
-                }
+            //ZOOM IN
+            if(mOldScaleFactor < mScaleFactor){
                 //mView.translate(mPOSX,mPOSY);
-            }*/
+                mView.scale(mScaleFactor,mScaleFactor,px,py);
+            }
+
+            //ZOOM OUT
             if(mOldScaleFactor > mScaleFactor){
+                px = mView.getWidth()/2;
+                py = mView.getHeight()/2;
                 if(mPOSX < (-px)*(mScaleFactor-1)){
                     mPOSX = (-px)*(mScaleFactor-1);
                 }
@@ -284,11 +309,9 @@ public class MagnificadorActivity extends Activity {
                 else if(mPOSY > (mScaleFactor-1)*py){
                     mPOSY = (mScaleFactor-1)*py;
                 }
-                //mView.scale(mScaleFactor,mScaleFactor,px,py);
                 mView.translate(mPOSX,mPOSY);
+                mView.scale(mScaleFactor,mScaleFactor,px,py);
             }
-
-            mView.scale(mScaleFactor,mScaleFactor,px,py);
 
             Log.i(TAG, "SCALE - mPosX = " + Float.toString(mPOSX));
             Log.i(TAG, "SCALE - mPosY = " + Float.toString(mPOSY));
@@ -297,12 +320,6 @@ public class MagnificadorActivity extends Activity {
 
             mView.invalidate();
 
-            return true;
-        }
-
-        @Override
-        public boolean onScaleBegin(ScaleGestureDetector detector) {
-            SCALING = true;
             return true;
         }
 

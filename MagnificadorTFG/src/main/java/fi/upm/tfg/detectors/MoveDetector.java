@@ -85,9 +85,6 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         py = MagnificadorActivity.getPy();
 
                         /*Limit bounds*/
-                        //float mWidth = mView.getWidth();
-                        //float mHeight = mView.getHeight();
-
                         //Por si cambio los pivotes, para mantener el limite tengo que cambiar
                         //mWidth/2 por el pivote x y mHeight/2 por el pivote y
 
@@ -108,8 +105,15 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
                         mView.translate(mPosX, mPosY);
 
+                        /* update pivot points */
+                        float pUpdatedX = px + mPosX;
+                        float pUpdatedY = py + mPosY;
+
                         MagnificadorActivity.setmPOSX(mPosX);
                         MagnificadorActivity.setmPOSY(mPosY);
+
+                        //MagnificadorActivity.setPx(pUpdatedX);
+                        //MagnificadorActivity.setPy(pUpdatedY);
 
                         mView.invalidate();
 
@@ -124,6 +128,7 @@ public class MoveDetector implements GestureInterfaceTest2 {
                     }
                 }
                 case MotionEvent.ACTION_UP: {
+
                     mActivePointerId = INVALID_POINTER_ID;
                     break;
                 }
