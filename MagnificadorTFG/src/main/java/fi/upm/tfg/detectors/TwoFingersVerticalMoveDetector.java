@@ -26,7 +26,7 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
     private int mActivePointerId = INVALID_POINTER_ID;
     private int mActivePointerId2 = INVALID_POINTER_ID;
     double dx1, dy1, dx2, dy2;
-    int thresh = 255/2;
+    int thresh;
 
     // Constructor de la clase
     public TwoFingersVerticalMoveDetector(Context applicationContext) {
@@ -48,6 +48,8 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                 mLastTouchY1 = y1;
                 // Save the ID of this pointer (for dragging)
                 mActivePointerId = MotionEventCompat.getPointerId(event, 0);
+                // Remember the old Thresh
+
                 //Log.i(TAG, "Dedo " + pointerIndex + "Coordenadas: " + mLastTouchX1 + "," + mLastTouchY1);
                 break;
             }
@@ -63,11 +65,13 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                 // Save the ID of this pointer (for dragging)
                 mActivePointerId2 = MotionEventCompat.getPointerId(event, pointerIndex2);
                 //Log.i(TAG, "Dedo " + pointerIndex2 + " Coordenadas: " + mLastTouchX1 + "," + mLastTouchY1);
+                thresh = MagnificadorActivity.getTHRESH();
                 break;
             }
             case MotionEvent.ACTION_MOVE:{
 
                 try{
+
 
                     final int pointerIndex = MotionEventCompat.findPointerIndex(event, mActivePointerId);
                     final int pointerIndex2 = MotionEventCompat.findPointerIndex(event, mActivePointerId2);
@@ -82,29 +86,37 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     dy1 = y1 - mLastTouchY1;
                     dx2 = x2 - mLastTouchX2;
                     dy2 = y2 - mLastTouchY2;
+
+                    // limites
+                    double prop = mView.getHeight()/255;
+
                     //Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
-                    if (dx1 < 10 && dx2 <10){
-                        if(dy1 > 5 && dy2 > 5 || dy1 < -5 && dy2 < -5){
+                    if (dx1 < 20 && dx2 <20){
+                        if(dy1 > 0 && dy2 > 0){
 
-                            thresh += (int)Math.round(dy1/100);
+                            thresh -= Math.abs((dy1 + dy2)/200);
                             thresh = Math.max(0, Math.min(thresh, 255));
+                        }
+                        else if(dy1<0 && dy2<0){
+                            thresh += Math.abs((dy1 + dy2)/200);
+                            thresh = Math.max(0, Math.min(thresh, 255));
+                        }
 
-                            if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
-                                mView.blackAndWhite(thresh,255);
-                                setToast("thresh " + thresh,mView);
-                            }
-                            else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
-                                mView.blackAndWhiteInvert(thresh,255);
-                                setToast("thresh " + thresh,mView);
-                            }
-                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
-                                mView.blueAndYellow(thresh,255);
-                                setToast("thresh " + thresh,mView);
-                            }
-                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.REDANDYELLOW){
-                                mView.redAndYellow(thresh, 255);
-                                setToast("thresh " + thresh,mView);
-                            }
+                        if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
+                            mView.blackAndWhite(thresh,255);
+                            setToast("thresh " + thresh,mView);
+                        }
+                        else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
+                            mView.blackAndWhiteInvert(thresh,255);
+                            setToast("thresh " + thresh,mView);
+                        }
+                        else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
+                            mView.blueAndYellow(thresh,255);
+                            setToast("thresh " + thresh,mView);
+                        }
+                        else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.REDANDYELLOW){
+                            mView.redAndYellow(thresh, 255);
+                            setToast("thresh " + thresh,mView);
                         }
                     }
                     break;
@@ -114,6 +126,7 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                 }
             }
             case MotionEvent.ACTION_UP: {
+                MagnificadorActivity.setTHRESH(thresh);
                 mActivePointerId = INVALID_POINTER_ID;
                 break;
             }

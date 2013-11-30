@@ -72,22 +72,24 @@ public class MagnificadorActivity extends Activity {
     private float dy=1;
     private float mx=1.f;
     //Display display = getWindowManager().getDefaultDisplay();
-    private static float px = 480;
-    private static float py = 270;
+    private static float px;
+    private static float py;
     private float my=1.f;
     private static float mPOSX = 0;
     private static float mPOSY = 0;
     private float lastFocusX;
     private float lastFocusY;
-
-
+    private float lastMPOSX;
+    private float lastMPOSY;
+    private float lastPX;
+    private float lastPY;
 
     private static CameraColors CURRENT_COLOR = CameraColors.RGB;
 
     private float mScaleFactor = 1.f;
     private float mOldScaleFactor = 1.f;
     private static float SCALE;
-    private double thresh;
+    private static int THRESH;
     private double maxval=100;
     private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this) {
         @Override
@@ -156,6 +158,7 @@ public class MagnificadorActivity extends Activity {
         PAUSED = false;
         ZOOMED = false;
         CURRENT_COLOR = CameraColors.RGB;
+        THRESH = 127;
     }
 
     @Override
@@ -226,9 +229,9 @@ public class MagnificadorActivity extends Activity {
         mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
         if(CURRENT_COLOR == CameraColors.BLACKANDWHITE
-        || CURRENT_COLOR == CameraColors.WHITEANDBLACK
-        || CURRENT_COLOR == CameraColors.YELLOWANDBLUE
-        || CURRENT_COLOR == CameraColors.REDANDYELLOW){
+                || CURRENT_COLOR == CameraColors.WHITEANDBLACK
+                || CURRENT_COLOR == CameraColors.YELLOWANDBLUE
+                || CURRENT_COLOR == CameraColors.REDANDYELLOW){
             mTwoFingersVerticalMoveDetector.onTouchEvent(event,mView);
         }
         mNewTapTwoFingersDetector.onTouchEvent(event,mView);
@@ -241,39 +244,27 @@ public class MagnificadorActivity extends Activity {
 
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            if(mOldScaleFactor == 1.0){
+
+            //px = detector.getFocusX();
+            //py = detector.getFocusY();
+            //Si la escala es 1, zoom hacia el centro
+            Log.i(TAG, "Scale - OldScaleFactor = " + Float.toString(mOldScaleFactor));
+            if(mScaleFactor == 1.f || mOldScaleFactor == 1.f){
                 px = mView.getWidth()/2;
                 py = mView.getHeight()/2;
             }
-            else{
-                if(mPOSX > 0){
-                    px = px - mPOSX*(mScaleFactor-1);
-                }
-                else if (mPOSX < 0){
-                    px = px + Math.abs(mPOSX)*(mScaleFactor-1);
-                }
-                if(mPOSY > 0){
-                    py = py - mPOSY*(mScaleFactor-1);
-                }
-                else if (mPOSY < 0){
-                    py = py + Math.abs(mPOSY)*(mScaleFactor-1);
-                }
-
-                if(px < 0){
-                    px = 0;
-                }
-                else if(px > mView.getWidth()){
-                    px = mView.getWidth();
-                }
-                if(py < 0){
-                    py = 0;
-                }
-                else if(py > mView.getHeight()){
-                    py = mView.getHeight();
-                }
-                //px += mPOSX;
-                //py += mPOSY;
+            //Si la escala es mayor que uno pero no ha habido translate, los pivotes
+            //se mantienen igual.
+            else if(mOldScaleFactor > 1 && lastMPOSX == mPOSX && lastMPOSY == mPOSY){
+                px = lastPX;
+                py = lastPY;
             }
+            //Si ha habido translate hay que recalcular los pivotes
+            else if(lastMPOSX != mPOSX || lastMPOSY != mPOSY){
+                px = lastPX/mOldScaleFactor + 100;
+                py = lastPY/mOldScaleFactor + 50;
+            }
+            Log.i(TAG, "Scale - pivots = (" + Float.toString(px) + "," + Float.toString(py) + ")");
             SCALING = true;
             return true;
         }
@@ -285,18 +276,16 @@ public class MagnificadorActivity extends Activity {
 
             SCALE = mScaleFactor;
 
-            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 10.0f));
+            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 4.0f));
 
             //ZOOM IN
             if(mOldScaleFactor < mScaleFactor){
-                //mView.translate(mPOSX,mPOSY);
                 mView.scale(mScaleFactor,mScaleFactor,px,py);
+                Log.i(TAG, "Scale - mScaleFactor = " + Float.toString(mScaleFactor));
             }
 
             //ZOOM OUT
-            if(mOldScaleFactor > mScaleFactor){
-                px = mView.getWidth()/2;
-                py = mView.getHeight()/2;
+            else if(mOldScaleFactor > mScaleFactor){
                 if(mPOSX < (-px)*(mScaleFactor-1)){
                     mPOSX = (-px)*(mScaleFactor-1);
                 }
@@ -313,8 +302,8 @@ public class MagnificadorActivity extends Activity {
                 mView.scale(mScaleFactor,mScaleFactor,px,py);
             }
 
-            Log.i(TAG, "SCALE - mPosX = " + Float.toString(mPOSX));
-            Log.i(TAG, "SCALE - mPosY = " + Float.toString(mPOSY));
+            //Log.i(TAG, "SCALE - mPosX = " + Float.toString(mPOSX));
+            //Log.i(TAG, "SCALE - mPosY = " + Float.toString(mPOSY));
 
             mOldScaleFactor = mScaleFactor;
 
@@ -325,6 +314,12 @@ public class MagnificadorActivity extends Activity {
 
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
+            lastFocusX = px;
+            lastFocusY = py;
+            lastMPOSX = mPOSX;
+            lastMPOSY = mPOSY;
+            lastPX = px;
+            lastPY = py;
             SCALING = false;
             if (mScaleFactor > 2.0){
                 setToast("Zoom: " + String.format("%.1f", mScaleFactor));
@@ -424,7 +419,7 @@ public class MagnificadorActivity extends Activity {
             PAUSED = false;
         }
 
-        if(item==bw){
+        /*if(item==bw){
             thresh=thresh+20;
             maxval=maxval+50;
             mView.blackAndWhite(thresh,maxval);
@@ -435,7 +430,7 @@ public class MagnificadorActivity extends Activity {
             //maxval=maxval+50;
             maxval = 255;
             mView.blueAndYellow(thresh,maxval);
-        }
+        }*/
         if(item==flashOff){
             mView.flashOff();
         }
@@ -638,5 +633,13 @@ public class MagnificadorActivity extends Activity {
 
     public static void setPy(float py) {
         MagnificadorActivity.py = py;
+    }
+
+    public static int getTHRESH() {
+        return THRESH;
+    }
+
+    public static void setTHRESH(int THRESH) {
+        MagnificadorActivity.THRESH = THRESH;
     }
 }

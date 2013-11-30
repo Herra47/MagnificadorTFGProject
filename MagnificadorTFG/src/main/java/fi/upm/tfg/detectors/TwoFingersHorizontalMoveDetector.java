@@ -114,22 +114,22 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 setToast("Grises",mView);
                 break;
             case GRAY:
-                mView.blackAndWhite(127,255);
+                mView.blackAndWhite(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
                 setToast("Blanco y negro",mView);
                 break;
             case BLACKANDWHITE:
-                mView.blackAndWhiteInvert(127,255);
+                mView.blackAndWhiteInvert(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
                 setToast("Negro y blanco",mView);
                 break;
             case WHITEANDBLACK:
-                mView.blueAndYellow(127,255);
+                mView.blueAndYellow(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.YELLOWANDBLUE);
                 setToast("Amarillo y azul",mView);
                 break;
             case YELLOWANDBLUE:
-                mView.redAndYellow(127,255);
+                mView.redAndYellow(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.REDANDYELLOW);
                 setToast("Amarillo y rojo",mView);
                 break;
@@ -144,7 +144,7 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
     private void colorLeft(MagnificadorProcess mView) {
         switch (MagnificadorActivity.getCURRENT_COLOR()){
             case RGB:
-                mView.redAndYellow(127,255);
+                mView.redAndYellow(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.REDANDYELLOW);
                 setToast("Amarillo y rojo",mView);
                 break;
@@ -169,17 +169,17 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 setToast("Grises",mView);
                 break;
             case WHITEANDBLACK:
-                mView.blackAndWhite(127,255);
+                mView.blackAndWhite(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
                 setToast("Blanco y negro",mView);
                 break;
             case YELLOWANDBLUE:
-                mView.blackAndWhiteInvert(127,255);
+                mView.blackAndWhiteInvert(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
                 setToast("Negro y blanco",mView);
                 break;
             case REDANDYELLOW:
-                mView.blueAndYellow(127,255);
+                mView.blueAndYellow(MagnificadorActivity.getTHRESH(),255);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.YELLOWANDBLUE);
                 setToast("Amarillo y azul",mView);
                 break;

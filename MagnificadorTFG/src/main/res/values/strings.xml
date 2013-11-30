@@ -12,9 +12,8 @@
     <string name="opcion_1">Menu 1 opción</string>
     <string name="opcion_2">Menu 4 opciones</string>
     <string name="title_activity_menu1">Menu 1 Opción</string>
-    <string name="title_activity_menu1_button">Menu1ButtonActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_menu1_button">Menu 1 Opción</string>
+    <string name="title_activity_settings">Ajustes</string>
     <string name="settings">Contraste</string>
     <string name="camera">Aquí irá la cámara</string>
     <string name="title_activity_camera">Camera Activity</string>
@@ -25,14 +24,13 @@
     <string name="menu_settings">Menu</string>
     <string name="one_option">1 opción</string>
     <string name="four_options">4 opciones</string>
-    <string name="title_activity_scroll_test">Scroll Test</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="title_activity_scroll_menu">Scroll Menu</string>
-    <string name="title_activity_menu1_button_drawer">Menu View Drawer</string>
+    <string name="title_activity_menu1_button_drawer">Menú 1 Opción</string>
     <string name="error">Error</string>
-    <string name="title_activity_magnificador">Camara</string>
-    <string name="title_activity_umbral">Umbral Activity</string>
+    <string name="title_activity_magnificador">Cámara</string>
+    <string name="title_activity_umbral">Umbral</string>
 
 </resources>

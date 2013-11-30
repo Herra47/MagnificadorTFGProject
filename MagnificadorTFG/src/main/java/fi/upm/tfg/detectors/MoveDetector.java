@@ -78,9 +78,6 @@ public class MoveDetector implements GestureInterfaceTest2 {
                         mPosX += dx;
                         mPosY += dy;
 
-                        Log.i(TAG, "MOVE - mPosX = " + Float.toString(mPosX));
-                        Log.i(TAG, "MOVE - mPosY = " + Float.toString(mPosY));
-
                         px = MagnificadorActivity.getPx();
                         py = MagnificadorActivity.getPy();
 
@@ -105,9 +102,8 @@ public class MoveDetector implements GestureInterfaceTest2 {
 
                         mView.translate(mPosX, mPosY);
 
-                        /* update pivot points */
-                        float pUpdatedX = px + mPosX;
-                        float pUpdatedY = py + mPosY;
+                        Log.i(TAG, "MOVE - mPosX = " + Float.toString(mPosX));
+                        Log.i(TAG, "MOVE - mPosY = " + Float.toString(mPosY));
 
                         MagnificadorActivity.setmPOSX(mPosX);
                         MagnificadorActivity.setmPOSY(mPosY);
