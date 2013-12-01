@@ -83,6 +83,8 @@ public class MagnificadorActivity extends Activity {
     private float lastMPOSY;
     private float lastPX;
     private float lastPY;
+    float x;
+    float y;
 
     private static CameraColors CURRENT_COLOR = CameraColors.RGB;
 
@@ -245,26 +247,11 @@ public class MagnificadorActivity extends Activity {
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
 
-            //px = detector.getFocusX();
-            //py = detector.getFocusY();
-            //Si la escala es 1, zoom hacia el centro
-            Log.i(TAG, "Scale - OldScaleFactor = " + Float.toString(mOldScaleFactor));
-            if(mScaleFactor == 1.f || mOldScaleFactor == 1.f){
-                px = mView.getWidth()/2;
-                py = mView.getHeight()/2;
-            }
-            //Si la escala es mayor que uno pero no ha habido translate, los pivotes
-            //se mantienen igual.
-            else if(mOldScaleFactor > 1 && lastMPOSX == mPOSX && lastMPOSY == mPOSY){
-                px = lastPX;
-                py = lastPY;
-            }
-            //Si ha habido translate hay que recalcular los pivotes
-            else if(lastMPOSX != mPOSX || lastMPOSY != mPOSY){
-                px = lastPX/mOldScaleFactor + 100;
-                py = lastPY/mOldScaleFactor + 50;
-            }
-            Log.i(TAG, "Scale - pivots = (" + Float.toString(px) + "," + Float.toString(py) + ")");
+            px = mView.getWidth()/2;
+            py = mView.getHeight()/2;
+
+            x = mPOSX;
+            y = mPOSY;
             SCALING = true;
             return true;
         }
@@ -276,29 +263,48 @@ public class MagnificadorActivity extends Activity {
 
             SCALE = mScaleFactor;
 
-            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 4.0f));
+            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 5.0f));
 
             //ZOOM IN
             if(mOldScaleFactor < mScaleFactor){
+
+                if(x < 0){
+                    x = mPOSX + (px/2 - px/(float)(Math.pow(2,mScaleFactor-1)));
+                }
+                else if(x > 0){
+                    x = mPOSX + (px/2 - px/(float)(Math.pow(2,mScaleFactor-1)));
+                }
+                if(y < 0){
+                    y = mPOSY + (py/2 - py/(float)(Math.pow(2,mScaleFactor-1)));
+                }
+                else if(y > 0){
+                    y = mPOSY + (py/2 - py/(float)(Math.pow(2,mScaleFactor-1)));
+                }
+
+                Log.i(TAG, "SCALE - mPosX = " + Float.toString(x));
+                Log.i(TAG, "SCALE - mPosY = " + Float.toString(y));
+
+                mView.translate(x,y);
                 mView.scale(mScaleFactor,mScaleFactor,px,py);
                 Log.i(TAG, "Scale - mScaleFactor = " + Float.toString(mScaleFactor));
+
             }
 
             //ZOOM OUT
             else if(mOldScaleFactor > mScaleFactor){
-                if(mPOSX < (-px)*(mScaleFactor-1)){
-                    mPOSX = (-px)*(mScaleFactor-1);
+                if(x < (-px)*(mScaleFactor-1)){
+                    x = (-px)*(mScaleFactor-1);
                 }
-                else if(mPOSX > (mScaleFactor-1)*px){
-                    mPOSX = (mScaleFactor-1)*px;
+                else if(x > (mScaleFactor-1)*px){
+                    x = (mScaleFactor-1)*px;
                 }
-                if(mPOSY < (-py)*(mScaleFactor-1)){
-                    mPOSY = (-py)*(mScaleFactor-1);
+                if(y < (-py)*(mScaleFactor-1)){
+                    y = (-py)*(mScaleFactor-1);
                 }
-                else if(mPOSY > (mScaleFactor-1)*py){
-                    mPOSY = (mScaleFactor-1)*py;
+                else if(y > (mScaleFactor-1)*py){
+                    y = (mScaleFactor-1)*py;
                 }
-                mView.translate(mPOSX,mPOSY);
+                mView.translate(x,y);
                 mView.scale(mScaleFactor,mScaleFactor,px,py);
             }
 
@@ -314,6 +320,8 @@ public class MagnificadorActivity extends Activity {
 
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
+            mPOSX = x;
+            mPOSY = y;
             lastFocusX = px;
             lastFocusY = py;
             lastMPOSX = mPOSX;
@@ -321,7 +329,7 @@ public class MagnificadorActivity extends Activity {
             lastPX = px;
             lastPY = py;
             SCALING = false;
-            if (mScaleFactor > 2.0){
+            if (mScaleFactor > 1.0){
                 setToast("Zoom: " + String.format("%.1f", mScaleFactor));
             }
         }

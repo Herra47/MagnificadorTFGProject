@@ -132,21 +132,21 @@ public class MoveDetector implements GestureInterfaceTest2 {
                     mActivePointerId = INVALID_POINTER_ID;
                     break;
                 }
-                case MotionEvent.ACTION_POINTER_UP: {
+                /*case MotionEvent.ACTION_POINTER_UP: {
 
                     final int pointerIndex = MotionEventCompat.getActionIndex(event);
                     final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
 
                     if (pointerId == mActivePointerId) {
-                    /* This was our active pointer going up. Choose a new
-                     active pointer and adjust accordingly.*/
+                     //This was our active pointer going up. Choose a new
+                     //active pointer and adjust accordingly.
                         final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
                         mLastTouchX = MotionEventCompat.getX(event, newPointerIndex);
                         mLastTouchY = MotionEventCompat.getY(event, newPointerIndex);
                         mActivePointerId = MotionEventCompat.getPointerId(event, newPointerIndex);
                     }
                     break;
-                }
+                }*/
             }
         }
         return true;
