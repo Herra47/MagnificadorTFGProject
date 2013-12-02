@@ -213,7 +213,6 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
 					Paint paint=new Paint();
 					ColorMatrix cm=new ColorMatrix();
 
-                    // Echar un ojo a esto
 					cm.set(new float[]{contrast,0,0,0,a,
                                         0,contrast,0,0,a,
                                         0,0,contrast,0,a,
@@ -636,11 +635,12 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
 	}
 
     public void blackAndWhiteInvert(double threshold, double maxval){
-        blackAndWhite(threshold,maxval);
-        this.contrast=-1;
-        this.t=0;
-        this.a=255.0f;
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"blackAndWhiteInvert()");
         customize=true;
+        option=6;
     }
 
     /**Preview in blue and yellow.

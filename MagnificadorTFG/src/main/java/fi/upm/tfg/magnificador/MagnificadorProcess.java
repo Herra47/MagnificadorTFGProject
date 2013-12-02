@@ -45,7 +45,7 @@ public class MagnificadorProcess extends MagnificadorBase{
                 break;
             //BLACK AND WHITE
             case 2:
-                //Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
+                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 break;
             //BGR
@@ -69,6 +69,15 @@ public class MagnificadorProcess extends MagnificadorBase{
                 //set the mask to red
                 ry.setTo(new Scalar(255,0,0), mYuv);
                 mYuv = ry.clone();
+                break;
+            case 6:
+                Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
+                //set pixels masked by blackWhite to yellow
+                Mat bw = new Mat(mYuv.rows(),mYuv.cols(), CvType.CV_8UC3, new Scalar(255,255,255));
+                //set the mask to red
+                bw.setTo(new Scalar(0,0,0), mYuv);
+                mYuv = bw.clone();
+                break;
         }
 
         Bitmap bmp = Bitmap.createBitmap(mYuv.cols(), mYuv.rows(), Bitmap.Config.ARGB_8888);

@@ -2,6 +2,7 @@ package fi.upm.tfg.detectors;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +15,8 @@ import fi.upm.tfg.magnificador.MagnificadorProcess;
 import fi.upm.tfg.magnificador.R;
 
 public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
+
+    private static final String TAG = "MagnificadorActivity: ";
 
     long startTime;
 
@@ -99,11 +102,6 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
     private void colorRight(MagnificadorProcess mView) {
         switch (MagnificadorActivity.getCURRENT_COLOR()){
             case RGB:
-                mView.bgr();
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BGR);
-                setToast("BGR",mView);
-                break;
-            case BGR:
                 mView.invert();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.INVERT);
                 setToast("Invertido",mView);
@@ -114,26 +112,11 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 setToast("Grises",mView);
                 break;
             case GRAY:
-                mView.blackAndWhite(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
-                setToast("Blanco y negro",mView);
+                mView.redAndYellow(127,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
+                setToast("Alto contraste",mView);
                 break;
-            case BLACKANDWHITE:
-                mView.blackAndWhiteInvert(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
-                setToast("Negro y blanco",mView);
-                break;
-            case WHITEANDBLACK:
-                mView.blueAndYellow(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.YELLOWANDBLUE);
-                setToast("Amarillo y azul",mView);
-                break;
-            case YELLOWANDBLUE:
-                mView.redAndYellow(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.REDANDYELLOW);
-                setToast("Amarillo y rojo",mView);
-                break;
-            case REDANDYELLOW:
+            case HIGHCONTRAST:
                 mView.rgb();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.RGB);
                 setToast("Normal",mView);
@@ -144,44 +127,24 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
     private void colorLeft(MagnificadorProcess mView) {
         switch (MagnificadorActivity.getCURRENT_COLOR()){
             case RGB:
-                mView.redAndYellow(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.REDANDYELLOW);
-                setToast("Amarillo y rojo",mView);
+                mView.redAndYellow(127,255);
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
+                setToast("Alto contraste",mView);
                 break;
-            case BGR:
+            case INVERT:
                 mView.rgb();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.RGB);
                 setToast("Normal",mView);
-                break;
-            case INVERT:
-                mView.bgr();
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BGR);
-                setToast("BGR",mView);
                 break;
             case GRAY:
                 mView.invert();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.INVERT);
                 setToast("Invertido",mView);
                 break;
-            case BLACKANDWHITE:
+            case HIGHCONTRAST:
                 mView.gray();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.GRAY);
                 setToast("Grises",mView);
-                break;
-            case WHITEANDBLACK:
-                mView.blackAndWhite(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.BLACKANDWHITE);
-                setToast("Blanco y negro",mView);
-                break;
-            case YELLOWANDBLUE:
-                mView.blackAndWhiteInvert(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.WHITEANDBLACK);
-                setToast("Negro y blanco",mView);
-                break;
-            case REDANDYELLOW:
-                mView.blueAndYellow(MagnificadorActivity.getTHRESH(),255);
-                MagnificadorActivity.setCURRENT_COLOR(CameraColors.YELLOWANDBLUE);
-                setToast("Amarillo y azul",mView);
                 break;
         }
     }

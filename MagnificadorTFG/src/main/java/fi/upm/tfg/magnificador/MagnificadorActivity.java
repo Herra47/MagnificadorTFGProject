@@ -5,6 +5,7 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
 
+import android.content.Intent;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -46,43 +47,18 @@ public class MagnificadorActivity extends Activity {
 
     /*Camera parameters*/
     private MagnificadorProcess mView;
-    private MenuItem pause;
-    private MenuItem rgb;
-    private MenuItem unpause;
-    private MenuItem gray;
     private MenuItem macro;
     private MenuItem lowfps;
     private MenuItem focusarea;
-    private MenuItem bw;
-    private MenuItem by;
     private MenuItem autofocus;
     private MenuItem videofocus;
     private MenuItem normalfps;
     private MenuItem bgr;
     private MenuItem cancelAF;
-    private MenuItem flashOff;
-    private MenuItem flashOn;
-    private MenuItem translateTop;
-    private MenuItem translateRight;
-    private MenuItem translateBott;
-    private MenuItem translateLeft;
-    private MenuItem zoomIN;
-    private MenuItem zoomOUT;
-    private float dx=1;
-    private float dy=1;
-    private float mx=1.f;
-    //Display display = getWindowManager().getDefaultDisplay();
     private static float px;
     private static float py;
-    private float my=1.f;
     private static float mPOSX = 0;
     private static float mPOSY = 0;
-    private float lastFocusX;
-    private float lastFocusY;
-    private float lastMPOSX;
-    private float lastMPOSY;
-    private float lastPX;
-    private float lastPY;
     float x;
     float y;
 
@@ -92,6 +68,8 @@ public class MagnificadorActivity extends Activity {
     private float mOldScaleFactor = 1.f;
     private static float SCALE;
     private static int THRESH;
+
+   private static boolean primera = true;
     private double maxval=100;
     private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this) {
         @Override
@@ -99,7 +77,7 @@ public class MagnificadorActivity extends Activity {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                 {
-                    //			Log.i(TAG, "OpenCV loaded successfully");
+                    Log.i(TAG, "OpenCV loaded successfully");
                     // Create and set View
                     mView = new MagnificadorProcess(mAppContext);
                     setContentView(mView);
@@ -128,14 +106,12 @@ public class MagnificadorActivity extends Activity {
     private MenuItem contrast;
     private MenuItem brightness;
     private float cont=1;
-    private int bri;
     private MenuItem invert;
     private MenuItem contrastRest;
     private MenuItem contrastAdd;
     private MenuItem stabilizatiON;
     private MenuItem stabilizatiOFF;
     private MenuItem finish;
-//    private ViewGroup.LayoutParams lp = mView.getLayoutParams();
 
     /* Gestures */
 
@@ -263,28 +239,28 @@ public class MagnificadorActivity extends Activity {
 
             SCALE = mScaleFactor;
 
-            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 5.0f));
+            mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 10.0f));
 
             //ZOOM IN
             if(mOldScaleFactor < mScaleFactor){
 
-                if(x < 0){
-                    x = mPOSX + (px/2 - px/(float)(Math.pow(2,mScaleFactor-1)));
+                /*if(x < 0){
+                    x = mPOSX + (px/2 - px/(float)(Math.pow(2,mScaleFactor-2)));
                 }
                 else if(x > 0){
-                    x = mPOSX + (px/2 - px/(float)(Math.pow(2,mScaleFactor-1)));
+                    x = mPOSX + (px/2 - px/(float)(Math.pow(2,mScaleFactor-2)));
                 }
                 if(y < 0){
-                    y = mPOSY + (py/2 - py/(float)(Math.pow(2,mScaleFactor-1)));
+                    y = mPOSY + (py/2 - py/(float)(Math.pow(2,mScaleFactor-2)));
                 }
                 else if(y > 0){
-                    y = mPOSY + (py/2 - py/(float)(Math.pow(2,mScaleFactor-1)));
+                    y = mPOSY + (py/2 - py/(float)(Math.pow(2,mScaleFactor-2)));
                 }
 
                 Log.i(TAG, "SCALE - mPosX = " + Float.toString(x));
-                Log.i(TAG, "SCALE - mPosY = " + Float.toString(y));
+                Log.i(TAG, "SCALE - mPosY = " + Float.toString(y));*/
 
-                mView.translate(x,y);
+                mView.translate(mPOSX,mPOSY);
                 mView.scale(mScaleFactor,mScaleFactor,px,py);
                 Log.i(TAG, "Scale - mScaleFactor = " + Float.toString(mScaleFactor));
 
@@ -322,12 +298,6 @@ public class MagnificadorActivity extends Activity {
         public void onScaleEnd(ScaleGestureDetector detector) {
             mPOSX = x;
             mPOSY = y;
-            lastFocusX = px;
-            lastFocusY = py;
-            lastMPOSX = mPOSX;
-            lastMPOSY = mPOSY;
-            lastPX = px;
-            lastPY = py;
             SCALING = false;
             if (mScaleFactor > 1.0){
                 setToast("Zoom: " + String.format("%.1f", mScaleFactor));
@@ -338,21 +308,6 @@ public class MagnificadorActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.i(TAG, "onCreateOptionsMenu");
-        rgb = menu.add("rgb");
-        gray = menu.add("gray");
-        bgr=menu.add("bgr");
-        bw=menu.add("bw");
-        by=menu.add("by");
-        pause = menu.add("pause");
-        unpause=menu.add("unpause");
-        zoomIN = menu.add("zoomIN");
-        zoomOUT=menu.add("zoomout");
-        translateTop = menu.add("translateTop");
-        translateBott=menu.add("translateBott");
-        translateRight=menu.add("translateRigh");
-        translateLeft=menu.add("translateLeft");
-        flashOn=menu.add("flashon");
-        flashOff=menu.add("flashoff");
         macro=menu.add("macro");
         autofocus=menu.add("AF");
         cancelAF=menu.add("cancelAF");
@@ -372,80 +327,6 @@ public class MagnificadorActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.i(TAG, "Menu Item selected " + item);
-        if (item == rgb){
-            mView.rgb();
-        }
-        if (item == gray){
-            mView.gray();}
-
-        if(item==pause){
-            mView.pause();
-            PAUSED = true;
-        }
-
-        /*if(item==zoomIN){
-            mx=mx+0.2f;
-            my=my+0.2f;
-            px=px+20;
-            py=py+20;
-            mView.scale(mx, my, px, py);
-            ZOOMED = true;
-        }
-        if(item==zoomOUT){
-            mx=mx-0.2f;
-            my=my-0.2f;
-            px=px-20;
-            py=py-20;
-            mView.scale(mx, my, px, py);
-        }*/
-
-        if(item==translateTop){
-            dy=dy+10;
-            mView.translate(dx,dy);
-        }
-        if(item==translateLeft){
-            dx=dx+10;
-            mView.translate(dx,dy);
-        }
-        if(item==translateRight){
-            dx=dx-10;
-            mView.translate(dx,dy);
-        }
-        if(item==translateBott){
-            dy=dy-10;
-            mView.translate(dx,dy);
-        }
-        if(item==rgb){
-            mView.rgb();
-        }
-        if(item==gray){
-            mView.gray();
-
-        }
-        if(item==unpause){
-            mView.unpause();
-            PAUSED = false;
-        }
-
-        /*if(item==bw){
-            thresh=thresh+20;
-            maxval=maxval+50;
-            mView.blackAndWhite(thresh,maxval);
-        }
-
-        if(item==by){
-            thresh=128;
-            //maxval=maxval+50;
-            maxval = 255;
-            mView.blueAndYellow(thresh,maxval);
-        }*/
-        if(item==flashOff){
-            mView.flashOff();
-        }
-
-        if((item==flashOn)){
-            mView.flashOn();
-        }
 
         if(item==macro){
             mView.macroFocus();
@@ -466,10 +347,6 @@ public class MagnificadorActivity extends Activity {
         }
         if(item==normalfps){
             mView.defaultFps();
-        }
-
-        if(item==bgr){
-            mView.bgr();
         }
         if(item==focusarea){
             Rect rect=new Rect(120,110,140,115);
@@ -502,20 +379,23 @@ public class MagnificadorActivity extends Activity {
     /* Volume key options */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-
-
         if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
 
             if(PAUSED){
                 mView.unpause();
                 PAUSED = false;
                 setToast("Sin pausar");
+                if(MagnificadorActivity.getFlashed()){
+                    mView.flashOn();
+                }
             }
             else{
                 mView.pause();
                 PAUSED = true;
                 setToast("Pausado");
+                if(MagnificadorActivity.getFlashed()){
+                    mView.flashOff();
+                }
             }
             return true;
         }
@@ -536,6 +416,12 @@ public class MagnificadorActivity extends Activity {
         }
         else if (keyCode == KeyEvent.KEYCODE_BACK){
             mView.releaseCamera();
+            finish();
+        }
+        else if (keyCode == KeyEvent.KEYCODE_MENU){
+            Intent intent = new Intent(MagnificadorActivity.this,MainActivity.class);
+            //Comenzamos la nueva actividad
+            startActivity(intent);
             finish();
         }
         return false;
@@ -649,5 +535,13 @@ public class MagnificadorActivity extends Activity {
 
     public static void setTHRESH(int THRESH) {
         MagnificadorActivity.THRESH = THRESH;
+    }
+
+    public static boolean isPrimera() {
+        return primera;
+    }
+
+    public static void setPrimera(boolean primera) {
+        MagnificadorActivity.primera = primera;
     }
 }

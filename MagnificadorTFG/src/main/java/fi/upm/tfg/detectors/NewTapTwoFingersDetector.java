@@ -117,7 +117,6 @@ public class NewTapTwoFingersDetector implements GestureInterfaceTest {
                             setToast("Pausado",mView);
                             if(MagnificadorActivity.getFlashed()){
                                 mView.flashOff();
-                                //MagnificadorActivity.setFlashed(false);
                             }
                         }
                     }

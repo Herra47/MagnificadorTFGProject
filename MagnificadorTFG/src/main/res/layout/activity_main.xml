@@ -6,39 +6,34 @@
     android:id="@+id/mainLayout">
 
     <Button
-        android:text="@string/button_camera"
+        android:text="@string/button_modes"
         android:textColor="@color/text_bw"
-        android:id="@+id/cameraButton"
+        android:id="@+id/modeButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
         android:background="@drawable/button_bw"/>
 
     <Button
-        android:text="@string/button_contrast"
-        android:id="@+id/contrastButton"
-        android:layout_below="@+id/cameraButton"
+        android:text="@string/button_colors"
+        android:id="@+id/colorsButton"
+        android:layout_below="@+id/modeButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
         android:background="@drawable/borde"/>
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:text="@string/button_camera"
+        android:id="@+id/cameraButton"
+        android:layout_below="@+id/colorsButton"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/button_bw"
+        style="@style/button4x1"/>
+
+    <Button
         android:text="@string/button_settings"
         android:textColor="@color/text_bw"
         android:id="@+id/settingsButton"
-        android:layout_below="@+id/contrastButton"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/button_bw"
-        android:textSize="50sp"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="4dp"/>
-
-    <Button
-        android:text="@string/button_menu"
-        android:textColor="@color/text_bw"
-        android:id="@+id/menuButton"
-        android:layout_below="@+id/settingsButton"
+        android:layout_below="@+id/cameraButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"

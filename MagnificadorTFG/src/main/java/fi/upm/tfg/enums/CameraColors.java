@@ -11,5 +11,6 @@ public enum CameraColors {
     GRAY,
     WHITEANDBLACK,
     YELLOWANDBLUE,
-    REDANDYELLOW
+    REDANDYELLOW,
+    HIGHCONTRAST
 }
