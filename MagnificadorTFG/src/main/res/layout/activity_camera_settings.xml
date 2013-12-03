@@ -9,9 +9,9 @@
         android:layout_height="0.0dip"
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
-        android:text="@string/button_modes"
+        android:text="@string/button_flash"
         android:textColor="@color/text_bw"
-        android:id="@+id/modeButton"
+        android:id="@+id/flashButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
         android:background="@drawable/button_bw"/>
@@ -20,9 +20,8 @@
         android:layout_height="0.0dip"
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
-        android:text="@string/button_colors"
-        android:textColor="@color/text_bw"
-        android:id="@+id/colorsButton"
+        android:text="@string/button_macro"
+        android:id="@+id/macroButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
         android:background="@drawable/button_bw"/>
@@ -31,22 +30,10 @@
         android:layout_height="0.0dip"
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
-        android:text="@string/button_camera"
-        android:textColor="@color/text_bw"
-        android:id="@+id/cameraButton"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/button_bw"
-        style="@style/button4x1"/>
-
-    <Button
-        android:layout_height="0.0dip"
-        android:layout_width="fill_parent"
-        android:layout_weight="1.0"
-        android:text="@string/button_settings"
-        android:textColor="@color/text_bw"
-        android:id="@+id/settingsButton"
-        style="@style/button4x1"
+        android:text="@string/button_stab"
+        android:id="@+id/stabButton"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/button_bw"/>
+        android:background="@drawable/button_bw"
+        style="@style/button4x1"/>
 </LinearLayout>

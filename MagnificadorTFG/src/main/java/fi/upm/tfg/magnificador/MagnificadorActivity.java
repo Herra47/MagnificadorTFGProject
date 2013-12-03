@@ -63,6 +63,7 @@ public class MagnificadorActivity extends Activity {
     float y;
 
     private static CameraColors CURRENT_COLOR = CameraColors.RGB;
+    private static CameraColors HIGH_CONTRAST_COLOR = CameraColors.REDANDYELLOW;
 
     private float mScaleFactor = 1.f;
     private float mOldScaleFactor = 1.f;
@@ -95,14 +96,50 @@ public class MagnificadorActivity extends Activity {
                         });
                         ad.show();
                     }
+
+                    initializeColor();
+
                 } break;
                 default:
                 {
                     super.onManagerConnected(status);
                 } break;
             }
+
+
+
+
         }
     };
+
+    private void initializeColor() {
+        switch (CURRENT_COLOR){
+            case RGB:
+                mView.rgb();
+                break;
+            case GRAY:
+                mView.gray();
+                break;
+            case INVERT:
+                mView.invert();
+                break;
+            case HIGHCONTRAST:
+                switch (HIGH_CONTRAST_COLOR){
+                    case REDANDYELLOW:
+                        mView.redAndYellow(127,255);
+                        break;
+                    case YELLOWANDBLUE:
+                        mView.blueAndYellow(127,255);
+                        break;
+                    case BLACKANDWHITE:
+                        mView.blackAndWhite(127,255);
+                        break;
+                }
+                break;
+        }
+
+    }
+
     private MenuItem contrast;
     private MenuItem brightness;
     private float cont=1;
@@ -125,7 +162,6 @@ public class MagnificadorActivity extends Activity {
     private SingleTapDetector mSingleTapDetector;
 
     private static boolean SCALING;
-
     private static boolean PAUSED;
     private static boolean ZOOMED;
     private static boolean FLASHED;
@@ -135,7 +171,6 @@ public class MagnificadorActivity extends Activity {
         Log.i(TAG, "Instantiated new" + this.getClass());
         PAUSED = false;
         ZOOMED = false;
-        CURRENT_COLOR = CameraColors.RGB;
         THRESH = 127;
     }
 
@@ -171,9 +206,6 @@ public class MagnificadorActivity extends Activity {
         mTwoFingersVerticalMoveDetector = new TwoFingersVerticalMoveDetector(getApplicationContext());
         mSingleTapDetector = new SingleTapDetector(getApplicationContext());
 
-
-
-
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
         SurfaceView mySurface = (SurfaceView) findViewById(R.id.surface);
@@ -206,10 +238,7 @@ public class MagnificadorActivity extends Activity {
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
         mThreeFingersHorizontalMoveDetector.onTouchEvent(event, mView);
 
-        if(CURRENT_COLOR == CameraColors.BLACKANDWHITE
-                || CURRENT_COLOR == CameraColors.WHITEANDBLACK
-                || CURRENT_COLOR == CameraColors.YELLOWANDBLUE
-                || CURRENT_COLOR == CameraColors.REDANDYELLOW){
+        if(CURRENT_COLOR == CameraColors.HIGHCONTRAST){
             mTwoFingersVerticalMoveDetector.onTouchEvent(event,mView);
         }
         mNewTapTwoFingersDetector.onTouchEvent(event,mView);

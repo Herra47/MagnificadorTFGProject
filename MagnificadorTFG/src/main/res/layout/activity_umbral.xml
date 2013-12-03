@@ -29,9 +29,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brillo"
+        android:text="@string/Threshold"
         android:id="@+id/textView2"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:layout_below="@+id/seekBar"
         android:layout_alignParentLeft="true" />
 

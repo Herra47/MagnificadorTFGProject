@@ -34,5 +34,20 @@
     <string name="title_activity_umbral">Umbral</string>
     <string name="button_modes">Modos</string>
     <string name="button_colors">Colores</string>
+    <string name="title_activity_modes">Modos de Visualización</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="button_rgb">Normal</string>
+    <string name="button_gray">Grises</string>
+    <string name="button_invert">Invertido</string>
+    <string name="button_high_contrast">Contraste</string>
+    <string name="title_activity_colors">Colores</string>
+    <string name="button_fondo_claro">Fondo claro</string>
+    <string name="button_fondo_oscuro">Fondo oscuro</string>
+    <string name="title_activity_camera_settings">Ajustes de la cámara</string>
+    <string name="button_flash">Flash</string>
+    <string name="button_macro">Macro</string>
+    <string name="button_stab">Estabilizador</string>
+    <string name="Threshold">Brillo: </string>
+    <string name="menu_color">Color de menú</string>
 
 </resources>

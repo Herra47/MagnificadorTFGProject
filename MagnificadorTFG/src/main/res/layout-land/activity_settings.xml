@@ -17,8 +17,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/settings"
-            android:textSize="45sp"
+            android:text="@string/menu_color"
+            android:textSize="50sp"
             android:id="@+id/textView" />
 
         <RadioGroup
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/menu_settings"
-                android:textSize="45sp"
+                android:textSize="50sp"
                 android:id="@+id/textView2"
                 android:layout_gravity="left|center_vertical" />
 
@@ -92,14 +92,48 @@
                 android:gravity="center_vertical|center_horizontal" />
         </RadioGroup>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Threshold"
+            android:id="@+id/textViewThresh"
+            android:textSize="50sp"
+            android:layout_below="@+id/radioGroup2"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewNumber"
+            android:text="@string/Threshold"
+            android:textSize="50sp"
+            android:layout_below="@+id/radioGroup2"
+            android:layout_toRightOf="@+id/textViewThresh"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_below="@+id/textViewThresh"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp" />
+
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/seekBar"
+            android:layout_marginTop="20dp"
             android:text="@string/saveButton"
+            android:textColor="@color/text_bw"
             android:textSize="50sp"
             android:id="@+id/saveButton"
-            android:layout_below="@+id/radioGroup2"
-            android:layout_alignLeft="@+id/radioGroup2" />
+            android:background="@drawable/button_bw"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/radioGroup" />
 
     </RelativeLayout>
 </ScrollView>

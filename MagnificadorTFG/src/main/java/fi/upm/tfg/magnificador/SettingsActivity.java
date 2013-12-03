@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import fi.upm.tfg.enums.Colors;
@@ -20,6 +21,7 @@ public class SettingsActivity extends Activity {
     private int keyCode;
     private KeyEvent event;
     private static boolean menu4Options;
+    private int thresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class SettingsActivity extends Activity {
 
         final RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
         final RadioGroup rg2 = (RadioGroup)findViewById(R.id.radioGroup2);
+        final TextView threshText = (TextView)findViewById(R.id.textViewNumber);
 
         switch (color){
             case BLACKWHITE:
@@ -52,6 +55,26 @@ public class SettingsActivity extends Activity {
         else{
             rg2.check(R.id.radioButtonOne);
         }
+
+        threshText.setText(Integer.toString(thresh));
+
+        final SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
+        seekbar.setMax(255);
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+
+                thresh = progress;
+                threshText.setText(Integer.toString(thresh));
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
         //rg.clearCheck();
         //rg.check(R.id.radioButtonBW);

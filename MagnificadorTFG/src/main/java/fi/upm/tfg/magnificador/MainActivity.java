@@ -12,10 +12,10 @@ import fi.upm.tfg.enums.Colors;
 
 public class MainActivity extends Activity {
 
-    private Button button1Option;
-    private Button buttonSettings;
-    private Button buttonContrast;
+    private Button buttonMode;
+    private Button buttonColors;
     private Button buttonCamera;
+    private Button buttonSettings;
 
     private static Colors color = Colors.BLACKWHITE;
 
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
             finish();
         }
 
-        switch (color){
+        /*switch (color){
             case BLACKWHITE:
                 contrastBlackWhite();
                 break;
@@ -41,18 +41,38 @@ public class MainActivity extends Activity {
             case YELLOWRED:
                 contrastYellowRed();
                 break;
-        }
+        }*/
 
-        final Button button1Option = (Button) findViewById(R.id.menuButton);
-        final Button buttonSettings = (Button) findViewById(R.id.settingsButton);
-        final Button buttonContrast = (Button) findViewById(R.id.contrastButton);
+        final Button buttonMode = (Button) findViewById(R.id.modeButton);
+        final Button buttonColors = (Button) findViewById(R.id.colorsButton);
         final Button buttonCamera = (Button) findViewById(R.id.cameraButton);
+        final Button buttonSettings = (Button) findViewById(R.id.settingsButton);
 
-        button1Option.setOnClickListener(new View.OnClickListener(){
+        buttonMode.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                setMainActivity(false);
+                //setMainActivity(false);
                 //Creamos el Intent
-                Intent intent = new Intent(MainActivity.this,Menu1ButtonDrawerActivity.class);
+                Intent intent = new Intent(MainActivity.this,ModesActivity.class);
+                //Comenzamos la nueva actividad
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        buttonColors.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                //SettingsActivity.setMenu4Options(true);
+                //Creamos el Intent
+                Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
+                //Comenzamos la nueva actividad
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        buttonCamera.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CameraSettingsActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
                 finish();
@@ -61,26 +81,9 @@ public class MainActivity extends Activity {
 
         buttonSettings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                SettingsActivity.setMenu4Options(true);
-                //Creamos el Intent
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                //Comenzamos la nueva actividad
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        buttonContrast.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                changeContrast();
-            }
-        });
-
-        buttonCamera.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
                 //finish();
                 //Creamos el Intent
-                Intent intent = new Intent(MainActivity.this, MagnificadorActivity.class);
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
             }
@@ -116,25 +119,24 @@ public class MainActivity extends Activity {
 
     private void contrastBlackWhite (){
 
-        button1Option = (Button) findViewById(R.id.menuButton);
-        buttonSettings = (Button) findViewById(R.id.settingsButton);
-        buttonContrast = (Button) findViewById(R.id.contrastButton);
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
         buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
 
         ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
         int black = getResources().getColor(R.color.Black);
         int white = getResources().getColor(R.color.White);
         int background = R.drawable.button_bw;
 
-        buttonContrast.setTextColor(black);
-        buttonContrast.setBackgroundResource(R.drawable.borde);
-
-        buttonSettings.setTextColor(textBW);
-        button1Option.setTextColor(textBW);
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
         buttonCamera.setTextColor(textBW);
-        buttonSettings.setBackgroundResource(background);
-        button1Option.setBackgroundResource(background);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
         buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
 
         findViewById(R.id.mainLayout).setBackgroundColor(white);
 
@@ -145,25 +147,24 @@ public class MainActivity extends Activity {
 
     private void contrastYellowBlue (){
 
-        button1Option = (Button) findViewById(R.id.menuButton);
-        buttonSettings = (Button) findViewById(R.id.settingsButton);
-        buttonContrast = (Button) findViewById(R.id.contrastButton);
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
         buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
 
         int yellow = getResources().getColor(R.color.Yellow);
         int blue = getResources().getColor(R.color.Blue);
         ColorStateList textBY = getResources().getColorStateList(R.color.text_yb);
         int background = R.drawable.button_yb;
 
-        buttonContrast.setTextColor(yellow);
-        buttonContrast.setBackgroundResource(R.drawable.bordeyb);
-
-        buttonSettings.setTextColor(textBY);
-        buttonSettings.setBackgroundResource(background);
-        button1Option.setTextColor(textBY);
-        button1Option.setBackgroundResource(background);
+        buttonMode.setTextColor(textBY);
+        buttonColors.setTextColor(textBY);
         buttonCamera.setTextColor(textBY);
+        buttonSettings.setTextColor(textBY);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
         buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
 
         findViewById(R.id.mainLayout).setBackgroundColor(blue);
 
@@ -174,25 +175,24 @@ public class MainActivity extends Activity {
 
     private void contrastYellowRed() {
 
-        button1Option = (Button) findViewById(R.id.menuButton);
-        buttonSettings = (Button) findViewById(R.id.settingsButton);
-        buttonContrast = (Button) findViewById(R.id.contrastButton);
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
         buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
 
         int yellow = getResources().getColor(R.color.Yellow);
         int red = getResources().getColor(R.color.Red);
         ColorStateList textRY = getResources().getColorStateList(R.color.text_yr);
         int background = R.drawable.button_yr;
 
-        buttonContrast.setTextColor(yellow);
-        buttonContrast.setBackgroundResource(R.drawable.bordeyr);
-
-        buttonSettings.setTextColor(textRY);
-        buttonSettings.setBackgroundResource(background);
-        button1Option.setTextColor(textRY);
-        button1Option.setBackgroundResource(background);
+        buttonMode.setTextColor(textRY);
+        buttonColors.setTextColor(textRY);
         buttonCamera.setTextColor(textRY);
+        buttonSettings.setTextColor(textRY);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
         buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
 
         findViewById(R.id.mainLayout).setBackgroundColor(red);
 
