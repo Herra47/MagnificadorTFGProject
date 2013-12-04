@@ -103,9 +103,6 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                             if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
                                 mView.blackAndWhite(thresh,255);
                             }
-                            else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
-                                mView.blackAndWhiteInvert(thresh,255);
-                            }
                             else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
                                 mView.blueAndYellow(thresh,255);
                             }
@@ -118,9 +115,6 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                             thresh = Math.max(0, Math.min(thresh, 255));
                             if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
                                 mView.blackAndWhite(thresh,255);
-                            }
-                            else if (MagnificadorActivity.getCURRENT_COLOR() == CameraColors.WHITEANDBLACK){
-                                mView.blackAndWhiteInvert(thresh,255);
                             }
                             else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
                                 mView.blueAndYellow(thresh,255);

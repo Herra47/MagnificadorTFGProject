@@ -67,6 +67,7 @@ public class SettingsActivity extends Activity {
 
                 thresh = progress;
                 threshText.setText(Integer.toString(thresh));
+                MagnificadorActivity.setTHRESH(thresh);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {

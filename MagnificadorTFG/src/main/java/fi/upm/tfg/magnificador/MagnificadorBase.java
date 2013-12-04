@@ -634,13 +634,40 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
 		option=2;
 	}
 
-    public void blackAndWhiteInvert(double threshold, double maxval){
+    /**Preview in black and white.
+     * @param threshold Threshold value
+     **/
+    public void blackAndYellow(double threshold, double maxval){
         normal();
         this.maxval=maxval;
         this.threshold=threshold;
-        Log.e(TAG,"blackAndWhiteInvert()");
+        Log.e(TAG,"blackAndYellow()");
         customize=true;
-        option=6;
+        option=3;
+    }
+
+    /**Preview in black and white.
+     * @param threshold Threshold value
+     **/
+    public void whiteAndBlack(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"whiteAndBlack()");
+        customize=true;
+        option=4;
+    }
+
+    /**Preview in black and white.
+     * @param threshold Threshold value
+     **/
+    public void yellowAndBlack(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"yellowAndBlack()");
+        customize=true;
+        option=5;
     }
 
     /**Preview in blue and yellow.
@@ -652,7 +679,43 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
         this.threshold=threshold;
         Log.e(TAG,"blueAndYellow()");
         customize=true;
-        option=4;
+        option=6;
+    }
+
+    /**Preview in blue and white.
+     * @param threshold Threshold value
+     **/
+    public void blueAndWhite(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"blueAndWhite()");
+        customize=true;
+        option=7;
+    }
+
+    /**Preview in blue and white.
+     * @param threshold Threshold value
+     **/
+    public void yellowAndBlue(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"yellowAndBlue()");
+        customize=true;
+        option=8;
+    }
+
+    /**Preview in blue and white.
+     * @param threshold Threshold value
+     **/
+    public void whiteAndBlue(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"whiteAndBlue()");
+        customize=true;
+        option=9;
     }
 
     /**Preview in blue and yellow.
@@ -664,7 +727,43 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
         this.threshold=threshold;
         Log.e(TAG,"redAndYellow()");
         customize=true;
-        option=5;
+        option=10;
+    }
+
+    /**Preview in blue and yellow.
+     * @param threshold Threshold value
+     **/
+    public void redAndWhite(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"redAndWhite()");
+        customize=true;
+        option=11;
+    }
+
+    /**Preview in blue and yellow.
+     * @param threshold Threshold value
+     **/
+    public void yellowAndRed(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"yellowAndRed()");
+        customize=true;
+        option=12;
+    }
+
+    /**Preview in blue and yellow.
+     * @param threshold Threshold value
+     **/
+    public void whiteAndRed(double threshold, double maxval){
+        normal();
+        this.maxval=maxval;
+        this.threshold=threshold;
+        Log.e(TAG,"whiteAndRed()");
+        customize=true;
+        option=13;
     }
 
 	/**Preview in BGR.

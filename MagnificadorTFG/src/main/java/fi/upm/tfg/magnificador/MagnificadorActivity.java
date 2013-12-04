@@ -128,7 +128,7 @@ public class MagnificadorActivity extends Activity {
                     case REDANDYELLOW:
                         mView.redAndYellow(127,255);
                         break;
-                    case YELLOWANDBLUE:
+                    case BLUEANDYELLOW:
                         mView.blueAndYellow(127,255);
                         break;
                     case BLACKANDWHITE:
@@ -572,5 +572,13 @@ public class MagnificadorActivity extends Activity {
 
     public static void setPrimera(boolean primera) {
         MagnificadorActivity.primera = primera;
+    }
+
+    public static CameraColors getHIGH_CONTRAST_COLOR() {
+        return HIGH_CONTRAST_COLOR;
+    }
+
+    public static void setHIGH_CONTRAST_COLOR(CameraColors HIGH_CONTRAST_COLOR) {
+        MagnificadorActivity.HIGH_CONTRAST_COLOR = HIGH_CONTRAST_COLOR;
     }
 }

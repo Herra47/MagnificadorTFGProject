@@ -58,6 +58,14 @@
             android:name="fi.upm.tfg.magnificador.CameraSettingsActivity"
             android:label="@string/title_activity_camera_settings" >
         </activity>
+        <activity
+            android:name="fi.upm.tfg.magnificador.BrightBackActivity"
+            android:label="@string/title_activity_fondo_claro" >
+        </activity>
+        <activity
+            android:name="fi.upm.tfg.magnificador.DarkBackActivity"
+            android:label="@string/title_activity_dark_back" >
+        </activity>
     </application>
 
 </manifest>

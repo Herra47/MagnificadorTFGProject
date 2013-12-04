@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
 
 public class ColorsActivity extends Activity {
 
@@ -19,6 +20,27 @@ public class ColorsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_colors);
+
+        final Button brightColorsButton = (Button) findViewById(R.id.brighColorsButton);
+        final Button darkColorsButton = (Button) findViewById(R.id.darkColorsButton);
+
+        brightColorsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ColorsActivity.this,BrightBackActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        darkColorsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ColorsActivity.this,DarkBackActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 

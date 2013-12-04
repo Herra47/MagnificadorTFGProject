@@ -49,5 +49,8 @@
     <string name="button_stab">Estabilizador</string>
     <string name="Threshold">Brillo: </string>
     <string name="menu_color">Color de menú</string>
+    <string name="title_activity_fondo_claro">Fondo Claro</string>
+    <string name="sample">A</string>
+    <string name="title_activity_dark_back">Fondos oscuros</string>
 
 </resources>
