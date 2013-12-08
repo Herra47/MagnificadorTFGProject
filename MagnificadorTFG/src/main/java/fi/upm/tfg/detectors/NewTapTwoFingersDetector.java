@@ -1,6 +1,8 @@
 package fi.upm.tfg.detectors;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import fi.upm.tfg.magnificador.MagnificadorActivity;
 import fi.upm.tfg.magnificador.MagnificadorProcess;
+import fi.upm.tfg.magnificador.MainActivity;
 import fi.upm.tfg.magnificador.R;
 
 public class NewTapTwoFingersDetector implements GestureInterfaceTest {
@@ -101,6 +104,7 @@ public class NewTapTwoFingersDetector implements GestureInterfaceTest {
             }
             case MotionEvent.ACTION_POINTER_UP:
                 long duration = System.currentTimeMillis() - startTime;
+                Log.i(TAG, "Punteros " + event.getPointerCount());
                 if (event.getPointerCount() == 2 && duration < 500){
                     if(dx1 < 10 && dy1 < 10 && dx2 < 10 && dy2 < 10){
                         if(MagnificadorActivity.getPaused()){
@@ -123,13 +127,6 @@ public class NewTapTwoFingersDetector implements GestureInterfaceTest {
                 }
                 break;
         }
-
-
-
-
-
-
-
         return true;
     }
 
