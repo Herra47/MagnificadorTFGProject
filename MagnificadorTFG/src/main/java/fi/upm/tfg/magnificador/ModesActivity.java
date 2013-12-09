@@ -20,8 +20,8 @@ import fi.upm.tfg.enums.Colors;
 public class ModesActivity extends Activity {
 
 
-    private static boolean menu1Button = false;
     private static Colors color = Colors.BLACKWHITE;
+    private static boolean menu1Button = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

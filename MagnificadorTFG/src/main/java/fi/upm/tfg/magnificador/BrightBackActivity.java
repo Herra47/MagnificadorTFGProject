@@ -10,8 +10,12 @@ import android.view.View;
 import android.widget.Button;
 
 import fi.upm.tfg.enums.CameraColors;
+import fi.upm.tfg.enums.Colors;
 
 public class BrightBackActivity extends Activity {
+
+    private static Colors color = Colors.BLACKWHITE;
+    private static boolean menu1Button = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

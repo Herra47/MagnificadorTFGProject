@@ -42,13 +42,6 @@ public class MagnificadorActivity extends Activity {
 
     /*Camera parameters*/
     private MagnificadorProcess mView;
-    private MenuItem macro;
-    private MenuItem lowfps;
-    private MenuItem focusarea;
-    private MenuItem autofocus;
-    private MenuItem videofocus;
-    private MenuItem normalfps;
-    private MenuItem cancelAF;
     private static float px;
     private static float py;
     private static float mPOSX = 0;
@@ -61,6 +54,7 @@ public class MagnificadorActivity extends Activity {
 
     private float mScaleFactor = 1.f;
     private float mOldScaleFactor = 1.f;
+
     private static float SCALE;
     private static int THRESH;
 
@@ -182,14 +176,6 @@ public class MagnificadorActivity extends Activity {
 
     }
 
-    private float cont=1;
-    private MenuItem invert;
-    private MenuItem contrastRest;
-    private MenuItem contrastAdd;
-    private MenuItem stabilizatiON;
-    private MenuItem stabilizatiOFF;
-    private MenuItem finish;
-
     /* Gestures */
 
     private MoveDetector mMoveDetector;
@@ -224,7 +210,6 @@ public class MagnificadorActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_camera);
 
-
         Log.i(TAG, "Trying to load OpenCV library");
         if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_2, this, mOpenCVCallBack))
         {
@@ -241,8 +226,7 @@ public class MagnificadorActivity extends Activity {
         mSingleTapDetector = new SingleTapDetector(getApplicationContext());
         mHorizontalMoveDetector = new HorizontalMoveDetector(this.getApplicationContext());
 
-        // Establecemos el detector de pulsaciones sobre la variable TittleID
-        // del layout de la aplicación
+        // Establecemos el detector de gestos sobre surface
         SurfaceView mySurface = (SurfaceView) findViewById(R.id.surface);
         mySurface.setOnTouchListener(new View.OnTouchListener() {
 
@@ -368,77 +352,6 @@ public class MagnificadorActivity extends Activity {
                 setToast("Zoom: " + String.format("%.1f", mScaleFactor));
             }
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.i(TAG, "onCreateOptionsMenu");
-        macro=menu.add("macro");
-        autofocus=menu.add("AF");
-        cancelAF=menu.add("cancelAF");
-        videofocus=menu.add("videofocus");
-        lowfps=menu.add("lowfps");
-        normalfps=menu.add("normalfps");
-        focusarea=menu.add("focusarea");
-        contrastAdd=menu.add("contrastadd");
-        contrastRest=menu.add("contrastrest");
-        invert=menu.add("invert");
-        stabilizatiOFF=menu.add("stabOFF");
-        stabilizatiON=menu.add("stabON");
-        finish=menu.add("finish");
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.i(TAG, "Menu Item selected " + item);
-
-        if(item==macro){
-            mView.macroFocus();
-        }
-
-        if(item==autofocus){
-            mView.autoFocus();
-        }
-        if(item==cancelAF){
-            mView.cancelAutoFocus();
-        }
-        if(item==videofocus){
-            mView.videoFocus();
-        }
-
-        if(item==lowfps){
-            mView.lowFps();
-        }
-        if(item==normalfps){
-            mView.defaultFps();
-        }
-        if(item==focusarea){
-            Rect rect=new Rect(120,110,140,115);
-            mView.focusArea(rect, 1000);
-        }
-        if(item==contrastAdd){
-            cont=cont+0.2f;
-            mView.contrast(cont);
-        }
-        if(item==contrastRest){
-            cont=cont-0.2f;
-            mView.contrast(cont);
-        }
-        if(item==invert){
-            mView.invert();
-        }
-        if(item==stabilizatiON){
-            mView.videoStabilizationOn();
-        }
-        if(item==stabilizatiOFF){
-            mView.videoStabilizationOff();
-        }
-        if(item==finish){
-            mView.releaseCamera();
-            finish();
-        }
-        return true;
     }
 
     /* Volume key options */

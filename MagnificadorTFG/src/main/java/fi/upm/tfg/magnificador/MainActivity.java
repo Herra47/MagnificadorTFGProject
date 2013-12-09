@@ -18,7 +18,6 @@ public class MainActivity extends Activity {
     private Button buttonSettings;
 
     private static Colors color = Colors.BLACKWHITE;
-
     private static boolean menu1Button = false;
 
     @Override

@@ -6,14 +6,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:background="#000"
+    android:background="@color/Black"
     android:padding="5dip" >
 
     <TextView android:id="@+id/txtMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/White"
         android:textSize="55sp"
         android:text="Prueba"
         android:paddingLeft="10dip"

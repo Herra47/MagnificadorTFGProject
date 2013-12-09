@@ -41,11 +41,91 @@
             <RadioButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/radioButtonWB"
+                android:textSize="40sp"
+                android:textColor="@color/White"
+                android:background="@color/Black"
+                android:id="@+id/radioButtonWB"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonBlackY"
+                android:textSize="40sp"
+                android:textColor="@color/Black"
+                android:background="@color/Yellow"
+                android:id="@+id/radioButtonBlackY"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonYBlack"
+                android:textSize="40sp"
+                android:textColor="@color/Yellow"
+                android:background="@color/Black"
+                android:id="@+id/radioButtonYBlack"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonWblue"
+                android:textSize="40sp"
+                android:textColor="@color/Blue"
+                android:background="@color/White"
+                android:id="@+id/radioButtonWBlue"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonBlueW"
+                android:textSize="40sp"
+                android:textColor="@color/White"
+                android:background="@color/Blue"
+                android:id="@+id/radioButtonBlueW"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/radioButtonBY"
+                android:textSize="40sp"
+                android:textColor="@color/Blue"
+                android:background="@color/Yellow"
+                android:id="@+id/radioButtonBlueY"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonYBlue"
                 android:textSize="40sp"
                 android:textColor="@color/Yellow"
                 android:background="@color/Blue"
-                android:id="@+id/radioButtonBY"
+                android:id="@+id/radioButtonYBlue"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonRW"
+                android:textSize="40sp"
+                android:textColor="@color/Red"
+                android:background="@color/White"
+                android:id="@+id/radioButtonRW"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonWR"
+                android:textSize="40sp"
+                android:textColor="@color/White"
+                android:background="@color/Red"
+                android:id="@+id/radioButtonWR"
                 android:gravity="center_vertical|center_horizontal" />
 
             <RadioButton
@@ -53,13 +133,21 @@
                 android:layout_height="wrap_content"
                 android:text="@string/radioButtonRY"
                 android:textSize="40sp"
-                android:textColor="@color/Yellow"
-                android:background="@color/Red"
+                android:textColor="@color/Red"
+                android:background="@color/Yellow"
                 android:id="@+id/radioButtonRY"
                 android:gravity="center_vertical|center_horizontal" />
+
+            <RadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonYR"
+                android:textSize="40sp"
+                android:textColor="@color/Yellow"
+                android:background="@color/Red"
+                android:id="@+id/radioButtonYR"
+                android:gravity="center_vertical|center_horizontal" />
         </RadioGroup>
-
-
 
         <RadioGroup
             android:layout_width="fill_parent"

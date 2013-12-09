@@ -11,10 +11,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
@@ -54,18 +62,5 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return this.fragments.size();
     }
 
-        /*@Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
-            }
-            return null;
-        }*/
 }
 

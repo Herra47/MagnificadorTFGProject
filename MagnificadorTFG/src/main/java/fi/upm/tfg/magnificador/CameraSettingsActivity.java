@@ -14,7 +14,12 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
 
+import fi.upm.tfg.enums.Colors;
+
 public class CameraSettingsActivity extends Activity {
+
+    private static Colors color = Colors.BLACKWHITE;
+    private static boolean menu1Button = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

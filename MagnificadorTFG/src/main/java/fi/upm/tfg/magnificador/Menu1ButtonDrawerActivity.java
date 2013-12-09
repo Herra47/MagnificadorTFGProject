@@ -22,6 +22,7 @@ public class Menu1ButtonDrawerActivity extends FragmentActivity {
     private static SectionsPagerAdapter mSectionsPagerAdapter;
 
     private static Colors color = Colors.BLACKWHITE;
+    private static boolean menu1Button = false;
 
     /**
      * The {@link ViewPager} that will host the section contents.

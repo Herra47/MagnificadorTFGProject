@@ -15,7 +15,6 @@
     <string name="title_activity_menu1_button">Menu 1 Opción</string>
     <string name="title_activity_settings">Ajustes</string>
     <string name="settings">Contraste</string>
-    <string name="camera">Aquí irá la cámara</string>
     <string name="title_activity_camera">Magnificador</string>
     <string name="radioButtonBW">Blanco y negro</string>
     <string name="radioButtonBY">Amarillo y azul</string>
@@ -54,5 +53,14 @@
     <string name="title_activity_dark_back">Fondos oscuros</string>
     <string name="title_activity_modes1_button">Modos de visualización</string>
     <string name="title_activity_colors1_button">Colores</string>
+    <string name="radioButtonWB">Negro y blanco</string>
+    <string name="radioButtonBlackY">Amarillo y negro</string>
+    <string name="radioButtonYBlack">Negro y amarillo</string>
+    <string name="radioButtonBlueW">Azul y blanco</string>
+    <string name="radioButtonWblue">Blanco y azul</string>
+    <string name="radioButtonYBlue">Azul y amarillo</string>
+    <string name="radioButtonRW">Blanco y rojo</string>
+    <string name="radioButtonWR">Rojo y blanco</string>
+    <string name="radioButtonYR">Rojo y amarillo</string>
 
 </resources>

@@ -18,9 +18,7 @@ import fi.upm.tfg.enums.Colors;
 public class SettingsActivity extends Activity {
 
     private static Colors color = Colors.BLACKWHITE;
-    private int keyCode;
-    private KeyEvent event;
-    private static boolean menu4Options;
+    private static boolean menu1Button = false;
     private int thresh;
 
     @Override
@@ -219,10 +217,6 @@ public class SettingsActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.settings, menu);
         return true;
-    }
-
-    public static void setMenu4Options(boolean menu4Options) {
-        SettingsActivity.menu4Options = menu4Options;
     }
 
     public static void setColor(Colors color) {
