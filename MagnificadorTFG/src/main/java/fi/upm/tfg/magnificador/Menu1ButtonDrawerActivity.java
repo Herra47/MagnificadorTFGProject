@@ -2,7 +2,6 @@ package fi.upm.tfg.magnificador;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
@@ -68,10 +67,6 @@ public class Menu1ButtonDrawerActivity extends FragmentActivity {
 
     public static ViewPager getViewPager(){
         return mViewPager;
-    }
-
-    public static SectionsPagerAdapter getSectionsPagerAdapter(){
-        return mSectionsPagerAdapter;
     }
 
     @Override
