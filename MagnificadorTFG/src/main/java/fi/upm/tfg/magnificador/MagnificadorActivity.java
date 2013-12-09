@@ -6,17 +6,13 @@ import org.opencv.android.OpenCVLoader;
 
 
 import android.content.Intent;
-import android.graphics.PointF;
-import android.graphics.RectF;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Handler;
-import android.support.v4.view.ViewCompat;
 import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,11 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fi.upm.tfg.detectors.DiagonalMoveDetector;
-import fi.upm.tfg.detectors.LongTapMoveDetector;
+import fi.upm.tfg.detectors.HorizontalMoveDetector;
 import fi.upm.tfg.detectors.MoveDetector;
 import fi.upm.tfg.detectors.NewTapTwoFingersDetector;
 import fi.upm.tfg.detectors.SingleTapDetector;
-import fi.upm.tfg.detectors.TapTwoFingersDetector;
 import fi.upm.tfg.detectors.ThreeFingersHorizontalMoveDetector;
 import fi.upm.tfg.detectors.TwoFingersHorizontalMoveDetector;
 import fi.upm.tfg.detectors.TwoFingersVerticalMoveDetector;
@@ -53,7 +48,6 @@ public class MagnificadorActivity extends Activity {
     private MenuItem autofocus;
     private MenuItem videofocus;
     private MenuItem normalfps;
-    private MenuItem bgr;
     private MenuItem cancelAF;
     private static float px;
     private static float py;
@@ -78,7 +72,6 @@ public class MagnificadorActivity extends Activity {
     private static boolean MACRO;
 
    private static boolean primera = true;
-    private double maxval=100;
     private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -189,8 +182,6 @@ public class MagnificadorActivity extends Activity {
 
     }
 
-    private MenuItem contrast;
-    private MenuItem brightness;
     private float cont=1;
     private MenuItem invert;
     private MenuItem contrastRest;
@@ -209,6 +200,7 @@ public class MagnificadorActivity extends Activity {
     private NewTapTwoFingersDetector mNewTapTwoFingersDetector;
     private TwoFingersVerticalMoveDetector mTwoFingersVerticalMoveDetector;
     private SingleTapDetector mSingleTapDetector;
+    private HorizontalMoveDetector mHorizontalMoveDetector;
 
     public MagnificadorActivity() {
         Log.i(TAG, "Instantiated new" + this.getClass());
@@ -247,6 +239,7 @@ public class MagnificadorActivity extends Activity {
         mNewTapTwoFingersDetector = new NewTapTwoFingersDetector(getApplicationContext());
         mTwoFingersVerticalMoveDetector = new TwoFingersVerticalMoveDetector(getApplicationContext());
         mSingleTapDetector = new SingleTapDetector(getApplicationContext());
+        mHorizontalMoveDetector = new HorizontalMoveDetector(this.getApplicationContext());
 
         // Establecemos el detector de pulsaciones sobre la variable TittleID
         // del layout de la aplicación
@@ -275,6 +268,7 @@ public class MagnificadorActivity extends Activity {
         if(!PAUSED && !mScaleDetector.isInProgress()){
             mSingleTapDetector.onTouchEvent(event,mView);
             mDiagonalMoveDetector.onTouchEvent(event,mView);
+            mHorizontalMoveDetector.onTouchEvent(event);
         }
 
         mTwoFingersHorizontalMoveDetector.onTouchEvent(event, mView);
@@ -517,6 +511,7 @@ public class MagnificadorActivity extends Activity {
             }
         }, 750);
     }
+
 
     /* Getters and Setters*/
 
