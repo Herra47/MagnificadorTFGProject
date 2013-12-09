@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
 
 public class CameraSettingsActivity extends Activity {
 
@@ -20,8 +21,70 @@ public class CameraSettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_settings);
 
-    }
+        final Button flashButton = (Button) findViewById(R.id.flashButton);
+        final Button macroButton = (Button) findViewById(R.id.macroButton);
+        final Button stabButton = (Button) findViewById(R.id.stabButton);
 
+        if(MagnificadorActivity.getFlashed()){
+            flashButton.setText("Flash ON");
+        }
+        else{
+            flashButton.setText("Flash OFF");
+        }
+
+        if(MagnificadorActivity.isMACRO()){
+            macroButton.setText("Macro ON");
+        }
+        else{
+            macroButton.setText("Macro OFF");
+        }
+
+        if(MagnificadorActivity.isSTAB()){
+            stabButton.setText("Estabilizador ON");
+        }
+        else{
+            stabButton.setText("Estabilizador OFF");
+        }
+
+        flashButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if(MagnificadorActivity.getFlashed()){
+                    MagnificadorActivity.setFlashed(false);
+                    flashButton.setText("Flash OFF");
+                }
+                else{
+                    MagnificadorActivity.setFlashed(false);
+                    flashButton.setText("Flash ON");
+                }
+            }
+        });
+
+        macroButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if(MagnificadorActivity.isMACRO()){
+                    MagnificadorActivity.setMACRO(false);
+                    flashButton.setText("Macro OFF");
+                }
+                else{
+                    MagnificadorActivity.setMACRO(false);
+                    flashButton.setText("Macro ON");
+                }
+            }
+        });
+
+        stabButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if(MagnificadorActivity.isSTAB()){
+                    MagnificadorActivity.setSTAB(false);
+                    flashButton.setText("Estabilizador OFF");
+                }
+                else{
+                    MagnificadorActivity.setSTAB(false);
+                    flashButton.setText("Estabilizador ON");
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

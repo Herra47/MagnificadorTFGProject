@@ -56,10 +56,12 @@ public class SettingsActivity extends Activity {
             rg2.check(R.id.radioButtonOne);
         }
 
+        thresh = MagnificadorActivity.getTHRESH();
         threshText.setText(Integer.toString(thresh));
 
         final SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
         seekbar.setMax(255);
+        seekbar.setProgress(MagnificadorActivity.getTHRESH());
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -67,7 +69,6 @@ public class SettingsActivity extends Activity {
 
                 thresh = progress;
                 threshText.setText(Integer.toString(thresh));
-                MagnificadorActivity.setTHRESH(thresh);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -83,6 +84,8 @@ public class SettingsActivity extends Activity {
 
         saveButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+
+                MagnificadorActivity.setTHRESH(thresh);
 
                 int selectedColor = rg.getCheckedRadioButtonId();
                 int selectedMenu = rg2.getCheckedRadioButtonId();
@@ -104,20 +107,18 @@ public class SettingsActivity extends Activity {
                         SettingsActivity.setColor(Colors.YELLOWRED);
                         break;
                 }
-                switch (selectedMenu){
-                    case R.id.radioButtonOne:
-                        MainActivity.setMainActivity(false);
 
-                        startActivity(new Intent(SettingsActivity.this, Menu1ButtonDrawerActivity.class));
-                        finish();
-                        break;
+                switch (selectedMenu){
                     case R.id.radioButtonFour:
                         MainActivity.setMainActivity(true);
-
-                        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                        finish();
+                        break;
+                    case R.id.radioButtonOne:
+                        MainActivity.setMainActivity(false);
                         break;
                 }
+                MainActivity.setMainActivity(false);
+                startActivity(new Intent(SettingsActivity.this, MagnificadorActivity.class));
+                finish();
             }
         });
     }
@@ -202,12 +203,7 @@ public class SettingsActivity extends Activity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
     switch(keyCode){
         case KeyEvent.KEYCODE_BACK:
-            if (menu4Options){
-                startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-            }
-            else {
-                startActivity(new Intent(SettingsActivity.this,Menu1ButtonDrawerActivity.class));
-            }
+            startActivity(new Intent(SettingsActivity.this, MainActivity.class));
             finish();
         }
         return super.onKeyUp(keyCode, event);

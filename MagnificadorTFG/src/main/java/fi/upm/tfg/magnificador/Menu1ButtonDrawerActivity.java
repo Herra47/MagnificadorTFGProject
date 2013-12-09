@@ -53,17 +53,15 @@ public class Menu1ButtonDrawerActivity extends FragmentActivity {
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_camera, 0, color));
-        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_contrast, 1, color));
-        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_settings, 2, color));
-        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_menu4, 3, color));
+        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_modes, 0, color));
+        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_colors, 1, color));
+        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_camera, 2, color));
+        mSectionsPagerAdapter.addFragment(DummySectionFragment.newInstance(R.string.button_settings, 3, color));
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-
-
 
     }
 

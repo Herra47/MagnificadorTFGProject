@@ -50,7 +50,6 @@ public class MainActivity extends Activity {
 
         buttonMode.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                //setMainActivity(false);
                 //Creamos el Intent
                 Intent intent = new Intent(MainActivity.this,ModesActivity.class);
                 //Comenzamos la nueva actividad
@@ -61,7 +60,6 @@ public class MainActivity extends Activity {
 
         buttonColors.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                //SettingsActivity.setMenu4Options(true);
                 //Creamos el Intent
                 Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
                 //Comenzamos la nueva actividad
@@ -81,11 +79,11 @@ public class MainActivity extends Activity {
 
         buttonSettings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                //finish();
                 //Creamos el Intent
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -99,22 +97,6 @@ public class MainActivity extends Activity {
             finish();
         }
         return true;
-    }
-
-
-    private void changeContrast (){
-
-        switch (color){
-            case BLACKWHITE:
-                contrastYellowBlue();
-                break;
-            case YELLOWBLUE:
-                contrastYellowRed();
-                break;
-            case YELLOWRED:
-                contrastBlackWhite();
-                break;
-        }
     }
 
     private void contrastBlackWhite (){

@@ -100,31 +100,13 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                         if(dy1 > 0 && dy2 > 0){
                             thresh -= Math.abs((dy1 + dy2)/255);
                             thresh = Math.max(0, Math.min(thresh, 255));
-                            if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
-                                mView.blackAndWhite(thresh,255);
-                            }
-                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
-                                mView.blueAndYellow(thresh,255);
-                            }
-                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.REDANDYELLOW){
-                                mView.redAndYellow(thresh, 255);
-                            }
+                            setThresh(thresh,mView);
                         }
                         else if(dy1<0 && dy2<0){
                             thresh += Math.abs((dy1 + dy2)/200);
                             thresh = Math.max(0, Math.min(thresh, 255));
-                            if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.BLACKANDWHITE){
-                                mView.blackAndWhite(thresh,255);
-                            }
-                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.YELLOWANDBLUE){
-                                mView.blueAndYellow(thresh,255);
-                            }
-                            else if(MagnificadorActivity.getCURRENT_COLOR() == CameraColors.REDANDYELLOW){
-                                mView.redAndYellow(thresh, 255);
-                            }
+                            setThresh(thresh,mView);
                         }
-
-
                     }
                     break;
                 }
@@ -144,6 +126,47 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
             }
         }
         return true;
+    }
+
+    private void setThresh(int thresh, MagnificadorProcess mView) {
+        switch (MagnificadorActivity.getHIGH_CONTRAST_COLOR()){
+            case BLACKANDWHITE:
+                mView.blackAndWhite(thresh, 255);
+                break;
+            case BLACKANDYELLOW:
+                mView.blackAndYellow(thresh, 255);
+                break;
+            case WHITEANDBLACK:
+                mView.whiteAndBlack(thresh, 255);
+                break;
+            case YELLOWANDBLACK:
+                mView.yellowAndBlack(thresh, 255);
+                break;
+            case BLUEANDYELLOW:
+                mView.blueAndYellow(thresh,255);
+                break;
+            case BLUEANDWHITE:
+                mView.blueAndWhite(thresh, 255);
+                break;
+            case WHITEANDBLUE:
+                mView.whiteAndBlue(thresh, 255);
+                break;
+            case YELLOWANDBLUE:
+                mView.yellowAndBlue(thresh, 255);
+                break;
+            case REDANDWHITE:
+                mView.redAndWhite(thresh, 255);
+                break;
+            case REDANDYELLOW:
+                mView.redAndYellow(thresh,255);
+                break;
+            case WHITEANDRED:
+                mView.whiteAndRed(thresh, 255);
+                break;
+            case YELLOWANDRED:
+                mView.yellowAndRed(thresh, 255);
+                break;
+        }
     }
 
     public void setToast(String msg, MagnificadorProcess mView){

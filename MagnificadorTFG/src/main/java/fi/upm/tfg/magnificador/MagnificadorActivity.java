@@ -70,6 +70,13 @@ public class MagnificadorActivity extends Activity {
     private static float SCALE;
     private static int THRESH;
 
+    private static boolean SCALING;
+    private static boolean PAUSED;
+    private static boolean ZOOMED;
+    private static boolean FLASHED;
+    private static boolean STAB;
+    private static boolean MACRO;
+
    private static boolean primera = true;
     private double maxval=100;
     private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this) {
@@ -98,6 +105,7 @@ public class MagnificadorActivity extends Activity {
                     }
 
                     initializeColor();
+                    initializeCameraSettings();
 
                 } break;
                 default:
@@ -105,10 +113,6 @@ public class MagnificadorActivity extends Activity {
                     super.onManagerConnected(status);
                 } break;
             }
-
-
-
-
         }
     };
 
@@ -125,17 +129,62 @@ public class MagnificadorActivity extends Activity {
                 break;
             case HIGHCONTRAST:
                 switch (HIGH_CONTRAST_COLOR){
-                    case REDANDYELLOW:
-                        mView.redAndYellow(127,255);
+                    case BLACKANDWHITE:
+                        mView.blackAndWhite(THRESH, 255);
+                        break;
+                    case BLACKANDYELLOW:
+                        mView.blackAndYellow(THRESH, 255);
+                        break;
+                    case WHITEANDBLACK:
+                        mView.whiteAndBlack(THRESH, 255);
+                        break;
+                    case YELLOWANDBLACK:
+                        mView.yellowAndBlack(THRESH, 255);
                         break;
                     case BLUEANDYELLOW:
-                        mView.blueAndYellow(127,255);
+                        mView.blueAndYellow(THRESH,255);
                         break;
-                    case BLACKANDWHITE:
-                        mView.blackAndWhite(127,255);
+                    case BLUEANDWHITE:
+                        mView.blueAndWhite(THRESH, 255);
+                        break;
+                    case WHITEANDBLUE:
+                        mView.whiteAndBlue(THRESH, 255);
+                        break;
+                    case YELLOWANDBLUE:
+                        mView.yellowAndBlue(THRESH, 255);
+                        break;
+                    case REDANDWHITE:
+                        mView.redAndWhite(THRESH, 255);
+                        break;
+                    case REDANDYELLOW:
+                        mView.redAndYellow(THRESH,255);
+                        break;
+                    case WHITEANDRED:
+                        mView.whiteAndRed(THRESH, 255);
+                        break;
+                    case YELLOWANDRED:
+                        mView.yellowAndRed(THRESH, 255);
                         break;
                 }
                 break;
+        }
+    }
+
+    private void initializeCameraSettings() {
+        if(FLASHED){
+            mView.flashOn();
+        }
+        else{
+            mView.flashOff();
+        }
+        if(STAB){
+            mView.videoStabilizationOn();
+        }
+        else{
+            mView.videoStabilizationOff();
+        }
+        if(MACRO){
+            mView.macroFocus();
         }
 
     }
@@ -161,17 +210,10 @@ public class MagnificadorActivity extends Activity {
     private TwoFingersVerticalMoveDetector mTwoFingersVerticalMoveDetector;
     private SingleTapDetector mSingleTapDetector;
 
-    private static boolean SCALING;
-    private static boolean PAUSED;
-    private static boolean ZOOMED;
-    private static boolean FLASHED;
-    private static boolean STAB;
-
     public MagnificadorActivity() {
         Log.i(TAG, "Instantiated new" + this.getClass());
         PAUSED = false;
         ZOOMED = false;
-        THRESH = 127;
     }
 
     @Override
@@ -580,5 +622,13 @@ public class MagnificadorActivity extends Activity {
 
     public static void setHIGH_CONTRAST_COLOR(CameraColors HIGH_CONTRAST_COLOR) {
         MagnificadorActivity.HIGH_CONTRAST_COLOR = HIGH_CONTRAST_COLOR;
+    }
+
+    public static boolean isMACRO() {
+        return MACRO;
+    }
+
+    public static void setMACRO(boolean MACRO) {
+        MagnificadorActivity.MACRO = MACRO;
     }
 }

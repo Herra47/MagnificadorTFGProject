@@ -631,7 +631,7 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
 		this.threshold=threshold;
 		Log.e(TAG,"blackAndWhite()");
 		customize=true;
-		option=2;
+		option=4;
 	}
 
     /**Preview in black and white.
@@ -655,7 +655,7 @@ public abstract class MagnificadorBase extends SurfaceView implements SurfaceHol
         this.threshold=threshold;
         Log.e(TAG,"whiteAndBlack()");
         customize=true;
-        option=4;
+        option=2;
     }
 
     /**Preview in black and white.

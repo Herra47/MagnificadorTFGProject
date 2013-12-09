@@ -4,69 +4,73 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-public class HorizontalMoveDetector implements GestureInterface {
+import fi.upm.tfg.magnificador.MagnificadorProcess;
 
-	// Declaración e inicialización de variables
+public class HorizontalMoveDetector implements GestureInterfaceTest {
 
-	// Variables que representan las coordenadas X e Y inmediatamente anteriores
-	// a las actuales, en las que nos movemos al desplazarnos por la pantalla
-	private double mX, mY;
-	// Variable que representa el movimiento hacia la derecha
-	int aderecha = 0;
-	// Variables que nos indicarán la diferencia entre las coordenadas actuales
-	// y las inmediatamente anteriores
-	double dx, dy;
+    private static final String TAG = "MagnificadorActivity: ";
 
-	// Constructor de la clase
-	public HorizontalMoveDetector(Context applicationContext) {
-	}
+    long startTime;
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// Obtenenemos las coordenadas X e Y
-		double X = event.getX();
-		double Y = event.getY();
+    // Variables que representan las coordenadas X e Y inmediatamente anteriores
+    // a las actuales, en las que nos movemos al desplazarnos por la pantalla
+    private double mX1, mY1;
+    // Variable que representa el movimiento hacia la derecha
+    int aderecha = 0;
+    // Variables que nos indicarán la diferencia entre las coordenadas actuales
+    // y las inmediatamente anteriores
+    double dx1, dy1, x,y;
 
-		int mov = event.getActionMasked();
-		switch (mov) {
-		case MotionEvent.ACTION_DOWN:
+    public HorizontalMoveDetector(Context applicationContext) {
+    }
 
-			break;
-		case MotionEvent.ACTION_MOVE:
-			// La siguiente operación permite calcular la diferencia entre las
-			// coordenadas actuales y las inmediatamente anteriores
-			dx = Math.abs(X - mX);
-			dy = Math.abs(Y - mY);
-			// Activamos el movimiento hacia la derecha en caso de que la
-			// coordenada X actual sea mayor que la coordenada X inmediatamente
-			// anterior.
-			if (X > mX)
-				aderecha = 1;
-			if (X < mX)
-				aderecha = 0;
-			break;
+    @Override
+    public boolean onTouchEvent(MotionEvent event, MagnificadorProcess mView) {
 
-		case MotionEvent.ACTION_UP:
 
-			// Condiciones de un movimiento horizontal(Los valores a comparar
-			// pueden depender del dispositivo móvil)
-			if (dy < 6 && dx > 6) {
-				if (aderecha == 0){
-                    //TextMessage("Movimiento Horizontal Derecha a Izda MENU COLORES");
-                }
-				else if (aderecha == 1){
-                    //TextMessage("Movimiento Horizontal Izda a Derecha MENU MODOS DE VISUALIZACION");
-                }
-			}
-		}
-		// Actualizamos los valores mX y mY
-		mX = X;
-		mY = Y;
+        //Number of touches
+        int pointerCount = event.getPointerCount();
+        if(pointerCount == 1){
+            int action = event.getActionMasked();
+            int actionIndex = event.getActionIndex();
+            String actionString;
 
-		return true;
-	}
+            switch (action)
+            {
+                case MotionEvent.ACTION_DOWN:
+                    x = event.getX(0);
+                    y = event.getY(0);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    break;
+                case MotionEvent.ACTION_MOVE:
 
-    public int getAderecha() {
-        return aderecha;
+                    dx1 = Math.abs(x - mX1);
+                    dy1 = Math.abs(y - mY1);
+                    // Activamos el movimiento hacia la derecha en caso de que la
+                    // coordenada X actual sea mayor que la coordenada X inmediatamente
+                    // anterior.
+                    if (x > mX1){
+                        aderecha = 1;
+                    }
+                    else if (x < mX1){
+                        aderecha = 0;
+                    }
+                    break;
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    startTime = System.currentTimeMillis();
+                    break;
+                case MotionEvent.ACTION_POINTER_UP:
+                    long duration = System.currentTimeMillis() - startTime;
+                    // Condiciones de un movimiento horizontal(Los valores a comparar
+                    // pueden depender del dispositivo móvil)
+            }
+            // Actualizamos los valores mX y mY
+            mX1 = x;
+            mY1 = y;
+
+            pointerCount = 0;
+        }
+        return false;
     }
 }

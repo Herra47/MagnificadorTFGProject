@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ public class DarkBackActivity extends Activity {
 
         blackWhiteButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.BLACKANDWHITE);
                 //Creamos el Intent
                 Intent intent = new Intent(DarkBackActivity.this,MagnificadorActivity.class);
@@ -42,6 +44,7 @@ public class DarkBackActivity extends Activity {
 
         blackYellowButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.BLACKANDYELLOW);
                 //Creamos el Intent
                 Intent intent = new Intent(DarkBackActivity.this, MagnificadorActivity.class);
@@ -53,6 +56,7 @@ public class DarkBackActivity extends Activity {
 
         blueWhiteButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.BLUEANDWHITE);
                 Intent intent = new Intent(DarkBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
@@ -63,31 +67,37 @@ public class DarkBackActivity extends Activity {
 
         blueYellowButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.BLUEANDYELLOW);
                 //Creamos el Intent
                 Intent intent = new Intent(DarkBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
+                finish();
             }
         });
 
         redWhiteButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.REDANDWHITE);
                 //Creamos el Intent
                 Intent intent = new Intent(DarkBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
+                finish();
             }
         });
 
         redYellowButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.REDANDYELLOW);
                 //Creamos el Intent
                 Intent intent = new Intent(DarkBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -112,5 +122,15 @@ public class DarkBackActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                startActivity(new Intent(DarkBackActivity.this, ColorsActivity.class));
+                finish();
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }

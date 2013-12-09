@@ -46,14 +46,13 @@ public class MagnificadorProcess extends MagnificadorBase{
 
             /* HIGH CONTRAST COLORS */
 
-            //BLACK AND WHITE
+            //WHITE AND BLACK
             case 2:
                 Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 break;
             //BLACK AND YELLOW
             case 3:
-                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 Mat by = new Mat(mYuv.rows(),mYuv.cols(), CvType.CV_8UC3, new Scalar(255,255,0));
                 //set the mask to black
@@ -62,7 +61,6 @@ public class MagnificadorProcess extends MagnificadorBase{
                 break;
             //WHITE AND BLACK
             case 4:
-                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 Mat wb = new Mat(mYuv.rows(),mYuv.cols(), CvType.CV_8UC3, new Scalar(255,255,255));
                 //set the mask to black
@@ -71,7 +69,6 @@ public class MagnificadorProcess extends MagnificadorBase{
                 break;
             //YELLOW AND BLACK
             case 5:
-                Imgproc.cvtColor(mYuv, mYuv, Imgproc.COLOR_GRAY2RGB, 0);
                 Imgproc.threshold(mYuv, mYuv, threshold, maxval, Imgproc.THRESH_BINARY);
                 Mat yb = new Mat(mYuv.rows(),mYuv.cols(), CvType.CV_8UC3, new Scalar(0,0,0));
                 //set the mask to black

@@ -20,5 +20,5 @@ public enum CameraColors {
     WHITEANDRED,
     YELLOWANDRED,
     REDANDWHITE,
-    REDANDYELLOW,
+    REDANDYELLOW
 }

@@ -108,46 +108,23 @@ public class DummySectionFragment extends Fragment {
                 switch (index){
 
                     case 0:
-                        startActivity(new Intent(getActivity(),MagnificadorActivity.class));
+                        startActivity(new Intent(getActivity(),ModesActivity.class));
+                        getActivity().finish();
                         break;
                     case 1:
-                        startActivity(new Intent(getActivity(),UmbralActivity.class));
+                        startActivity(new Intent(getActivity(),ColorsActivity.class));
+                        getActivity().finish();
                         break;
-
-                        /*DummySectionFragment fragment;
-                        switch (menuColor){
-                            case BLACKWHITE:
-                                for(int i=0;i<4;i++){
-                                    fragment = (DummySectionFragment) Menu1ButtonDrawerActivity.getSectionsPagerAdapter().getItem(i);
-                                    fragment.contrastYellowBlue(optionButton,previousItem,nextItem,viewPager);
-                                }
-                                break;
-                            case YELLOWBLUE:
-                                for(int i=0;i<4;i++){
-                                    fragment = (DummySectionFragment) Menu1ButtonDrawerActivity.getSectionsPagerAdapter().getItem(i);
-                                    fragment.contrastYellowRed(optionButton, previousItem, nextItem, viewPager);
-                                }
-                                break;
-                            case YELLOWRED:
-                                for(int i=0;i<4;i++){
-                                    fragment = (DummySectionFragment) Menu1ButtonDrawerActivity.getSectionsPagerAdapter().getItem(i);
-                                    fragment.contrastBlackWhite(optionButton, previousItem, nextItem, viewPager);
-                                }
-                                break;
-                        }*/
-
                     case 2:
-                        SettingsActivity.setMenu4Options(false);
                         //Creamos el Intent
-                        Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                        Intent intent = new Intent(getActivity(), CameraSettingsActivity.class);
                         //Comenzamos la nueva actividad
                         startActivity(intent);
                         getActivity().finish();
                         break;
                     case 3:
-                        MainActivity.setMainActivity(true);
                         //Creamos el Intent
-                        Intent intent2 = new Intent(getActivity(), MainActivity.class);
+                        Intent intent2 = new Intent(getActivity(), SettingsActivity.class);
                         //Comenzamos la nueva actividad
                         startActivity(intent2);
                         getActivity().finish();

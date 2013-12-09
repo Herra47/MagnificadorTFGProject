@@ -44,9 +44,9 @@
     <string name="button_fondo_claro">Fondo claro</string>
     <string name="button_fondo_oscuro">Fondo oscuro</string>
     <string name="title_activity_camera_settings">Ajustes de la cámara</string>
-    <string name="button_flash">Flash</string>
-    <string name="button_macro">Macro</string>
-    <string name="button_stab">Estabilizador</string>
+    <string name="button_flash">Flash ON</string>
+    <string name="button_macro">Macro ON</string>
+    <string name="button_stab">Estabilizador ON</string>
     <string name="Threshold">Brillo: </string>
     <string name="menu_color">Color de menú</string>
     <string name="title_activity_fondo_claro">Fondo Claro</string>
