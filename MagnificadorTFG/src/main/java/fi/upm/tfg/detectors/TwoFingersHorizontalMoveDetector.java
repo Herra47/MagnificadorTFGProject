@@ -111,7 +111,7 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 setToast("Grises",mView);
                 break;
             case GRAY:
-                mView.redAndYellow(127,255);
+                selectContrast(mView);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 setToast("Alto contraste",mView);
                 break;
@@ -126,7 +126,7 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
     private void colorLeft(MagnificadorProcess mView) {
         switch (MagnificadorActivity.getCURRENT_COLOR()){
             case RGB:
-                mView.redAndYellow(127,255);
+                selectContrast(mView);
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 setToast("Alto contraste",mView);
                 break;
@@ -144,6 +144,47 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 mView.gray();
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.GRAY);
                 setToast("Grises",mView);
+                break;
+        }
+    }
+
+    private void selectContrast(MagnificadorProcess mView) {
+        switch (MagnificadorActivity.getHIGH_CONTRAST_COLOR()){
+            case BLACKANDWHITE:
+                mView.blackAndWhite(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case BLACKANDYELLOW:
+                mView.blackAndYellow(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case WHITEANDBLACK:
+                mView.whiteAndBlack(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case YELLOWANDBLACK:
+                mView.yellowAndBlack(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case BLUEANDYELLOW:
+                mView.blueAndYellow(MagnificadorActivity.getTHRESH(),255);
+                break;
+            case BLUEANDWHITE:
+                mView.blueAndWhite(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case WHITEANDBLUE:
+                mView.whiteAndBlue(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case YELLOWANDBLUE:
+                mView.yellowAndBlue(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case REDANDWHITE:
+                mView.redAndWhite(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case REDANDYELLOW:
+                mView.redAndYellow(MagnificadorActivity.getTHRESH(),255);
+                break;
+            case WHITEANDRED:
+                mView.whiteAndRed(MagnificadorActivity.getTHRESH(), 255);
+                break;
+            case YELLOWANDRED:
+                mView.yellowAndRed(MagnificadorActivity.getTHRESH(), 255);
                 break;
         }
     }

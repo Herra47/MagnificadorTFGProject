@@ -98,14 +98,16 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
                     if (dx1 < 10 && dx2 <10){// && dx1 > -40 && dx2 > -40
                         if(dy1 > 0 && dy2 > 0){
-                            thresh -= Math.abs((dy1 + dy2)/255);
+                            thresh -= Math.abs((dy1 + dy2)/500);
                             thresh = Math.max(0, Math.min(thresh, 255));
                             setThresh(thresh,mView);
+                            MagnificadorActivity.setTHRESH(thresh);
                         }
                         else if(dy1<0 && dy2<0){
-                            thresh += Math.abs((dy1 + dy2)/200);
+                            thresh += Math.abs((dy1 + dy2)/500);
                             thresh = Math.max(0, Math.min(thresh, 255));
                             setThresh(thresh,mView);
+                            MagnificadorActivity.setTHRESH(thresh);
                         }
                     }
                     break;
