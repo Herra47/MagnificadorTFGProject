@@ -19,6 +19,8 @@ public class HorizontalMoveDetector implements GestureInterface {
 	double dx, dy;
     Context context;
 
+    long startTime;
+
 	// Constructor de la clase
 	public HorizontalMoveDetector(Context applicationContext) {
         this.context = applicationContext;
@@ -26,14 +28,12 @@ public class HorizontalMoveDetector implements GestureInterface {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		// Obtenenemos las coordenadas X e Y
-
-
 		int action = event.getActionMasked();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
             mFirstTouchX = event.getX();
             mFirstTouchY = event.getY();
+            startTime = System.currentTimeMillis();
 			break;
 		case MotionEvent.ACTION_MOVE:
             double mX = event.getX();
@@ -42,12 +42,12 @@ public class HorizontalMoveDetector implements GestureInterface {
 			dy = Math.abs(mFirstTouchY - mY);
 			break;
 		case MotionEvent.ACTION_UP:
-            if(mFirstTouchX < 30 && (dy < 20 || dy > -20) && dx > 100){
-                //((Activity)context).finish();
+            long duration = System.currentTimeMillis() - startTime;
+            if(mFirstTouchX < 10 && (dy < 20 || dy > -20) && dx > 200 && duration > 300){
                 Intent intent = new Intent();
                 intent.setClass(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
             }
 		}

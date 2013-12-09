@@ -52,5 +52,7 @@
     <string name="title_activity_fondo_claro">Fondo Claro</string>
     <string name="sample">A</string>
     <string name="title_activity_dark_back">Fondos oscuros</string>
+    <string name="title_activity_modes1_button">Modos de visualización</string>
+    <string name="title_activity_colors1_button">Colores</string>
 
 </resources>

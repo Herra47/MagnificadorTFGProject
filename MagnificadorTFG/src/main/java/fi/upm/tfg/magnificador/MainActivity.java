@@ -19,14 +19,14 @@ public class MainActivity extends Activity {
 
     private static Colors color = Colors.BLACKWHITE;
 
-    private static boolean mainActivity = true;
+    private static boolean menu1Button = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!mainActivity){
+        if(menu1Button){
             startActivity(new Intent(MainActivity.this,Menu1ButtonDrawerActivity.class));
             finish();
         }
@@ -191,11 +191,11 @@ public class MainActivity extends Activity {
         color = color1;
     }
 
-    public static boolean isMainActivity() {
-        return mainActivity;
+    public static boolean isMenu1Button() {
+        return menu1Button;
     }
 
-    public static void setMainActivity(boolean mainActivity) {
-        MainActivity.mainActivity = mainActivity;
+    public static void setMenu1Button(boolean menu1Button) {
+        MainActivity.menu1Button = menu1Button;
     }
 }

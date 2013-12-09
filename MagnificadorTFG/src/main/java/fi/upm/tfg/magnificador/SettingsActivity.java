@@ -49,11 +49,11 @@ public class SettingsActivity extends Activity {
                 break;
         }
 
-        if (MainActivity.isMainActivity()){
-            rg2.check(R.id.radioButtonFour);
+        if (MainActivity.isMenu1Button()){
+            rg2.check(R.id.radioButtonOne);
         }
         else{
-            rg2.check(R.id.radioButtonOne);
+            rg2.check(R.id.radioButtonFour);
         }
 
         thresh = MagnificadorActivity.getTHRESH();
@@ -110,13 +110,17 @@ public class SettingsActivity extends Activity {
 
                 switch (selectedMenu){
                     case R.id.radioButtonFour:
-                        MainActivity.setMainActivity(true);
+                        MainActivity.setMenu1Button(false);
+                        ModesActivity.setMenu1Button(false);
+                        ColorsActivity.setMenu1Button(false);
+
                         break;
                     case R.id.radioButtonOne:
-                        MainActivity.setMainActivity(false);
+                        MainActivity.setMenu1Button(true);
+                        ModesActivity.setMenu1Button(true);
+                        ColorsActivity.setMenu1Button(true);
                         break;
                 }
-                MainActivity.setMainActivity(false);
                 startActivity(new Intent(SettingsActivity.this, MagnificadorActivity.class));
                 finish();
             }

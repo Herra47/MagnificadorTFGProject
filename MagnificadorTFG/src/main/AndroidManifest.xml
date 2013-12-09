@@ -66,6 +66,14 @@
             android:name="fi.upm.tfg.magnificador.DarkBackActivity"
             android:label="@string/title_activity_dark_back" >
         </activity>
+        <activity
+            android:name="fi.upm.tfg.magnificador.Modes1ButtonActivity"
+            android:label="@string/title_activity_modes1_button" >
+        </activity>
+        <activity
+            android:name="fi.upm.tfg.magnificador.Colors1ButtonActivity"
+            android:label="@string/title_activity_colors1_button" >
+        </activity>
     </application>
 
 </manifest>

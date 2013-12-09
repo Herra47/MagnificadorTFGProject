@@ -15,13 +15,23 @@ import android.os.Build;
 import android.widget.Button;
 
 import fi.upm.tfg.enums.CameraColors;
+import fi.upm.tfg.enums.Colors;
 
 public class ModesActivity extends Activity {
+
+
+    private static boolean menu1Button = false;
+    private static Colors color = Colors.BLACKWHITE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modes);
+
+        if(menu1Button){
+            startActivity(new Intent(ModesActivity.this,Modes1ButtonActivity.class));
+            finish();
+        }
 
         final Button buttonRgb = (Button) findViewById(R.id.rgbButton);
         final Button buttonGray = (Button) findViewById(R.id.grayButton);
@@ -67,6 +77,7 @@ public class ModesActivity extends Activity {
                 Intent intent = new Intent(ModesActivity.this,MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -101,4 +112,11 @@ public class ModesActivity extends Activity {
         return super.onKeyUp(keyCode, event);
     }
 
+    public static boolean isMenu1Button() {
+        return menu1Button;
+    }
+
+    public static void setMenu1Button(boolean menu1Button) {
+        ModesActivity.menu1Button = menu1Button;
+    }
 }

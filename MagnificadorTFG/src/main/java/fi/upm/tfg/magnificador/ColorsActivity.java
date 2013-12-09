@@ -14,12 +14,22 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
 
+import fi.upm.tfg.enums.Colors;
+
 public class ColorsActivity extends Activity {
+
+    private static boolean menu1Button = false;
+    private static Colors color = Colors.BLACKWHITE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_colors);
+
+        if(menu1Button){
+            startActivity(new Intent(ColorsActivity.this,Colors1ButtonActivity.class));
+            finish();
+        }
 
         final Button brightColorsButton = (Button) findViewById(R.id.brighColorsButton);
         final Button darkColorsButton = (Button) findViewById(R.id.darkColorsButton);
@@ -73,5 +83,13 @@ public class ColorsActivity extends Activity {
                 finish();
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    public static boolean isMenu1Button() {
+        return menu1Button;
+    }
+
+    public static void setMenu1Button(boolean menu1Button) {
+        ColorsActivity.menu1Button = menu1Button;
     }
 }

@@ -53,7 +53,7 @@ public class CameraSettingsActivity extends Activity {
                     flashButton.setText("Flash OFF");
                 }
                 else{
-                    MagnificadorActivity.setFlashed(false);
+                    MagnificadorActivity.setFlashed(true);
                     flashButton.setText("Flash ON");
                 }
             }
@@ -63,11 +63,11 @@ public class CameraSettingsActivity extends Activity {
             public void onClick(View v) {
                 if(MagnificadorActivity.isMACRO()){
                     MagnificadorActivity.setMACRO(false);
-                    flashButton.setText("Macro OFF");
+                    macroButton.setText("Macro OFF");
                 }
                 else{
-                    MagnificadorActivity.setMACRO(false);
-                    flashButton.setText("Macro ON");
+                    MagnificadorActivity.setMACRO(true);
+                    macroButton.setText("Macro ON");
                 }
             }
         });
@@ -76,11 +76,11 @@ public class CameraSettingsActivity extends Activity {
             public void onClick(View v) {
                 if(MagnificadorActivity.isSTAB()){
                     MagnificadorActivity.setSTAB(false);
-                    flashButton.setText("Estabilizador OFF");
+                    stabButton.setText("Estabilizador OFF");
                 }
                 else{
-                    MagnificadorActivity.setSTAB(false);
-                    flashButton.setText("Estabilizador ON");
+                    MagnificadorActivity.setSTAB(true);
+                    stabButton.setText("Estabilizador ON");
                 }
             }
         });

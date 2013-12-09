@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu1ButtonDrawerActivity$DummySectionFragment">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonLeftModes"
+        android:src="@drawable/navigation_previous_item_bright"
+        android:background="@color/White"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="@string/button_rgb"
+        android:textColor="@color/text_bw"
+        android:id="@+id/optionButtonModes"
+        style="@style/button1x1"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageButtonLeftModes"
+        android:layout_toLeftOf="@+id/imageButtonRightModes"
+        android:background="@drawable/button_bw"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonRightModes"
+        android:src="@drawable/navigation_next_item"
+        android:background="@color/White"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
