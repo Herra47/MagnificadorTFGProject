@@ -22,6 +22,45 @@ public class BrightBackActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bright_back);
 
+        /*switch (color){
+            case BLACKWHITE:
+                contrastBlackWhite();
+                break;
+            case WHITEBLACK:
+                contrastWhiteBlack();
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow();
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack();
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite();
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue();
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow();
+                break;
+            case YELLOWBLUE:
+                contrastYellowBlue();
+                break;
+            case REDWHITE:
+                contrastRedWhite();
+                break;
+            case WHITERED:
+                contrastWhiteRed();
+                break;
+            case REDYELLOW:
+                contrastRedYellow();
+                break;
+            case YELLOWRED:
+                contrastYellowRed();
+                break;
+        }*/
+
         final Button whiteBlackButton = (Button) findViewById(R.id.whiteBlackButton);
         final Button whiteBlueButton = (Button) findViewById(R.id.whiteBlueButton);
         final Button whiteRedButton = (Button) findViewById(R.id.whiteRedButton);

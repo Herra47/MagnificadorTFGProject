@@ -28,6 +28,45 @@ public class ModesActivity extends Activity {
             finish();
         }
 
+        /*switch (color){
+            case BLACKWHITE:
+                contrastBlackWhite();
+                break;
+            case WHITEBLACK:
+                contrastWhiteBlack();
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow();
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack();
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite();
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue();
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow();
+                break;
+            case YELLOWBLUE:
+                contrastYellowBlue();
+                break;
+            case REDWHITE:
+                contrastRedWhite();
+                break;
+            case WHITERED:
+                contrastWhiteRed();
+                break;
+            case REDYELLOW:
+                contrastRedYellow();
+                break;
+            case YELLOWRED:
+                contrastYellowRed();
+                break;
+        }*/
+
         final Button buttonRgb = (Button) findViewById(R.id.rgbButton);
         final Button buttonGray = (Button) findViewById(R.id.grayButton);
         final Button buttonInvert = (Button) findViewById(R.id.invertButton);

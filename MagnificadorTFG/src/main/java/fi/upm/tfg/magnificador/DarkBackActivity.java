@@ -22,6 +22,45 @@ public class DarkBackActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dark_back);
 
+        /*switch (color){
+            case BLACKWHITE:
+                contrastBlackWhite();
+                break;
+            case WHITEBLACK:
+                contrastWhiteBlack();
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow();
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack();
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite();
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue();
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow();
+                break;
+            case YELLOWBLUE:
+                contrastYellowBlue();
+                break;
+            case REDWHITE:
+                contrastRedWhite();
+                break;
+            case WHITERED:
+                contrastWhiteRed();
+                break;
+            case REDYELLOW:
+                contrastRedYellow();
+                break;
+            case YELLOWRED:
+                contrastYellowRed();
+                break;
+        }*/
+
         final Button blackWhiteButton = (Button) findViewById(R.id.blackWhiteButton);
         final Button blackYellowButton = (Button) findViewById(R.id.blackYellowButton);
         final Button blueWhiteButton = (Button) findViewById(R.id.blueWhiteButton);

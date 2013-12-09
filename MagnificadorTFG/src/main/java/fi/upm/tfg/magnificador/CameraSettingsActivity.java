@@ -21,6 +21,45 @@ public class CameraSettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_settings);
 
+        /*switch (color){
+            case BLACKWHITE:
+                contrastBlackWhite();
+                break;
+            case WHITEBLACK:
+                contrastWhiteBlack();
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow();
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack();
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite();
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue();
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow();
+                break;
+            case YELLOWBLUE:
+                contrastYellowBlue();
+                break;
+            case REDWHITE:
+                contrastRedWhite();
+                break;
+            case WHITERED:
+                contrastWhiteRed();
+                break;
+            case REDYELLOW:
+                contrastRedYellow();
+                break;
+            case YELLOWRED:
+                contrastYellowRed();
+                break;
+        }*/
+
         final Button flashButton = (Button) findViewById(R.id.flashButton);
         final Button macroButton = (Button) findViewById(R.id.macroButton);
         final Button stabButton = (Button) findViewById(R.id.stabButton);

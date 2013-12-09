@@ -29,17 +29,44 @@ public class MainActivity extends Activity {
             finish();
         }
 
-        /*switch (color){
+        switch (color){
             case BLACKWHITE:
                 contrastBlackWhite();
+                break;
+            case WHITEBLACK:
+                contrastWhiteBlack();
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow();
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack();
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite();
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue();
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow();
                 break;
             case YELLOWBLUE:
                 contrastYellowBlue();
                 break;
+            case REDWHITE:
+                contrastRedWhite();
+                break;
+            case WHITERED:
+                contrastWhiteRed();
+                break;
+            case REDYELLOW:
+                contrastRedYellow();
+                break;
             case YELLOWRED:
                 contrastYellowRed();
                 break;
-        }*/
+        }
 
         final Button buttonMode = (Button) findViewById(R.id.modeButton);
         final Button buttonColors = (Button) findViewById(R.id.colorsButton);
@@ -125,6 +152,174 @@ public class MainActivity extends Activity {
         SettingsActivity.setColor(color);
     }
 
+    private void contrastWhiteBlack (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastBlackYellow (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastYellowBlack (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastBlueWhite (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastWhiteBlue (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastBlueYellow (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
     private void contrastYellowBlue (){
 
         buttonMode = (Button) findViewById(R.id.modeButton);
@@ -149,6 +344,90 @@ public class MainActivity extends Activity {
         findViewById(R.id.mainLayout).setBackgroundColor(blue);
 
         color = Colors.YELLOWBLUE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastRedWhite (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastWhiteRed (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
+        Menu1ButtonDrawerActivity.setColor(color);
+        SettingsActivity.setColor(color);
+    }
+
+    private void contrastRedYellow (){
+
+        buttonMode = (Button) findViewById(R.id.modeButton);
+        buttonColors = (Button) findViewById(R.id.colorsButton);
+        buttonCamera = (Button) findViewById(R.id.cameraButton);
+        buttonSettings = (Button) findViewById(R.id.settingsButton);
+
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+        int background = R.drawable.button_bw;
+
+        buttonMode.setTextColor(textBW);
+        buttonColors.setTextColor(textBW);
+        buttonCamera.setTextColor(textBW);
+        buttonSettings.setTextColor(textBW);
+        buttonMode.setBackgroundResource(background);
+        buttonColors.setBackgroundResource(background);
+        buttonCamera.setBackgroundResource(background);
+        buttonSettings.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(white);
+
+        color = Colors.BLACKWHITE;
         Menu1ButtonDrawerActivity.setColor(color);
         SettingsActivity.setColor(color);
     }
