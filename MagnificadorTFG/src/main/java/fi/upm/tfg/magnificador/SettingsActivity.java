@@ -2,6 +2,7 @@ package fi.upm.tfg.magnificador;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,7 +19,6 @@ import fi.upm.tfg.enums.Colors;
 public class SettingsActivity extends Activity {
 
     private static Colors color = Colors.BLACKWHITE;
-    private static boolean menu1Button = false;
     private int thresh;
 
     @Override
@@ -37,13 +37,49 @@ public class SettingsActivity extends Activity {
                 contrastBlackWhite();
                 rg.check(R.id.radioButtonBW);
                 break;
+            case WHITEBLACK:
+                contrastWhiteBlack();
+                rg.check(R.id.radioButtonWB);
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow();
+                rg.check(R.id.radioButtonBlackY);
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack();
+                rg.check(R.id.radioButtonYBlack);
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite();
+                rg.check(R.id.radioButtonBlueW);
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue();
+                rg.check(R.id.radioButtonWBlue);
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow();
+                rg.check(R.id.radioButtonBlueY);
+                break;
             case YELLOWBLUE:
                 contrastYellowBlue();
-                rg.check(R.id.radioButtonBY);
+                rg.check(R.id.radioButtonYBlue);
+                break;
+            case REDWHITE:
+                contrastRedWhite();
+                rg.check(R.id.radioButtonRW);
+                break;
+            case WHITERED:
+                contrastWhiteRed();
+                rg.check(R.id.radioButtonWR);
+                break;
+            case REDYELLOW:
+                contrastRedYellow();
+                rg.check(R.id.radioButtonRY);
                 break;
             case YELLOWRED:
                 contrastYellowRed();
-                rg.check(R.id.radioButtonRY);
+                rg.check(R.id.radioButtonYR);
                 break;
         }
 
@@ -76,10 +112,6 @@ public class SettingsActivity extends Activity {
             }
         });
 
-        //rg.clearCheck();
-        //rg.check(R.id.radioButtonBW);
-        //final int selectedId = rg.getCheckedRadioButtonId();
-
         saveButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
@@ -90,21 +122,50 @@ public class SettingsActivity extends Activity {
 
                 switch (selectedColor){
                     case R.id.radioButtonBW:
-                        MainActivity.setColor(Colors.BLACKWHITE);
-                        Menu1ButtonDrawerActivity.setColor(Colors.BLACKWHITE);
-                        SettingsActivity.setColor(Colors.BLACKWHITE);
+                        color = Colors.BLACKWHITE;
                         break;
-                    case R.id.radioButtonBY:
-                        MainActivity.setColor(Colors.YELLOWBLUE);
-                        Menu1ButtonDrawerActivity.setColor(Colors.YELLOWBLUE);
-                        SettingsActivity.setColor(Colors.YELLOWBLUE);
+                    case R.id.radioButtonWB:
+                        color = Colors.WHITEBLACK;
+                        break;
+                    case R.id.radioButtonBlackY:
+                        color = Colors.BLACKYELLOW;
+                        break;
+                    case R.id.radioButtonYBlack:
+                        color = Colors.YELLOWBLACK;
+                        break;
+                    case R.id.radioButtonBlueW:
+                        color = Colors.BLUEWHITE;
+                        break;
+                    case R.id.radioButtonWBlue:
+                        color = Colors.WHITEBLUE;
+                        break;
+                    case R.id.radioButtonBlueY:
+                        color = Colors.BLUEYELLOW;
+                        break;
+                    case R.id.radioButtonYBlue:
+                        color = Colors.YELLOWBLUE;
+                        break;
+                    case R.id.radioButtonRW:
+                        color = Colors.REDWHITE;
+                        break;
+                    case R.id.radioButtonWR:
+                        color = Colors.WHITERED;
                         break;
                     case R.id.radioButtonRY:
-                        MainActivity.setColor(Colors.YELLOWRED);
-                        Menu1ButtonDrawerActivity.setColor(Colors.YELLOWRED);
-                        SettingsActivity.setColor(Colors.YELLOWRED);
+                        color = Colors.REDYELLOW;
+                        break;
+                    case R.id.radioButtonYR:
+                        color = Colors.YELLOWRED;
                         break;
                 }
+
+                MainActivity.setColor(color);
+                Menu1ButtonDrawerActivity.setColor(color);
+                ModesActivity.setColor(color);
+                ColorsActivity.setColor(color);
+                CameraSettingsActivity.setColor(color);
+                BrightBackActivity.setColor(color);
+                DarkBackActivity.setColor(color);
 
                 switch (selectedMenu){
                     case R.id.radioButtonFour:
@@ -125,10 +186,9 @@ public class SettingsActivity extends Activity {
         });
     }
 
-    private void contrastYellowRed() {
+    private void contrastBlackWhite() {
 
-        int yellow = getResources().getColor(R.color.Yellow);
-        int red = getResources().getColor(R.color.Red);
+        int black = getResources().getColor(R.color.Black);
         int white = getResources().getColor(R.color.White);
 
         RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
@@ -138,8 +198,108 @@ public class SettingsActivity extends Activity {
         RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
         RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
         RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
 
-        settingsLayout.setBackgroundColor(red);
+        brillo.setTextColor(black);
+        numero.setTextColor(black);
+        settingsLayout.setBackgroundColor(white);
+        settingsText.setTextColor(black);
+        menu.setTextColor(black);
+        radioButtonOne.setTextColor(black);
+        radioButtonFour.setTextColor(black);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_black_white);
+        int background = R.drawable.button_black_white;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastWhiteBlack() {
+
+        int black = getResources().getColor(R.color.Black);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(white);
+        numero.setTextColor(white);
+        settingsLayout.setBackgroundColor(black);
+        settingsText.setTextColor(white);
+        menu.setTextColor(white);
+        radioButtonOne.setTextColor(white);
+        radioButtonFour.setTextColor(white);
+        radioButtonBW.setBackgroundColor(white);
+
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_white_black);
+        int background = R.drawable.button_white_black;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastBlackYellow() {
+
+        int black = getResources().getColor(R.color.Black);
+        int yellow = getResources().getColor(R.color.Yellow);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(black);
+        numero.setTextColor(black);
+        settingsLayout.setBackgroundColor(yellow);
+        settingsText.setTextColor(black);
+        menu.setTextColor(black);
+        radioButtonOne.setTextColor(black);
+        radioButtonFour.setTextColor(black);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_black_yellow);
+        int background = R.drawable.button_black_yellow;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastYellowBlack() {
+
+        int black = getResources().getColor(R.color.Black);
+        int yellow = getResources().getColor(R.color.Yellow);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(yellow);
+        numero.setTextColor(yellow);
+        settingsLayout.setBackgroundColor(black);
         settingsText.setTextColor(yellow);
         saveButton.setTextColor(yellow);
         menu.setTextColor(yellow);
@@ -147,8 +307,105 @@ public class SettingsActivity extends Activity {
         radioButtonFour.setTextColor(yellow);
         radioButtonBW.setBackgroundColor(white);
 
-        color = Colors.YELLOWRED;
+        ColorStateList text = getResources().getColorStateList(R.color.text_yellow_black);
+        int background = R.drawable.button_yellow_black;
 
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastBlueWhite() {
+
+        int blue = getResources().getColor(R.color.Blue);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(blue);
+        numero.setTextColor(blue);
+        settingsLayout.setBackgroundColor(white);
+        settingsText.setTextColor(blue);
+        menu.setTextColor(blue);
+        radioButtonOne.setTextColor(blue);
+        radioButtonFour.setTextColor(blue);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_blue_white);
+        int background = R.drawable.button_blue_white;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastWhiteBlue() {
+
+        int blue = getResources().getColor(R.color.Blue);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(white);
+        numero.setTextColor(white);
+        settingsLayout.setBackgroundColor(blue);
+        settingsText.setTextColor(white);
+        menu.setTextColor(white);
+        radioButtonOne.setTextColor(white);
+        radioButtonFour.setTextColor(white);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_white_blue);
+        int background = R.drawable.button_white_blue;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastBlueYellow() {
+
+        int blue = getResources().getColor(R.color.Blue);
+        int yellow = getResources().getColor(R.color.Yellow);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(blue);
+        numero.setTextColor(blue);
+        settingsLayout.setBackgroundColor(yellow);
+        settingsText.setTextColor(blue);
+        menu.setTextColor(blue);
+        radioButtonOne.setTextColor(blue);
+        radioButtonFour.setTextColor(blue);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_blue_yellow);
+        int background = R.drawable.button_blue_yellow;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
     }
 
     private void contrastYellowBlue() {
@@ -164,22 +421,28 @@ public class SettingsActivity extends Activity {
         RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
         RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
         RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
 
+        brillo.setTextColor(yellow);
+        numero.setTextColor(yellow);
         settingsLayout.setBackgroundColor(blue);
         settingsText.setTextColor(yellow);
-        saveButton.setTextColor(yellow);
         menu.setTextColor(yellow);
         radioButtonOne.setTextColor(yellow);
         radioButtonFour.setTextColor(yellow);
         radioButtonBW.setBackgroundColor(white);
 
-        color = Colors.YELLOWBLUE;
+        ColorStateList text = getResources().getColorStateList(R.color.text_yellow_blue);
+        int background = R.drawable.button_yellow_blue;
 
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
     }
 
-    private void contrastBlackWhite() {
+    private void contrastRedWhite() {
 
-        int black = getResources().getColor(R.color.Black);
+        int red = getResources().getColor(R.color.Red);
         int white = getResources().getColor(R.color.White);
 
         RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
@@ -189,16 +452,118 @@ public class SettingsActivity extends Activity {
         RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
         RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
         RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
 
+        brillo.setTextColor(red);
+        numero.setTextColor(red);
         settingsLayout.setBackgroundColor(white);
-        settingsText.setTextColor(black);
-        saveButton.setTextColor(black);
-        menu.setTextColor(black);
-        radioButtonOne.setTextColor(black);
-        radioButtonFour.setTextColor(black);
+        settingsText.setTextColor(red);
+        menu.setTextColor(red);
+        radioButtonOne.setTextColor(red);
+        radioButtonFour.setTextColor(red);
         radioButtonBW.setBackgroundColor(white);
 
-        color = Colors.BLACKWHITE;
+        ColorStateList text = getResources().getColorStateList(R.color.text_red_white);
+        int background = R.drawable.button_red_white;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastWhiteRed() {
+
+        int red = getResources().getColor(R.color.Red);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(white);
+        numero.setTextColor(white);
+        settingsLayout.setBackgroundColor(red);
+        settingsText.setTextColor(white);
+        menu.setTextColor(white);
+        radioButtonOne.setTextColor(white);
+        radioButtonFour.setTextColor(white);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_white_red);
+        int background = R.drawable.button_white_red;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastRedYellow() {
+
+        int yellow = getResources().getColor(R.color.Yellow);
+        int red = getResources().getColor(R.color.Red);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(red);
+        numero.setTextColor(red);
+        settingsLayout.setBackgroundColor(yellow);
+        settingsText.setTextColor(red);
+        menu.setTextColor(red);
+        radioButtonOne.setTextColor(red);
+        radioButtonFour.setTextColor(red);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_red_yellow);
+        int background = R.drawable.button_red_yellow;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
+    }
+
+    private void contrastYellowRed() {
+
+        int yellow = getResources().getColor(R.color.Yellow);
+        int red = getResources().getColor(R.color.Red);
+        int white = getResources().getColor(R.color.White);
+
+        RelativeLayout settingsLayout = (RelativeLayout) findViewById(R.id.settingsLayout);
+        TextView settingsText = (TextView) findViewById(R.id.textView);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        TextView menu = (TextView) findViewById(R.id.textView2);
+        RadioButton radioButtonOne = (RadioButton) findViewById(R.id.radioButtonOne);
+        RadioButton radioButtonFour = (RadioButton) findViewById(R.id.radioButtonFour);
+        RadioButton radioButtonBW = (RadioButton) findViewById(R.id.radioButtonBW);
+        TextView brillo = (TextView) findViewById(R.id.textViewThresh);
+        TextView numero = (TextView) findViewById(R.id.textViewNumber);
+
+        brillo.setTextColor(yellow);
+        numero.setTextColor(yellow);
+        settingsLayout.setBackgroundColor(red);
+        settingsText.setTextColor(yellow);
+        menu.setTextColor(yellow);
+        radioButtonOne.setTextColor(yellow);
+        radioButtonFour.setTextColor(yellow);
+        radioButtonBW.setBackgroundColor(white);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_yellow_red);
+        int background = R.drawable.button_yellow_red;
+
+        saveButton.setTextColor(text);
+        saveButton.setBackgroundResource(background);
     }
 
     @Override

@@ -17,11 +17,11 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/sample"
-            android:textColor="@color/text_white_black"
+            android:textColor="@color/text_black_white"
             android:textSize="120sp"
             android:id="@+id/whiteBlackButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_black_white"
             android:layout_marginRight="4dp"
             />
         <Button
@@ -29,11 +29,11 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/sample"
-            android:textColor="@color/text_yellow_black"
+            android:textColor="@color/text_black_yellow"
             android:textSize="120sp"
             android:id="@+id/yellowBlackButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_yellow_black"
+            android:background="@drawable/button_black_yellow"
             />
     </LinearLayout>
     <LinearLayout
@@ -51,22 +51,22 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/sample"
-            android:textColor="@color/text_white_blue"
+            android:textColor="@color/text_blue_white"
             android:textSize="120sp"
             android:id="@+id/whiteBlueButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_blue_white"
             android:layout_marginRight="4dp"/>
         <Button
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/sample"
-            android:textColor="@color/text_yellow_blue"
+            android:textColor="@color/text_blue_yellow"
             android:textSize="120sp"
             android:id="@+id/yellowBlueButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_yellow_black" />
+            android:background="@drawable/button_blue_yellow" />
     </LinearLayout>
     <LinearLayout
         android:layout_height="0.0dip"
@@ -83,21 +83,21 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/sample"
-            android:textColor="@color/text_white_red"
+            android:textColor="@color/text_red_white"
             android:textSize="120sp"
             android:id="@+id/whiteRedButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_red_white"
             android:layout_marginRight="4dp"/>
         <Button
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/sample"
-            android:textColor="@color/text_yellow_red"
+            android:textColor="@color/text_red_yellow"
             android:textSize="120sp"
             android:id="@+id/yellowRedButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_yellow_black" />
+            android:background="@drawable/button_red_yellow" />
     </LinearLayout>
 </LinearLayout>

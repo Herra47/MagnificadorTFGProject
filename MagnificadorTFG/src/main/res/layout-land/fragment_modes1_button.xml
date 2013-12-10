@@ -17,7 +17,7 @@
     <Button
         android:layout_width="wrap_content"
         android:text="@string/button_rgb"
-        android:textColor="@color/text_bw"
+        android:textColor="@color/text_black_white"
         android:textSize="105dp"
         android:id="@+id/optionButtonModes"
         style="@style/button1x1"
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageButtonLeftModes"
         android:layout_toLeftOf="@+id/imageButtonRightModes"
-        android:background="@drawable/button_bw"/>
+        android:background="@drawable/button_black_white"/>
 
     <ImageButton
         android:layout_width="wrap_content"

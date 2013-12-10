@@ -10,32 +10,32 @@
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
         android:text="@string/button_modes"
-        android:textColor="@color/text_bw"
+        android:textColor="@color/text_black_white"
         android:id="@+id/modeButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
-        android:background="@drawable/button_bw"/>
+        android:background="@drawable/button_black_white"/>
 
     <Button
         android:layout_height="0.0dip"
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
         android:text="@string/button_colors"
-        android:textColor="@color/text_bw"
+        android:textColor="@color/text_black_white"
         android:id="@+id/colorsButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
-        android:background="@drawable/button_bw"/>
+        android:background="@drawable/button_black_white"/>
 
     <Button
         android:layout_height="0.0dip"
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
         android:text="@string/button_camera"
-        android:textColor="@color/text_bw"
+        android:textColor="@color/text_black_white"
         android:id="@+id/cameraButton"
         android:layout_marginTop="4dp"
-        android:background="@drawable/button_bw"
+        android:background="@drawable/button_black_white"
         style="@style/button4x1"/>
 
     <Button
@@ -43,10 +43,10 @@
         android:layout_width="fill_parent"
         android:layout_weight="1.0"
         android:text="@string/button_settings"
-        android:textColor="@color/text_bw"
+        android:textColor="@color/text_black_white"
         android:id="@+id/settingsButton"
         style="@style/button4x1"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/button_bw"/>
+        android:background="@drawable/button_black_white"/>
 </LinearLayout>

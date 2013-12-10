@@ -219,10 +219,10 @@
             android:layout_below="@+id/seekBar"
             android:layout_marginTop="20dp"
             android:text="@string/saveButton"
-            android:textColor="@color/text_bw"
+            android:textColor="@color/text_black_white"
             android:textSize="50sp"
             android:id="@+id/saveButton"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_black_white"
             android:layout_alignParentBottom="true"
             android:layout_alignRight="@+id/radioGroup" />
 

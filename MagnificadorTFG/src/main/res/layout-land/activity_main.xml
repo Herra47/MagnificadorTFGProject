@@ -17,10 +17,10 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/button_modes"
-            android:textColor="@color/text_bw"
+            android:textColor="@color/text_black_white"
             android:id="@+id/modeButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_black_white"
             android:layout_marginRight="4dp"
             />
         <Button
@@ -28,10 +28,10 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/button_colors"
-            android:textColor="@color/text_bw"
+            android:textColor="@color/text_black_white"
             android:id="@+id/colorsButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_black_white"
             />
     </LinearLayout>
     <LinearLayout
@@ -49,19 +49,19 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/button_camera"
-            android:textColor="@color/text_bw"
+            android:textColor="@color/text_black_white"
             android:id="@+id/cameraButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw"
+            android:background="@drawable/button_black_white"
             android:layout_marginRight="4dp"/>
         <Button
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:text="@string/button_settings"
-            android:textColor="@color/text_bw"
+            android:textColor="@color/text_black_white"
             android:id="@+id/settingsButton"
             style="@style/button4x1land"
-            android:background="@drawable/button_bw" />
+            android:background="@drawable/button_black_white" />
     </LinearLayout>
 </LinearLayout>

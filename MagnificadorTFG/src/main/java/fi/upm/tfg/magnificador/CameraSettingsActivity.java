@@ -2,6 +2,7 @@ package fi.upm.tfg.magnificador;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -21,44 +22,74 @@ public class CameraSettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_settings);
 
-        /*switch (color){
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_black_white);
+        int backColor = getResources().getColor(R.color.White);
+        int background = R.drawable.button_black_white;
+
+        switch (color){
             case BLACKWHITE:
-                contrastBlackWhite();
+                text = getResources().getColorStateList(R.color.text_black_white);
+                backColor = getResources().getColor(R.color.White);
+                background = R.drawable.button_black_white;
                 break;
             case WHITEBLACK:
-                contrastWhiteBlack();
+                text = getResources().getColorStateList(R.color.text_white_black);
+                backColor = getResources().getColor(R.color.Black);
+                background = R.drawable.button_white_black;
                 break;
             case BLACKYELLOW:
-                contrastBlackYellow();
+                text = getResources().getColorStateList(R.color.text_black_yellow);
+                backColor = getResources().getColor(R.color.Yellow);
+                background = R.drawable.button_black_yellow;
                 break;
             case YELLOWBLACK:
-                contrastYellowBlack();
+                text = getResources().getColorStateList(R.color.text_yellow_black);
+                backColor = getResources().getColor(R.color.Black);
+                background = R.drawable.button_yellow_black;
                 break;
             case BLUEWHITE:
-                contrastBlueWhite();
+                text = getResources().getColorStateList(R.color.text_blue_white);
+                backColor = getResources().getColor(R.color.White);
+                background = R.drawable.button_blue_white;
                 break;
             case WHITEBLUE:
-                contrastWhiteBlue();
+                text = getResources().getColorStateList(R.color.text_white_blue);
+                backColor = getResources().getColor(R.color.Blue);
+                background = R.drawable.button_white_blue;
                 break;
             case BLUEYELLOW:
-                contrastBlueYellow();
+                text = getResources().getColorStateList(R.color.text_blue_yellow);
+                backColor = getResources().getColor(R.color.Yellow);
+                background = R.drawable.button_blue_yellow;
                 break;
             case YELLOWBLUE:
-                contrastYellowBlue();
+                text = getResources().getColorStateList(R.color.text_yellow_blue);
+                backColor = getResources().getColor(R.color.Blue);
+                background = R.drawable.button_yellow_blue;
                 break;
             case REDWHITE:
-                contrastRedWhite();
+                text = getResources().getColorStateList(R.color.text_red_white);
+                backColor = getResources().getColor(R.color.White);
+                background = R.drawable.button_red_white;
                 break;
             case WHITERED:
-                contrastWhiteRed();
+                text = getResources().getColorStateList(R.color.text_white_red);
+                backColor = getResources().getColor(R.color.Red);
+                background = R.drawable.button_white_red;
                 break;
             case REDYELLOW:
-                contrastRedYellow();
+                text = getResources().getColorStateList(R.color.text_red_yellow);
+                backColor = getResources().getColor(R.color.Yellow);
+                background = R.drawable.button_red_yellow;
                 break;
             case YELLOWRED:
-                contrastYellowRed();
+                text = getResources().getColorStateList(R.color.text_yellow_red);
+                backColor = getResources().getColor(R.color.Red);
+                background = R.drawable.button_yellow_red;
                 break;
-        }*/
+        }
+        contrast(text,backColor,background);
 
         final Button flashButton = (Button) findViewById(R.id.flashButton);
         final Button macroButton = (Button) findViewById(R.id.macroButton);
@@ -153,5 +184,37 @@ public class CameraSettingsActivity extends Activity {
                 finish();
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    private void contrast(ColorStateList text, int color, int background){
+
+        Button flash = (Button) findViewById(R.id.flashButton);
+        Button macro = (Button) findViewById(R.id.macroButton);
+        Button stab = (Button) findViewById(R.id.stabButton);
+
+        flash.setTextColor(text);
+        macro.setTextColor(text);
+        stab.setTextColor(text);
+        flash.setBackgroundResource(background);
+        macro.setBackgroundResource(background);
+        stab.setBackgroundResource(background);
+
+        findViewById(R.id.mainLayout).setBackgroundColor(color);
+    }
+
+    public static Colors getColor() {
+        return color;
+    }
+
+    public static void setColor(Colors color) {
+        CameraSettingsActivity.color = color;
+    }
+
+    public static boolean isMenu1Button() {
+        return menu1Button;
+    }
+
+    public static void setMenu1Button(boolean menu1Button) {
+        CameraSettingsActivity.menu1Button = menu1Button;
     }
 }

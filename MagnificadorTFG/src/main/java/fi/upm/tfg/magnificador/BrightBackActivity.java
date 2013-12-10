@@ -3,6 +3,7 @@ package fi.upm.tfg.magnificador;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,44 +23,45 @@ public class BrightBackActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bright_back);
 
-        /*switch (color){
+
+        switch (color){
             case BLACKWHITE:
-                contrastBlackWhite();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
             case WHITEBLACK:
-                contrastWhiteBlack();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
                 break;
             case BLACKYELLOW:
-                contrastBlackYellow();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
             case YELLOWBLACK:
-                contrastYellowBlack();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
                 break;
             case BLUEWHITE:
-                contrastBlueWhite();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
             case WHITEBLUE:
-                contrastWhiteBlue();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
                 break;
             case BLUEYELLOW:
-                contrastBlueYellow();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
             case YELLOWBLUE:
-                contrastYellowBlue();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
                 break;
             case REDWHITE:
-                contrastRedWhite();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
             case WHITERED:
-                contrastWhiteRed();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
                 break;
             case REDYELLOW:
-                contrastRedYellow();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
             case YELLOWRED:
-                contrastYellowRed();
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
                 break;
-        }*/
+        }
 
         final Button whiteBlackButton = (Button) findViewById(R.id.whiteBlackButton);
         final Button whiteBlueButton = (Button) findViewById(R.id.whiteBlueButton);
@@ -173,4 +175,11 @@ public class BrightBackActivity extends Activity {
         return super.onKeyUp(keyCode, event);
     }
 
+    public static Colors getColor() {
+        return color;
+    }
+
+    public static void setColor(Colors color) {
+        BrightBackActivity.color = color;
+    }
 }

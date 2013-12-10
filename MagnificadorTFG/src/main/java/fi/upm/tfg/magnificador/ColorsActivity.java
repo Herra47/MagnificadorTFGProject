@@ -2,6 +2,7 @@ package fi.upm.tfg.magnificador;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -26,7 +27,7 @@ public class ColorsActivity extends Activity {
             finish();
         }
 
-        /*switch (color){
+        switch (color){
             case BLACKWHITE:
                 contrastBlackWhite();
                 break;
@@ -63,7 +64,7 @@ public class ColorsActivity extends Activity {
             case YELLOWRED:
                 contrastYellowRed();
                 break;
-        }*/
+        }
 
         final Button brightColorsButton = (Button) findViewById(R.id.brighColorsButton);
         final Button darkColorsButton = (Button) findViewById(R.id.darkColorsButton);
@@ -119,11 +120,223 @@ public class ColorsActivity extends Activity {
         return super.onKeyUp(keyCode, event);
     }
 
+    private void contrastBlackWhite (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_black_white);
+        int color = getResources().getColor(R.color.White);
+        int background = R.drawable.button_black_white;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastWhiteBlack (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_white_black);
+        int color = getResources().getColor(R.color.Black);
+        int background = R.drawable.button_white_black;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastBlackYellow (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_black_yellow);
+        int color = getResources().getColor(R.color.Yellow);
+        int background = R.drawable.button_black_yellow;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastYellowBlack (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_yellow_black);
+        int color = getResources().getColor(R.color.Black);
+        int background = R.drawable.button_yellow_black;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastBlueWhite (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_blue_white);
+        int color = getResources().getColor(R.color.White);
+        int background = R.drawable.button_blue_white;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastWhiteBlue (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_white_blue);
+        int color = getResources().getColor(R.color.Blue);
+        int background = R.drawable.button_white_blue;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastBlueYellow (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_blue_yellow);
+        int color = getResources().getColor(R.color.Yellow);
+        int background = R.drawable.button_blue_yellow;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastYellowBlue (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_yellow_blue);
+        int color = getResources().getColor(R.color.Blue);
+        int background = R.drawable.button_yellow_blue;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastRedWhite (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_red_white);
+        int color = getResources().getColor(R.color.White);
+        int background = R.drawable.button_red_white;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastWhiteRed (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_white_red);
+        int color = getResources().getColor(R.color.Red);
+        int background = R.drawable.button_white_red;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastRedYellow (){
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_red_yellow);
+        int color = getResources().getColor(R.color.Yellow);
+        int background = R.drawable.button_red_yellow;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
+    private void contrastYellowRed() {
+
+        Button bright = (Button) findViewById(R.id.brighColorsButton);
+        Button dark = (Button) findViewById(R.id.darkColorsButton);
+
+        ColorStateList text = getResources().getColorStateList(R.color.text_yellow_red);
+        int color = getResources().getColor(R.color.Red);
+        int background = R.drawable.button_yellow_red;
+
+        bright.setTextColor(text);
+        dark.setTextColor(text);
+        bright.setBackgroundResource(background);
+        dark.setBackgroundResource(background);
+
+        findViewById(R.id.colorsLayout).setBackgroundColor(color);
+    }
+
     public static boolean isMenu1Button() {
         return menu1Button;
     }
 
     public static void setMenu1Button(boolean menu1Button) {
         ColorsActivity.menu1Button = menu1Button;
+    }
+
+    public static Colors getColor() {
+        return color;
+    }
+
+    public static void setColor(Colors color) {
+        ColorsActivity.color = color;
     }
 }

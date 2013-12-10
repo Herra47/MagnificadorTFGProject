@@ -22,44 +22,44 @@ public class DarkBackActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dark_back);
 
-        /*switch (color){
+        switch (color){
             case BLACKWHITE:
-                contrastBlackWhite();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
             case WHITEBLACK:
-                contrastWhiteBlack();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
                 break;
             case BLACKYELLOW:
-                contrastBlackYellow();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
             case YELLOWBLACK:
-                contrastYellowBlack();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
                 break;
             case BLUEWHITE:
-                contrastBlueWhite();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
             case WHITEBLUE:
-                contrastWhiteBlue();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
                 break;
             case BLUEYELLOW:
-                contrastBlueYellow();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
             case YELLOWBLUE:
-                contrastYellowBlue();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
                 break;
             case REDWHITE:
-                contrastRedWhite();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
             case WHITERED:
-                contrastWhiteRed();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
                 break;
             case REDYELLOW:
-                contrastRedYellow();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
             case YELLOWRED:
-                contrastYellowRed();
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
                 break;
-        }*/
+        }
 
         final Button blackWhiteButton = (Button) findViewById(R.id.blackWhiteButton);
         final Button blackYellowButton = (Button) findViewById(R.id.blackYellowButton);
@@ -170,5 +170,13 @@ public class DarkBackActivity extends Activity {
                 finish();
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    public static Colors getColor() {
+        return color;
+    }
+
+    public static void setColor(Colors color) {
+        DarkBackActivity.color = color;
     }
 }

@@ -136,8 +136,8 @@ public class Colors1ButtonFragment extends Fragment {
 
         int black = getResources().getColor(R.color.Black);
         int white = getResources().getColor(R.color.White);
-        int background = R.drawable.button_bw;
-        ColorStateList textBW = getResources().getColorStateList(R.color.text_bw);
+        int background = R.drawable.button_black_white;
+        ColorStateList textBW = getResources().getColorStateList(R.color.text_black_white);
 
         mainButton.setBackgroundResource(background);
         mainButton.setTextColor(textBW);
@@ -163,8 +163,8 @@ public class Colors1ButtonFragment extends Fragment {
 
         int yellow = getResources().getColor(R.color.Yellow);
         int blue = getResources().getColor(R.color.Blue);
-        int background = R.drawable.button_yb;
-        ColorStateList textYB = getResources().getColorStateList(R.color.text_yb);
+        int background = R.drawable.button_yellow_blue;
+        ColorStateList textYB = getResources().getColorStateList(R.color.text_yellow_blue);
 
         mainButton.setBackgroundResource(background);
         mainButton.setTextColor(textYB);
@@ -190,8 +190,8 @@ public class Colors1ButtonFragment extends Fragment {
 
         int yellow = getResources().getColor(R.color.Yellow);
         int red = getResources().getColor(R.color.Red);
-        int background = R.drawable.button_yr;
-        ColorStateList textYR = getResources().getColorStateList(R.color.text_yr);
+        int background = R.drawable.button_yellow_red;
+        ColorStateList textYR = getResources().getColorStateList(R.color.text_yellow_red);
 
         mainButton.setBackgroundResource(background);
         mainButton.setTextColor(textYR);
