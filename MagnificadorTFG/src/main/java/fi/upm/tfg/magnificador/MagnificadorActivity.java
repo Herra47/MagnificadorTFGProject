@@ -50,7 +50,7 @@ public class MagnificadorActivity extends Activity {
     float y;
 
     private static CameraColors CURRENT_COLOR = CameraColors.RGB;
-    private static CameraColors HIGH_CONTRAST_COLOR = CameraColors.REDANDYELLOW;
+    private static CameraColors HIGH_CONTRAST_COLOR = CameraColors.WHITEANDBLACK;
 
     private float mScaleFactor = 1.f;
     private float mOldScaleFactor = 1.f;

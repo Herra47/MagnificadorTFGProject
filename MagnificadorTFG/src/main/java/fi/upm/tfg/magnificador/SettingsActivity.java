@@ -31,6 +31,7 @@ public class SettingsActivity extends Activity {
         final RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
         final RadioGroup rg2 = (RadioGroup)findViewById(R.id.radioGroup2);
         final TextView threshText = (TextView)findViewById(R.id.textViewNumber);
+        final RadioButton radioButtonHC = (RadioButton) findViewById(R.id.radioButtonHC);
 
         switch (color){
             case BLACKWHITE:
@@ -39,47 +40,98 @@ public class SettingsActivity extends Activity {
                 break;
             case WHITEBLACK:
                 contrastWhiteBlack();
-                rg.check(R.id.radioButtonWB);
+                rg.check(R.id.radioButtonHC);
                 break;
             case BLACKYELLOW:
                 contrastBlackYellow();
-                rg.check(R.id.radioButtonBlackY);
+                rg.check(R.id.radioButtonHC);
                 break;
             case YELLOWBLACK:
                 contrastYellowBlack();
-                rg.check(R.id.radioButtonYBlack);
+                rg.check(R.id.radioButtonHC);
                 break;
             case BLUEWHITE:
                 contrastBlueWhite();
-                rg.check(R.id.radioButtonWBlue);
+                rg.check(R.id.radioButtonHC);
                 break;
             case WHITEBLUE:
                 contrastWhiteBlue();
-                rg.check(R.id.radioButtonBlueW);
+                rg.check(R.id.radioButtonHC);
                 break;
             case BLUEYELLOW:
                 contrastBlueYellow();
-                rg.check(R.id.radioButtonBlueY);
+                rg.check(R.id.radioButtonHC);
                 break;
             case YELLOWBLUE:
                 contrastYellowBlue();
-                rg.check(R.id.radioButtonYBlue);
+                rg.check(R.id.radioButtonHC);
                 break;
             case REDWHITE:
                 contrastRedWhite();
-                rg.check(R.id.radioButtonRW);
+                rg.check(R.id.radioButtonHC);
                 break;
             case WHITERED:
                 contrastWhiteRed();
-                rg.check(R.id.radioButtonWR);
+                rg.check(R.id.radioButtonHC);
                 break;
             case REDYELLOW:
                 contrastRedYellow();
-                rg.check(R.id.radioButtonRY);
+                rg.check(R.id.radioButtonHC);
                 break;
             case YELLOWRED:
                 contrastYellowRed();
-                rg.check(R.id.radioButtonYR);
+                rg.check(R.id.radioButtonHC);
+                break;
+        }
+
+        switch (MagnificadorActivity.getHIGH_CONTRAST_COLOR()){
+            case BLACKANDWHITE:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.White));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Black));
+                break;
+            case WHITEANDBLACK:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Black));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.White));
+                break;
+            case BLACKANDYELLOW:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Yellow));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Black));
+                break;
+            case YELLOWANDBLACK:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Black));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Yellow));
+                break;
+            case WHITEANDBLUE:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Blue));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.White));
+                break;
+            case BLUEANDWHITE:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.White));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Blue));
+                break;
+            case BLUEANDYELLOW:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Yellow));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Blue));
+                break;
+            case YELLOWANDBLUE:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Blue));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Yellow));
+                break;
+            case REDANDWHITE:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.White));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Red));
+                break;
+            case WHITEANDRED:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Red));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.White));
+                break;
+            case REDANDYELLOW:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Yellow));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Red));
+                break;
+            case YELLOWANDRED:
+                radioButtonHC.setTextColor(getResources().getColor(R.color.Red));
+                radioButtonHC.setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
         }
 
@@ -123,40 +175,51 @@ public class SettingsActivity extends Activity {
                 switch (selectedColor){
                     case R.id.radioButtonBW:
                         color = Colors.BLACKWHITE;
+                        BrightBackActivity.setMenuHC(false);
+                        DarkBackActivity.setMenuHC(false);
                         break;
-                    case R.id.radioButtonWB:
-                        color = Colors.WHITEBLACK;
-                        break;
-                    case R.id.radioButtonBlackY:
-                        color = Colors.BLACKYELLOW;
-                        break;
-                    case R.id.radioButtonYBlack:
-                        color = Colors.YELLOWBLACK;
-                        break;
-                    case R.id.radioButtonBlueW:
-                        color = Colors.WHITEBLUE;
-                        break;
-                    case R.id.radioButtonWBlue:
-                        color = Colors.BLUEWHITE;
-                        break;
-                    case R.id.radioButtonBlueY:
-                        color = Colors.BLUEYELLOW;
-                        break;
-                    case R.id.radioButtonYBlue:
-                        color = Colors.YELLOWBLUE;
-                        break;
-                    case R.id.radioButtonRW:
-                        color = Colors.REDWHITE;
-                        break;
-                    case R.id.radioButtonWR:
-                        color = Colors.WHITERED;
-                        break;
-                    case R.id.radioButtonRY:
-                        color = Colors.REDYELLOW;
-                        break;
-                    case R.id.radioButtonYR:
-                        color = Colors.YELLOWRED;
-                        break;
+                    case R.id.radioButtonHC:
+                        switch (MagnificadorActivity.getHIGH_CONTRAST_COLOR()){
+                            case BLACKANDWHITE:
+                                color = Colors.WHITEBLACK;
+                                break;
+                            case WHITEANDBLACK:
+                                color = Colors.BLACKWHITE;
+                                break;
+                            case BLACKANDYELLOW:
+                                color = Colors.YELLOWBLACK;
+                                break;
+                            case YELLOWANDBLACK:
+                                color = Colors.BLACKYELLOW;
+                                break;
+                            case WHITEANDBLUE:
+                                color = Colors.BLUEWHITE;
+                                break;
+                            case BLUEANDWHITE:
+                                color = Colors.WHITEBLUE;
+                                break;
+                            case BLUEANDYELLOW:
+                                color = Colors.YELLOWBLUE;
+                                break;
+                            case YELLOWANDBLUE:
+                                color = Colors.BLUEYELLOW;
+                                break;
+                            case REDANDWHITE:
+                                color = Colors.WHITERED;
+                                break;
+                            case WHITEANDRED:
+                                color = Colors.REDWHITE;
+                                break;
+                            case REDANDYELLOW:
+                                color = Colors.YELLOWRED;
+                                break;
+                            case YELLOWANDRED:
+                                color = Colors.REDYELLOW;
+                                break;
+                        }
+                        BrightBackActivity.setMenuHC(true);
+                        DarkBackActivity.setMenuHC(true);
+
                 }
 
                 MainActivity.setColor(color);

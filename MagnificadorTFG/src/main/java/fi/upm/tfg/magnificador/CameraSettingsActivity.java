@@ -96,35 +96,39 @@ public class CameraSettingsActivity extends Activity {
         final Button stabButton = (Button) findViewById(R.id.stabButton);
 
         if(MagnificadorActivity.getFlashed()){
-            flashButton.setText("Flash ON");
+            flashButton.setText("Apagar Flash");
         }
         else{
-            flashButton.setText("Flash OFF");
+            flashButton.setText("Encender Flash");
         }
 
         if(MagnificadorActivity.isMACRO()){
-            macroButton.setText("Macro ON");
+            macroButton.setText("Apagar Macro");
         }
         else{
-            macroButton.setText("Macro OFF");
+            macroButton.setText("Encender Macro");
         }
 
         if(MagnificadorActivity.isSTAB()){
-            stabButton.setText("Estabilizador ON");
+            stabButton.setText("Apagar Estabilizador");
         }
         else{
-            stabButton.setText("Estabilizador OFF");
+            stabButton.setText("Encender Estabilizador");
         }
 
         flashButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 if(MagnificadorActivity.getFlashed()){
                     MagnificadorActivity.setFlashed(false);
-                    flashButton.setText("Flash OFF");
+                    Intent intent = new Intent(CameraSettingsActivity.this, MagnificadorActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 else{
                     MagnificadorActivity.setFlashed(true);
-                    flashButton.setText("Flash ON");
+                    Intent intent = new Intent(CameraSettingsActivity.this, MagnificadorActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -133,11 +137,15 @@ public class CameraSettingsActivity extends Activity {
             public void onClick(View v) {
                 if(MagnificadorActivity.isMACRO()){
                     MagnificadorActivity.setMACRO(false);
-                    macroButton.setText("Macro OFF");
+                    Intent intent = new Intent(CameraSettingsActivity.this, MagnificadorActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 else{
                     MagnificadorActivity.setMACRO(true);
-                    macroButton.setText("Macro ON");
+                    Intent intent = new Intent(CameraSettingsActivity.this, MagnificadorActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -146,11 +154,15 @@ public class CameraSettingsActivity extends Activity {
             public void onClick(View v) {
                 if(MagnificadorActivity.isSTAB()){
                     MagnificadorActivity.setSTAB(false);
-                    stabButton.setText("Estabilizador OFF");
+                    Intent intent = new Intent(CameraSettingsActivity.this, MagnificadorActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 else{
                     MagnificadorActivity.setSTAB(true);
-                    stabButton.setText("Estabilizador ON");
+                    Intent intent = new Intent(CameraSettingsActivity.this, MagnificadorActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

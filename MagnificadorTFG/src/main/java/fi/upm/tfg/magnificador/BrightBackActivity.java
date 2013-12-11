@@ -17,6 +17,7 @@ public class BrightBackActivity extends Activity {
 
     private static Colors color = Colors.BLACKWHITE;
     private static boolean menu1Button = false;
+    private static boolean menuHC = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,22 @@ public class BrightBackActivity extends Activity {
             public void onClick(View v) {
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.WHITEANDBLACK);
+
+                if(isMenuHC()){
+
+                    color = Colors.BLACKWHITE;
+
+                    MainActivity.setColor(color);
+                    Menu1ButtonDrawerActivity.setColor(color);
+                    ModesActivity.setColor(color);
+                    ColorsActivity.setColor(color);
+                    CameraSettingsActivity.setColor(color);
+                    BrightBackActivity.setColor(color);
+                    DarkBackActivity.setColor(color);
+                    Modes1ButtonActivity.setColor(color);
+                    Colors1ButtonActivity.setColor(color);
+                    SettingsActivity.setColor(color);
+                }
                 //Creamos el Intent
                 Intent intent = new Intent(BrightBackActivity.this,MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
@@ -73,6 +90,22 @@ public class BrightBackActivity extends Activity {
             public void onClick(View v) {
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.WHITEANDBLUE);
+
+                if(isMenuHC()){
+
+                    color = Colors.BLUEWHITE;
+
+                    MainActivity.setColor(color);
+                    Menu1ButtonDrawerActivity.setColor(color);
+                    ModesActivity.setColor(color);
+                    ColorsActivity.setColor(color);
+                    CameraSettingsActivity.setColor(color);
+                    BrightBackActivity.setColor(color);
+                    DarkBackActivity.setColor(color);
+                    Modes1ButtonActivity.setColor(color);
+                    Colors1ButtonActivity.setColor(color);
+                    SettingsActivity.setColor(color);
+                }
                 //Creamos el Intent
                 Intent intent = new Intent(BrightBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
@@ -85,6 +118,22 @@ public class BrightBackActivity extends Activity {
             public void onClick(View v) {
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.WHITEANDRED);
+
+                if(isMenuHC()){
+
+                    color = Colors.REDWHITE;
+
+                    MainActivity.setColor(color);
+                    Menu1ButtonDrawerActivity.setColor(color);
+                    ModesActivity.setColor(color);
+                    ColorsActivity.setColor(color);
+                    CameraSettingsActivity.setColor(color);
+                    BrightBackActivity.setColor(color);
+                    DarkBackActivity.setColor(color);
+                    Modes1ButtonActivity.setColor(color);
+                    Colors1ButtonActivity.setColor(color);
+                    SettingsActivity.setColor(color);
+                }
                 Intent intent = new Intent(BrightBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
                 startActivity(intent);
@@ -96,6 +145,22 @@ public class BrightBackActivity extends Activity {
             public void onClick(View v) {
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.YELLOWANDBLACK);
+
+                if(isMenuHC()){
+
+                    color = Colors.BLACKYELLOW;
+
+                    MainActivity.setColor(color);
+                    Menu1ButtonDrawerActivity.setColor(color);
+                    ModesActivity.setColor(color);
+                    ColorsActivity.setColor(color);
+                    CameraSettingsActivity.setColor(color);
+                    BrightBackActivity.setColor(color);
+                    DarkBackActivity.setColor(color);
+                    Modes1ButtonActivity.setColor(color);
+                    Colors1ButtonActivity.setColor(color);
+                    SettingsActivity.setColor(color);
+                }
                 //Creamos el Intent
                 Intent intent = new Intent(BrightBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
@@ -108,6 +173,22 @@ public class BrightBackActivity extends Activity {
             public void onClick(View v) {
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.YELLOWANDBLUE);
+
+                if(isMenuHC()){
+
+                    color = Colors.BLUEYELLOW;
+
+                    MainActivity.setColor(color);
+                    Menu1ButtonDrawerActivity.setColor(color);
+                    ModesActivity.setColor(color);
+                    ColorsActivity.setColor(color);
+                    CameraSettingsActivity.setColor(color);
+                    BrightBackActivity.setColor(color);
+                    DarkBackActivity.setColor(color);
+                    Modes1ButtonActivity.setColor(color);
+                    Colors1ButtonActivity.setColor(color);
+                    SettingsActivity.setColor(color);
+                }
                 //Creamos el Intent
                 Intent intent = new Intent(BrightBackActivity.this, MagnificadorActivity.class);
                 //Comenzamos la nueva actividad
@@ -120,6 +201,22 @@ public class BrightBackActivity extends Activity {
             public void onClick(View v) {
                 MagnificadorActivity.setCURRENT_COLOR(CameraColors.HIGHCONTRAST);
                 MagnificadorActivity.setHIGH_CONTRAST_COLOR(CameraColors.YELLOWANDRED);
+
+                if(isMenuHC()){
+
+                    color = Colors.REDYELLOW;
+
+                    MainActivity.setColor(color);
+                    Menu1ButtonDrawerActivity.setColor(color);
+                    ModesActivity.setColor(color);
+                    ColorsActivity.setColor(color);
+                    CameraSettingsActivity.setColor(color);
+                    BrightBackActivity.setColor(color);
+                    DarkBackActivity.setColor(color);
+                    Modes1ButtonActivity.setColor(color);
+                    Colors1ButtonActivity.setColor(color);
+                    SettingsActivity.setColor(color);
+                }
                 //Creamos el Intent
                 Intent intent = new Intent(BrightBackActivity.this, MagnificadorActivity.class);
 
@@ -168,5 +265,13 @@ public class BrightBackActivity extends Activity {
 
     public static void setColor(Colors color) {
         BrightBackActivity.color = color;
+    }
+
+    public static boolean isMenuHC() {
+        return menuHC;
+    }
+
+    public static void setMenuHC(boolean menuHC) {
+        BrightBackActivity.menuHC = menuHC;
     }
 }
