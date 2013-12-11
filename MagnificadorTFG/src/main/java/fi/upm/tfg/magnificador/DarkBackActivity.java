@@ -24,38 +24,24 @@ public class DarkBackActivity extends Activity {
 
         switch (color){
             case BLACKWHITE:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.White));
-                break;
-            case WHITEBLACK:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
-                break;
-            case BLACKYELLOW:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
-                break;
-            case YELLOWBLACK:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
-                break;
             case BLUEWHITE:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.White));
-                break;
-            case WHITEBLUE:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
-                break;
-            case BLUEYELLOW:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
-                break;
-            case YELLOWBLUE:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
-                break;
             case REDWHITE:
                 findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
-            case WHITERED:
-                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
+            case WHITEBLACK:
+            case YELLOWBLACK:
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
                 break;
+            case BLACKYELLOW:
+            case BLUEYELLOW:
             case REDYELLOW:
                 findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
+            case WHITEBLUE:
+            case YELLOWBLUE:
+                findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
+                break;
+            case WHITERED:
             case YELLOWRED:
                 findViewById(R.id.fondoOscuroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
                 break;

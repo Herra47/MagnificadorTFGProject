@@ -1,8 +1,10 @@
 package fi.upm.tfg.magnificador;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.Menu;
 
 import fi.upm.tfg.enums.Colors;
@@ -37,18 +39,6 @@ public class Menu1ButtonDrawerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_drawer);
 
-        /*switch (color){
-            case BLACKWHITE:
-                mViewPager.setBackgroundColor(getResources().getColor(R.color.White));
-                break;
-            case YELLOWBLUE:
-                mViewPager.setBackgroundColor(getResources().getColor(R.color.Blue));
-                break;
-            case YELLOWRED:
-                mViewPager.setBackgroundColor(getResources().getColor(R.color.Red));
-                break;
-        }*/
-
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -76,12 +66,14 @@ public class Menu1ButtonDrawerActivity extends FragmentActivity {
         return true;
     }
 
-
-
-
-
-
-
-
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            Intent intent = new Intent(Menu1ButtonDrawerActivity.this, MagnificadorActivity.class);
+            //Comenzamos la nueva actividad
+            startActivity(intent);
+            finish();
+        }
+        return true;
+    }
 }

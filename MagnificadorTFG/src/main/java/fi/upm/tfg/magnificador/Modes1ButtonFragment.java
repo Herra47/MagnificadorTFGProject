@@ -82,8 +82,35 @@ public class Modes1ButtonFragment extends Fragment {
             case BLACKWHITE:
                 contrastBlackWhite(optionButton,previousItem,nextItem,viewPager);
                 break;
+            case WHITEBLACK:
+                contrastWhiteBlack(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case BLACKYELLOW:
+                contrastBlackYellow(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case YELLOWBLACK:
+                contrastYellowBlack(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case BLUEWHITE:
+                contrastBlueWhite(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case WHITEBLUE:
+                contrastWhiteBlue(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case BLUEYELLOW:
+                contrastBlueYellow(optionButton,previousItem,nextItem,viewPager);
+                break;
             case YELLOWBLUE:
                 contrastYellowBlue(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case REDWHITE:
+                contrastRedWhite(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case WHITERED:
+                contrastWhiteRed(optionButton,previousItem,nextItem,viewPager);
+                break;
+            case REDYELLOW:
+                contrastRedYellow(optionButton,previousItem,nextItem,viewPager);
                 break;
             case YELLOWRED:
                 contrastYellowRed(optionButton,previousItem,nextItem,viewPager);
@@ -168,10 +195,116 @@ public class Modes1ButtonFragment extends Fragment {
                 getResources().getDrawable(R.drawable.navigation_next_item));
 
         viewPager.setBackgroundColor(white);
+    }
 
-       /* this.menuColor = Colors.BLACKWHITE;
-        MainActivity.setColor(menuColor);
-        Menu1ButtonDrawerActivity.setColor(menuColor);*/
+    public void contrastWhiteBlack(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Black);
+        int background = R.drawable.button_white_black;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_white_black);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_black) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_bright));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_black) :
+                getResources().getDrawable(R.drawable.navigation_next_item_bright));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastBlackYellow(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Yellow);
+        int background = R.drawable.button_black_yellow;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_black_yellow);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_yellow) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_black));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_yellow) :
+                getResources().getDrawable(R.drawable.navigation_next_item_black));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastYellowBlack(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Black);
+        int background = R.drawable.button_black_yellow;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_black_yellow);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_black) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_yellow));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_black) :
+                getResources().getDrawable(R.drawable.navigation_next_item_yellow));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastBlueWhite(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.White);
+        int background = R.drawable.button_blue_white;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_blue_white);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_bright) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_blue));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_bright) :
+                getResources().getDrawable(R.drawable.navigation_next_item_blue));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastWhiteBlue(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Blue);
+        int background = R.drawable.button_white_blue;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_white_blue);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_blue) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_bright));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_blue) :
+                getResources().getDrawable(R.drawable.navigation_next_item_bright));
+
+        viewPager.setBackgroundColor(backColor);
     }
 
     public void contrastYellowBlue(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
@@ -195,10 +328,94 @@ public class Modes1ButtonFragment extends Fragment {
                 getResources().getDrawable(R.drawable.navigation_next_item_yellow));
 
         viewPager.setBackgroundColor(blue);
+    }
 
-        /*this.menuColor = Colors.YELLOWBLUE;
-        MainActivity.setColor(menuColor);
-        Menu1ButtonDrawerActivity.setColor(menuColor);*/
+    public void contrastBlueYellow(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Yellow);
+        int background = R.drawable.button_blue_yellow;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_blue_yellow);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_yellow) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_blue));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_yellow) :
+                getResources().getDrawable(R.drawable.navigation_next_item_blue));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastRedWhite(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.White);
+        int background = R.drawable.button_red_white;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_red_white);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_bright) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_red));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_bright) :
+                getResources().getDrawable(R.drawable.navigation_next_item_red));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastWhiteRed(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Red);
+        int background = R.drawable.button_white_red;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_white_red);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_red) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_bright));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_red) :
+                getResources().getDrawable(R.drawable.navigation_next_item_bright));
+
+        viewPager.setBackgroundColor(backColor);
+    }
+
+    public void contrastRedYellow(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
+
+        int backColor = getResources().getColor(R.color.Yellow);
+        int background = R.drawable.button_red_yellow;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_red_yellow);
+
+        mainButton.setBackgroundResource(background);
+        mainButton.setTextColor(textColor);
+        buttonLeft.setBackgroundColor(backColor);
+        buttonRight.setBackgroundColor(backColor);
+
+        buttonLeft.setImageDrawable(index == 0 ?
+                getResources().getDrawable(R.drawable.navigation_previous_item_yellow) :
+                getResources().getDrawable(R.drawable.navigation_previous_item_red));
+
+        buttonRight.setImageDrawable(index == 3 ?
+                getResources().getDrawable(R.drawable.navigation_next_item_yellow) :
+                getResources().getDrawable(R.drawable.navigation_next_item_red));
+
+        viewPager.setBackgroundColor(backColor);
     }
 
     public void contrastYellowRed(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
@@ -222,9 +439,5 @@ public class Modes1ButtonFragment extends Fragment {
                 getResources().getDrawable(R.drawable.navigation_next_item_yellow));
 
         viewPager.setBackgroundColor(red);
-
-        /*this.menuColor = Colors.YELLOWRED;
-        MainActivity.setColor(menuColor);
-        Menu1ButtonDrawerActivity.setColor(menuColor);*/
     }
 }

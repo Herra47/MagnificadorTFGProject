@@ -26,42 +26,29 @@ public class BrightBackActivity extends Activity {
 
         switch (color){
             case BLACKWHITE:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.White));
-                break;
-            case WHITEBLACK:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
-                break;
-            case BLACKYELLOW:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
-                break;
-            case YELLOWBLACK:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
-                break;
             case BLUEWHITE:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.White));
-                break;
-            case WHITEBLUE:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
-                break;
-            case BLUEYELLOW:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
-                break;
-            case YELLOWBLUE:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
-                break;
             case REDWHITE:
                 findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.White));
                 break;
-            case WHITERED:
-                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
-                break;
+            case BLACKYELLOW:
+            case BLUEYELLOW:
             case REDYELLOW:
                 findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Yellow));
                 break;
+            case WHITEBLACK:
+            case YELLOWBLACK:
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Black));
+                break;
+            case WHITEBLUE:
+            case YELLOWBLUE:
+                findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Blue));
+                break;
+            case WHITERED:
             case YELLOWRED:
                 findViewById(R.id.fondoClaroLayout).setBackgroundColor(getResources().getColor(R.color.Red));
                 break;
         }
+
 
         final Button whiteBlackButton = (Button) findViewById(R.id.whiteBlackButton);
         final Button whiteBlueButton = (Button) findViewById(R.id.whiteBlueButton);

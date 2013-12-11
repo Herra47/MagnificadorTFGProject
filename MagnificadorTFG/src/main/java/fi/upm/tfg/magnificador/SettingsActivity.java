@@ -51,11 +51,11 @@ public class SettingsActivity extends Activity {
                 break;
             case BLUEWHITE:
                 contrastBlueWhite();
-                rg.check(R.id.radioButtonBlueW);
+                rg.check(R.id.radioButtonWBlue);
                 break;
             case WHITEBLUE:
                 contrastWhiteBlue();
-                rg.check(R.id.radioButtonWBlue);
+                rg.check(R.id.radioButtonBlueW);
                 break;
             case BLUEYELLOW:
                 contrastBlueYellow();
@@ -134,10 +134,10 @@ public class SettingsActivity extends Activity {
                         color = Colors.YELLOWBLACK;
                         break;
                     case R.id.radioButtonBlueW:
-                        color = Colors.BLUEWHITE;
+                        color = Colors.WHITEBLUE;
                         break;
                     case R.id.radioButtonWBlue:
-                        color = Colors.WHITEBLUE;
+                        color = Colors.BLUEWHITE;
                         break;
                     case R.id.radioButtonBlueY:
                         color = Colors.BLUEYELLOW;
@@ -166,6 +166,8 @@ public class SettingsActivity extends Activity {
                 CameraSettingsActivity.setColor(color);
                 BrightBackActivity.setColor(color);
                 DarkBackActivity.setColor(color);
+                Modes1ButtonActivity.setColor(color);
+                Colors1ButtonActivity.setColor(color);
 
                 switch (selectedMenu){
                     case R.id.radioButtonFour:

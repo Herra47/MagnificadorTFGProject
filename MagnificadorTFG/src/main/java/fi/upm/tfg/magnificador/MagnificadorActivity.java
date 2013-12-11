@@ -56,7 +56,7 @@ public class MagnificadorActivity extends Activity {
     private float mOldScaleFactor = 1.f;
 
     private static float SCALE;
-    private static int THRESH;
+    private static int THRESH = 127;
 
     private static boolean SCALING;
     private static boolean PAUSED;
