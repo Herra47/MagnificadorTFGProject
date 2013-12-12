@@ -60,7 +60,6 @@ public class MagnificadorActivity extends Activity {
 
     private static boolean SCALING;
     private static boolean PAUSED;
-    private static boolean ZOOMED;
     private static boolean FLASHED;
     private static boolean STAB;
     private static boolean MACRO;
@@ -191,7 +190,6 @@ public class MagnificadorActivity extends Activity {
     public MagnificadorActivity() {
         Log.i(TAG, "Instantiated new" + this.getClass());
         PAUSED = false;
-        ZOOMED = false;
     }
 
     @Override
@@ -440,14 +438,6 @@ public class MagnificadorActivity extends Activity {
         MagnificadorActivity.PAUSED = paused;
     }
 
-    public static boolean isZOOMED() {
-        return ZOOMED;
-    }
-
-    public static void setZOOMED(boolean ZOOMED) {
-        MagnificadorActivity.ZOOMED = ZOOMED;
-    }
-
     public static boolean getFlashed(){
         return FLASHED;
     }
@@ -496,16 +486,8 @@ public class MagnificadorActivity extends Activity {
         return px;
     }
 
-    public static void setPx(float px) {
-        MagnificadorActivity.px = px;
-    }
-
     public static float getPy() {
         return py;
-    }
-
-    public static void setPy(float py) {
-        MagnificadorActivity.py = py;
     }
 
     public static int getTHRESH() {

@@ -76,7 +76,7 @@ public class TwoFingersHorizontalMoveDetector implements GestureInterfaceTest{
                 case MotionEvent.ACTION_POINTER_UP:
                     long duration = System.currentTimeMillis() - startTime;
                     // Condiciones de un movimiento horizontal
-                    if (dy1 < 20 && dy2 < 20 && dx1 > 10 && dx2 > 10 && duration < 300) {
+                    if (dy1 < 20 && dy2 < 20 && dx1 > 15 && dx2 > 15 && duration < 300) {
                         if (aderecha == 0){
                             colorLeft(mView);
                             return true;
