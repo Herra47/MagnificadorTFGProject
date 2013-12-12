@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fi.upm.tfg.magnificador.CameraSettings1ButtonActivity$PlaceholderFragment">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonLeftCamera"
+        android:src="@drawable/navigation_previous_item_bright"
+        android:background="@color/White"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="@string/button_encender_stab"
+        android:textColor="@color/text_black_white"
+        android:textSize="37sp"
+        android:id="@+id/optionButtonCamera"
+        style="@style/button1x1"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageButtonLeftCamera"
+        android:layout_toLeftOf="@+id/imageButtonRightCamera"
+        android:background="@drawable/button_black_white"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageButtonRightCamera"
+        android:src="@drawable/navigation_next_item"
+        android:background="@color/White"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

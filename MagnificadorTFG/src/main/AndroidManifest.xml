@@ -74,6 +74,10 @@
             android:name="fi.upm.tfg.magnificador.Colors1ButtonActivity"
             android:label="@string/title_activity_colors1_button" >
         </activity>
+        <activity
+            android:name="fi.upm.tfg.magnificador.CameraSettings1ButtonActivity"
+            android:label="@string/title_activity_camera_settings1_button" >
+        </activity>
     </application>
 
 </manifest>
