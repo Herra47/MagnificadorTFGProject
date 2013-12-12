@@ -233,8 +233,8 @@ public class DummySectionFragment extends Fragment {
     public void contrastYellowBlack(Button mainButton, ImageButton buttonLeft, ImageButton buttonRight, ViewPager viewPager){
 
         int backColor = getResources().getColor(R.color.Black);
-        int background = R.drawable.button_black_yellow;
-        ColorStateList textColor = getResources().getColorStateList(R.color.text_black_yellow);
+        int background = R.drawable.button_yellow_black;
+        ColorStateList textColor = getResources().getColorStateList(R.color.text_yellow_black);
 
         mainButton.setBackgroundResource(background);
         mainButton.setTextColor(textColor);

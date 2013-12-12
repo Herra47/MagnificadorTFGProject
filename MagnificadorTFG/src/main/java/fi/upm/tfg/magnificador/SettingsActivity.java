@@ -231,18 +231,21 @@ public class SettingsActivity extends Activity {
                 DarkBackActivity.setColor(color);
                 Modes1ButtonActivity.setColor(color);
                 Colors1ButtonActivity.setColor(color);
+                CameraSettings1ButtonActivity.setColor(color);
 
                 switch (selectedMenu){
                     case R.id.radioButtonFour:
                         MainActivity.setMenu1Button(false);
                         ModesActivity.setMenu1Button(false);
                         ColorsActivity.setMenu1Button(false);
+                        CameraSettingsActivity.setMenu1Button(false);
 
                         break;
                     case R.id.radioButtonOne:
                         MainActivity.setMenu1Button(true);
                         ModesActivity.setMenu1Button(true);
                         ColorsActivity.setMenu1Button(true);
+                        CameraSettingsActivity.setMenu1Button(true);
                         break;
                 }
                 startActivity(new Intent(SettingsActivity.this, MagnificadorActivity.class));

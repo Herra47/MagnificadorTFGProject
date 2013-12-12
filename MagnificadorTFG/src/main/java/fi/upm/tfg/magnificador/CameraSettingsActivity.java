@@ -22,6 +22,10 @@ public class CameraSettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_settings);
 
+        if(menu1Button){
+            startActivity(new Intent(CameraSettingsActivity.this,CameraSettings1ButtonActivity.class));
+            finish();
+        }
 
         ColorStateList text = getResources().getColorStateList(R.color.text_black_white);
         int backColor = getResources().getColor(R.color.White);
