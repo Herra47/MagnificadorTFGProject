@@ -98,7 +98,7 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                             MagnificadorActivity.setTHRESH(thresh);
                         }
                         else if(dy1<0 && dy2<0){
-                            thresh += Math.abs((dy1 + dy2)/500);
+                            thresh += (Math.abs(dy1) + Math.abs(dy2))/500;
                             thresh = Math.max(0, Math.min(thresh, 255));
                             setThresh(thresh,mView);
                             MagnificadorActivity.setTHRESH(thresh);
