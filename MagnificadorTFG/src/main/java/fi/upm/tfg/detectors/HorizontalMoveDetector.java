@@ -43,7 +43,7 @@ public class HorizontalMoveDetector implements GestureInterface {
 			break;
 		case MotionEvent.ACTION_UP:
             long duration = System.currentTimeMillis() - startTime;
-            if(mFirstTouchX < 10 && (dy < 20 || dy > -20) && dx > 200 && (duration > 300 || duration < 500)){
+            if(mFirstTouchX < 10 && (dy < 40 && dy > -40) && dx > 200 && (duration > 300 || duration < 500)){
                 Intent intent = new Intent();
                 intent.setClass(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

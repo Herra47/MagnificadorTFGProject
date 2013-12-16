@@ -72,7 +72,6 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
 
                 try{
 
-
                     final int pointerIndex = MotionEventCompat.findPointerIndex(event, mActivePointerId);
                     final int pointerIndex2 = MotionEventCompat.findPointerIndex(event, mActivePointerId2);
 
@@ -87,21 +86,21 @@ public class TwoFingersVerticalMoveDetector implements GestureInterfaceTest {
                     dx2 = x2 - mLastTouchX2;
                     dy2 = y2 - mLastTouchY2;
 
-                    // limites
-                    double factor = mView.getHeight()/255;
                     Log.i(TAG, "Distancias (" + dx1 + ", " + dy1 + ") y (" + dx2 + ", " + dy2 + ")");
                     if (dx1 < 15 && dx2 < 15){// && dx1 > -40 && dx2 > -40
                         if(dy1 > 0 && dy2 > 0){
-                            thresh -= Math.abs((dy1 + dy2)/500);
+                            thresh -= Math.abs((dy1 + dy2)/5000);
                             thresh = Math.max(0, Math.min(thresh, 255));
                             setThresh(thresh,mView);
                             MagnificadorActivity.setTHRESH(thresh);
+                            Log.i(TAG, "Thresh -: " + thresh);
                         }
                         else if(dy1<0 && dy2<0){
-                            thresh += (Math.abs(dy1) + Math.abs(dy2))/500;
+                            thresh += Math.abs(((dy2 + dy1)/200));
                             thresh = Math.max(0, Math.min(thresh, 255));
                             setThresh(thresh,mView);
                             MagnificadorActivity.setTHRESH(thresh);
+                            Log.i(TAG, "Thresh +: " + thresh);
                         }
                     }
                     break;
