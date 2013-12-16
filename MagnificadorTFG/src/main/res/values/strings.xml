@@ -9,10 +9,10 @@
     <string name="button_menu">1 botón</string>
     <string name="button_menu4">4 botones</string>
     <string name="button_settings">Ajustes</string>
-    <string name="opcion_1">Menu 1 opción</string>
-    <string name="opcion_2">Menu 4 opciones</string>
-    <string name="title_activity_menu1">Menu 1 Opción</string>
-    <string name="title_activity_menu1_button">Menu 1 Opción</string>
+    <string name="opcion_1">Menú 1 opción</string>
+    <string name="opcion_2">Menú 4 opciones</string>
+    <string name="title_activity_menu1">Menú 1 Opción</string>
+    <string name="title_activity_menu1_button">Menú 1 Opción</string>
     <string name="title_activity_settings">Ajustes</string>
     <string name="settings">Contraste</string>
     <string name="title_activity_camera">Magnificador</string>
